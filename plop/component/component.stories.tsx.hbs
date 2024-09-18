@@ -1,0 +1,15 @@
+import type { Meta, StoryObj } from '@storybook/react';
+
+import {{ properCase name }} from './{{ properCase name }}';
+
+const meta = {
+  component: {{ properCase name }},
+} satisfies Meta<typeof {{ properCase name }}>;
+
+export default meta;
+
+type Story = StoryObj<typeof meta>;
+
+export const Default: Story = {
+  args: {}
+};
