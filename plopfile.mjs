@@ -58,13 +58,30 @@ export default function (plop) {
         name: "name",
         message: "What is your page name?",
       },
-    ],
-    actions: [
       {
-        type: "add",
-        path: "src/pages/{{properCase name}}Page.tsx",
-        templateFile: "plop/pages/page.tsx.hbs",
+        type: "input",
+        name: "route",
+        message: "What is the parent route?",
       },
     ],
+    actions: (data) => {
+      if (data.route) {
+        return [
+          {
+            type: "add",
+            path: "src/pages/{{route}}/{{properCase name}}Page.tsx",
+            templateFile: "plop/page.tsx.hbs",
+          },
+        ];
+      }
+
+      return [
+        {
+          type: "add",
+          path: "src/pages/{{properCase name}}Page.tsx",
+          templateFile: "plop/page.tsx.hbs",
+        },
+      ];
+    },
   });
 }

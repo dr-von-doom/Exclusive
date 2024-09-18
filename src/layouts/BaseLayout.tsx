@@ -4,9 +4,9 @@ import Nav from "@/components/Nav";
 
 import { ReactNode } from "react";
 
-interface BaseLayoutProps {
+type BaseLayoutProps = {
   children: ReactNode;
-}
+};
 
 const BaseLayout = ({ children }: BaseLayoutProps) => {
   return (
