@@ -2,16 +2,21 @@ import HomePage from "@/pages/HomePage";
 import NotFoundPage from "@/pages/NotFoundPage";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 
-const router = createBrowserRouter([
+const router = createBrowserRouter(
+  [
+    {
+      path: "/",
+      element: <HomePage />,
+    },
+    {
+      path: "*",
+      element: <NotFoundPage />,
+    },
+  ],
   {
-    path: "/",
-    element: <HomePage />,
+    basename: "/exclusive",
   },
-  {
-    path: "*",
-    element: <NotFoundPage />,
-  },
-]);
+);
 
 export const AppRouter = () => {
   return <RouterProvider router={router} />;
