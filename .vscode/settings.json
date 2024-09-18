@@ -1,23 +1,19 @@
 {
-    "cSpell.enabled": true,
-    "editor.formatOnSave": true,
+  "cSpell.enabled": true,
+  "editor.formatOnSave": true,
+  "editor.codeActionsOnSave": {
+    "source.organizeImports": "always"
+  },
+  "eslint.validate": ["typescript"],
+  "[typescript]": {
     "editor.codeActionsOnSave": {
-        "source.organizeImports": "always"
+      "source.fixAll.eslint": "explicit",
+      "editor.formatOnSave": "explicit",
+      "source.organizeImports": "never"
     },
-    "eslint.validate": [
-      "typescript"
-    ],
-    "[typescript]": {
-      "editor.codeActionsOnSave": {
-        "source.fixAll.eslint": "explicit",
-        "editor.formatOnSave": "explicit",
-        "source.organizeImports": "never"
-      },
-      "editor.formatOnSave": true,
-      "editor.defaultFormatter": "esbenp.prettier-vscode"
-    },
-    "cSpell.words": [
-      "tailwindcss"
-    ],
-    "editor.tabSize": 4
+    "editor.formatOnSave": true,
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "cSpell.words": ["tailwindcss"],
+  "editor.tabSize": 2
 }
