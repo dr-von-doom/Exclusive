@@ -15,7 +15,7 @@ const BaseLayout = ({ children }: BaseLayoutProps) => {
       <Nav />
 
       {children}
-
+      
       <Footer />
     </div>
   );
