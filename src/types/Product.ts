@@ -10,4 +10,5 @@ export type Product = {
   description: string;
   features: string[];
   category: string;
+  subcategory: string;
 };
