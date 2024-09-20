@@ -7,7 +7,7 @@ import VisaIcon from "@/assets/icons/visa.svg";
 import xIcon from "@/assets/icons/x.svg";
 import categories from '@/data/category-groups.json';
 
-interface Category {
+export type Category = {
   id: number;
   name: string;
 }
