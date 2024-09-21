@@ -1,5 +1,5 @@
 import categories from "@/data/categories.json";
-import categoryGroups from "@/data/category-groups.json"; // Nota: Importa como el contenido directo
+import categoryGroups from "@/data/category-groups.json";
 import { CategoryGroup } from "@/types/Category";
 
 export const Subheader = () => {
