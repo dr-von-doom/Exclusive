@@ -1,4 +1,5 @@
 import CategoryBanner from "@/components/Product/CategoryBanner";
+import ExploreMoreBanner from "@/components/Product/ExploreMoreBanner";
 import PaginatedProductList from "@/components/Product/PaginatedProductList";
 import BaseLayout from "@/layouts/BaseLayout";
 import { Category } from "@/types/Category";
@@ -9,7 +10,7 @@ import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 
 const sortOptionsList = [
-  { value: null, label: "Default" },
+  { value: "", label: "Default" },
   { value: "price-asc", label: "Price: Low to High" },
   { value: "price-desc", label: "Price: High to Low" },
   { value: "rating", label: "Rating" },
@@ -96,7 +97,7 @@ export const ProductListPage = () => {
       <div className="flex h-full grow flex-col items-center justify-center gap-5 p-10">
         <CategoryBanner category={category} />
 
-        <div className="grid gap-4 sm:grid-cols-3">
+        <div className="my-10 grid gap-4 sm:grid-cols-3">
           <div className="sm:col-span-1">
             <p>Filters</p>
           </div>
@@ -110,6 +111,8 @@ export const ProductListPage = () => {
           </div>
         </div>
       </div>
+
+      <ExploreMoreBanner />
     </BaseLayout>
   );
 };

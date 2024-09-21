@@ -1,6 +1,7 @@
 import Button from "@/components/Button";
 import { PaginatedData } from "@/types/PaginatedData";
 import { Product } from "@/types/Product";
+import { useEffect, useRef } from "react";
 import DetailedProductCard from "../DetailedProductCard";
 
 export type PaginatedProductListProps = {
@@ -16,9 +17,22 @@ export const PaginatedProductList = ({
   onLoadMore,
   onSort,
 }: PaginatedProductListProps) => {
+  const optionSection = useRef<HTMLDivElement>(null);
+  const resultsSection = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    const rect = optionSection.current?.getClientRects()[0];
+    if (rect) {
+      resultsSection.current?.style.setProperty(
+        "height",
+        `calc(100vh - ${rect.height}px)`,
+      );
+    }
+  }, [optionSection]);
+
   return (
     <>
-      <div className="flex flex-row justify-between">
+      <div className="flex flex-row justify-between" ref={optionSection}>
         <div>
           {paginatedData.data.length} out of {paginatedData.totalResults}
         </div>
@@ -38,22 +52,26 @@ export const PaginatedProductList = ({
           </select>
         </div>
       </div>
-      <div className="flex flex-col gap-5">
+
+      <div
+        className="flex flex-col gap-5 overflow-y-auto scroll-smooth"
+        ref={resultsSection}
+      >
         {paginatedData.data.map((product, index) => (
           <DetailedProductCard key={index} {...product} />
         ))}
+      </div>
 
-        <div className="flex justify-center">
-          {paginatedData.page < paginatedData.totalPages && (
-            <Button
-              type="secondary"
-              onClick={() => onLoadMore()}
-              className="w-fit"
-            >
-              Load More
-            </Button>
-          )}
-        </div>
+      <div className="mt-10 flex justify-center">
+        {paginatedData.page < paginatedData.totalPages && (
+          <Button
+            type="secondary"
+            onClick={() => onLoadMore()}
+            className="w-fit"
+          >
+            Load More
+          </Button>
+        )}
       </div>
     </>
   );
