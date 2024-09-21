@@ -25,7 +25,7 @@ export const Subheader = () => {
               {getSubcategoriesForCategory(category.id).map((subcategory) => (
                 <li className="mb-2 last:mb-0" key={subcategory.id}>
                   <a
-                    href={'#'}
+                    href={`/category/${category.name}/${subcategory.name}`}
                     className="block text-black hover:text-red-500"
                   >
                     {subcategory.name}
