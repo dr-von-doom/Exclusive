@@ -18,17 +18,16 @@ export const Filter = () => {
     }
     setOpenFilters(newOpenFilters);
   };
-  
 
   return (
-    <div className="font-poppins m-0 border">
-      <h2 className="ml-5 mt-5 text-2xl text-black">Filters</h2>
+    <div className="font-poppins m-0 border p-4 md:p-6">
+      <h2 className="text-xl md:text-2xl text-black mb-4">Filters</h2>
       {(filtersData as FilterType[]).map((filterCategory: FilterType) => (
-        <div key={filterCategory.categoryId} className="m-0 bg-white p-4">
+        <div key={filterCategory.categoryId} className="bg-white mb-4">
           {filterCategory.filters.map((filter) => (
-            <div key={filter.name} className="mb-0">
+            <div key={filter.name} className="mb-2">
               <div
-                className="mt-2 flex cursor-pointer items-center border border-gray-300 bg-gray-100 px-4 py-2 font-medium"
+                className="flex cursor-pointer items-center border border-gray-300 bg-gray-100 px-3 py-2 rounded-md"
                 onClick={() => toggleFilter(filter.name)}
               >
                 <span
@@ -52,9 +51,9 @@ export const Filter = () => {
                 <span className="text-sm">{capitalizeFirstLetter(filter.name)}</span>
               </div>
               {openFilters.has(filter.name) && (
-                <ul className="m-0 border border-gray-300 p-2">
+                <ul className="border border-gray-300 p-2 rounded-md">
                   {filter.options.map((option) => (
-                    <li key={option} className="m-0 flex items-center rounded p-2">
+                    <li key={option} className="flex items-center rounded p-2">
                       <input
                         type={filter.type}
                         id={option}
@@ -80,4 +79,3 @@ export const Filter = () => {
 };
 
 export default Filter;
-
