@@ -1,21 +1,17 @@
-import { useState } from 'react';
-import categories from '../../data/categories.json';
-import categoryGroups from '../../data/category-groups.json';
-import { Category, CategoryGroup } from '../../types/Category';
+import categories from "@/data/categories.json";
+import categoryGroups from "@/data/category-groups.json"; // Nota: Importa como el contenido directo
+import { CategoryGroup } from "@/types/Category";
 
 export const Subheader = () => {
-  const [categoriesState] = useState<CategoryGroup[]>(categoryGroups);
-  const [subcategoriesState] = useState<Category[]>(categories);
-
   const getSubcategoriesForCategory = (groupId: number) =>
-    subcategoriesState.filter((subcategory) => subcategory.groupId === groupId);
+    categories.filter((subcategory) => subcategory.groupId === groupId);
 
   return (
     <nav className="bg-white m-0 p-4 text-center text-sm md:text-base">
       <ul className="flex justify-center list-none space-x-5 lg:justify-start">
-        {categoriesState.map((category) => (
+        {categoryGroups.map((category: CategoryGroup) => (
           <li className="relative group" key={category.id}>
-            <a className="text-black hover:text-red-500 cursor-pointer py-3 ">
+            <a className="text-black hover:text-red-500 cursor-pointer py-3">
               {category.name}
             </a>
             <ul
