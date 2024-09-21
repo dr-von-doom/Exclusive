@@ -30,7 +30,7 @@ export const Button = ({
         "rounded px-5 py-2 shadow-sm transition-transform hover:scale-x-105", // default classes
         className, // external classes
       )}
-      onClick={() => onClick}
+      onClick={onClick}
     >
       {children}
     </button>
