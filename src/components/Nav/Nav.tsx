@@ -11,7 +11,7 @@ export const Subheader = () => {
     categories.filter((subcategory) => subcategory.groupId === groupId);
 
   return (
-    <nav className="bg-white m-0 p-4 text-center text-sm md:text-base">
+    <nav className="bg-white m-0 p-4 text-center text-sm md:text-base font-poppins">
       <ul className="flex justify-center list-none space-x-5 lg:justify-start">
         {categoryGroups.map((category: CategoryGroup) => (
           <li className="relative group" key={category.id}>
