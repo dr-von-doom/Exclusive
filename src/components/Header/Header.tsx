@@ -20,11 +20,11 @@ export const Header = ({ logoLink = '/', cartLink = '#' }: HeaderProps) => {
 
       <div className="flex w-full h-9 md:w-1/4 ">
         <input
-          className="focus:outline-none rounded-l p-2 w-full bg-[#F5F5F5] border-none"
+          className="focus:outline-none rounded-l p-3 w-full bg-[#F5F5F5] border-none"
           type="text"
           placeholder="What are you looking for?"
         />
-        <button className="rounded-r p-1 bg-[#F5F5F5] border-none cursor-pointer">
+        <button className="rounded-r p-2 bg-[#F5F5F5] border-none cursor-pointer">
           <img className="h-5 w-5" src={searchIcon} alt="search" />
         </button>
       </div>
