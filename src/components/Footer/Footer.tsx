@@ -19,7 +19,7 @@ export const Footer = () => {
 
   return (
     <footer className="bg-black p-10 font-poppins text-sm text-white">
-      <div className="mb-5 flex flex-col items-center justify-center text-center lg:flex-row lg:justify-between">
+      <div className="flex flex-col items-center justify-center text-center lg:flex-row lg:justify-between">
         <div className="mb-5 lg:mb-0">
           <p className="pl-0 lg:pl-10">Exclusive S.A.</p>
           <p className="pl-0 lg:pl-10">NIT: 123456789-0</p>
