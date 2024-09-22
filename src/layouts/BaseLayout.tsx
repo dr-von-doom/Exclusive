@@ -14,7 +14,9 @@ const BaseLayout = ({ children }: BaseLayoutProps) => {
       <Header />
       <Nav />
 
-      {children}
+      <main className="flex-grow">
+        {children}
+      </main>
 
       <Footer />
     </div>
