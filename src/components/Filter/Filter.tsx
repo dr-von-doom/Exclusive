@@ -48,7 +48,7 @@ export const Filter: React.FC<FilterProps> = ({ onFilterChange, categoryId }) =>
       {filteredFilters.map((filter) => (
         <div key={filter.name} className="mb-2">
           <div
-            className="flex cursor-pointer items-center border font-medium border-gray-300 bg-gray-100 px-3 py-2 rounded-md"
+            className="flex cursor-pointer items-center border font-medium border-gray-200 bg-gray-100 p-4 px-3 py-2 rounded-md"
             onClick={() => toggleFilter(filter.name)}
           >
             <span
