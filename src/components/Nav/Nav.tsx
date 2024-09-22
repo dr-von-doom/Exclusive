@@ -1,6 +1,10 @@
 import categories from "@/data/categories.json";
 import categoryGroups from "@/data/category-groups.json";
 import { CategoryGroup } from "@/types/Category";
+import { Link } from "react-router-dom";
+
+const toKebabCase = (str: string) =>
+  str.toLowerCase().replace(/\s+/g, "-");
 
 export const Subheader = () => {
   const getSubcategoriesForCategory = (groupId: number) =>
@@ -20,12 +24,12 @@ export const Subheader = () => {
             >
               {getSubcategoriesForCategory(category.id).map((subcategory) => (
                 <li className="mb-2 last:mb-0" key={subcategory.id}>
-                  <a
-                    href={`/category/${category.name}/${subcategory.name}`}
+                  <Link
+                    to={`/category/${toKebabCase(category.name)}/${toKebabCase(subcategory.name)}`}
                     className="block text-black hover:text-red-500"
                   >
                     {subcategory.name}
-                  </a>
+                  </Link>
                 </li>
               ))}
             </ul>
