@@ -1,6 +1,6 @@
 export type FilterOption = {
   name: string;
-  type: "checkbox" | "radio";
+  type: 'checkbox' | 'radio';
   options: string[];
 };
 
