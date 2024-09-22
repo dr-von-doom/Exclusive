@@ -2,7 +2,6 @@ import bannerImage from "@/assets/images/products/products-banner.png";
 import Banner from "@/components/Banner/Banner";
 import BaseLayout from "@/layouts/BaseLayout";
 import { IconProps } from "@/types/Banner";
-import { Link } from "react-router-dom";
 import FeaturedProductView from "@/components/Product/FeaturedProductView";
 
 const icons: IconProps[] = [
@@ -78,6 +77,7 @@ const HomePage = () => {
   return (
     <BaseLayout>
       <div>
+        <FeaturedProductView />
         <Banner
           mainText="Everything you need, just a Click away"
           title="DON'T LET THE WINTER FREEZE"
@@ -86,9 +86,7 @@ const HomePage = () => {
           icons={icons}
           shopNowLink="#"
         />
-        <Link to="/category">Category</Link>
       </div>
-      <FeaturedProductView/>
     </BaseLayout>
   );
 };
