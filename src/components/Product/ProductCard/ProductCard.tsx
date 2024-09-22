@@ -3,7 +3,7 @@ import { getDiscountedPrice, priceFormatter } from "@/utils/functions";
 
 export const ProductCard = (product: Product) => {
   return (
-    <div className="bg-white shadow-sm rounded-md p-4 relative flex flex-col border border-neutral-300 justify-between">
+    <div className="bg-white shadow-sm rounded-md p-4 relative flex flex-col border border-neutral-300 justify-between font-poppins">
       {product.discount? product.discount != 0 && <div className="absolute top-0 left-0 bg-red-500 text-white rounded-md px-3.5 py-1.5"><span>-{Math.floor(product.discount * 100)}%</span></div> : null}
       <div className="p-4 w-full flex items-center justify-center">
         <img src={product.imageURL} alt={product.name}/>

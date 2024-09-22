@@ -2,6 +2,7 @@ import HomePage from "@/pages/HomePage";
 import NotFoundPage from "@/pages/NotFoundPage";
 import ProductListPage from "@/pages/Product/ProductListPage";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
+import WorkInProgress from "./components/WorkInProgress";
 
 const router = createBrowserRouter(
   [
@@ -11,11 +12,11 @@ const router = createBrowserRouter(
     },
     {
       path: "/category",
-      element: <p>test 1</p>,
+      element: <WorkInProgress />,
     },
     {
       path: "/category/:group",
-      element: <p>test 2</p>,
+      element: <WorkInProgress />,
     },
     {
       path: "/category/:group/:category",

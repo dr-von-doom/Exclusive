@@ -1,6 +1,7 @@
 import { Footer } from "@/components/Footer";
 import { Header } from "@/components/Header";
 import Nav from "@/components/Nav";
+import Breadcumb from "@/components/Breadcumb";
 
 import { ReactNode } from "react";
 
@@ -14,6 +15,7 @@ const BaseLayout = ({ children }: BaseLayoutProps) => {
       <Header />
       <Nav />
 
+      <Breadcumb/>
       {children}
       
       <Footer />
