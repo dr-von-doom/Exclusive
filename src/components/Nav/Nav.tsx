@@ -12,14 +12,14 @@ export const Subheader = () => {
 
   return (
     <nav className="bg-white m-0 p-4 text-center text-sm md:text-base font-poppins">
-      <ul className="flex justify-center list-none space-x-5 lg:justify-start">
+      <ul className="flex justify-center list-none space-x-5 lg:justify-start pr-4">
         {categoryGroups.map((category: CategoryGroup) => (
           <li className="relative group" key={category.id}>
             <a className="text-black hover:text-red-500 cursor-pointer py-3">
               {category.name}
             </a>
             <ul
-              className="absolute hidden group-hover:block z-10 bg-white border border-gray-400 rounded mt-2 p-2 lg:w-40 
+              className="absolute hidden lg:text-start group-hover:block z-10 bg-white border border-gray-400 rounded mt-2 p-2 lg:w-auto lg:w-max lg:whitespace-nowrap
               left-1/2 transform -translate-x-1/2 lg:left-auto lg:transform-none"
             >
               {getSubcategoriesForCategory(category.id).map((subcategory) => (
