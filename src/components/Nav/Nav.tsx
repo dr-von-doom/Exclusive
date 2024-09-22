@@ -19,7 +19,7 @@ export const Subheader = () => {
               {category.name}
             </a>
             <ul
-              className="absolute hidden group-hover:block z-10 bg-white border border-gray-400 rounded mt-2 p-2 lg:w-36 
+              className="absolute hidden group-hover:block z-10 bg-white border border-gray-400 rounded mt-2 p-2 lg:w-40 
               left-1/2 transform -translate-x-1/2 lg:left-auto lg:transform-none"
             >
               {getSubcategoriesForCategory(category.id).map((subcategory) => (
