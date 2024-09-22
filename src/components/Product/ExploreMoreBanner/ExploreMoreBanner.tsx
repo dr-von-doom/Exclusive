@@ -12,24 +12,24 @@ export const ExploreMoreBanner = () => {
         <span className="font-bold">You</span>
       </h2>
 
-      <div className="mx-auto my-10 grid max-w-screen-md gap-4 sm:grid-cols-3">
+      <div className="mx-auto my-10 grid max-w-screen-md gap-4 sm:grid-cols-3 sm:gap-16">
         <div className="flex flex-col items-center gap-2 text-center">
           <img src={DeliveryServiceIcon} alt="" />
           <p className="font-bold uppercase">Free and fast delivery</p>
-          <p>Free delivery for all orders over $140</p>
+          <p className="text-sm">Free delivery for all orders over $140</p>
         </div>
 
         <div className="flex flex-col items-center gap-2 text-center">
           <img src={CostumerServiceIcon} alt="" />
           <p className="font-bold uppercase">27/7 Costumer Service</p>
-          <p>Friendly 24/7 costumer service</p>
+          <p className="text-sm">Friendly 24/7 costumer service</p>
         </div>
 
         <div className="flex flex-col items-center gap-2 text-center">
           <img src={ReturnServiceIcon} alt="" />
 
           <p className="font-bold uppercase">Money back guarantee</p>
-          <p>100% money back guarantee within 30 days</p>
+          <p className="text-sm">100% money back guarantee within 30 days</p>
         </div>
       </div>
       <div>

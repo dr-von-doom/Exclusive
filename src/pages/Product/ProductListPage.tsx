@@ -49,7 +49,18 @@ export const ProductListPage = () => {
     });
 
     setPaginatedData(results);
-  }, [category, sortOptions]);
+  }, [category]);
+
+  useEffect(() => {
+    if (!category) return;
+
+    const results = getProductByCategory(category.id, {
+      page: 1,
+      ...sortOptions,
+    });
+
+    setPaginatedData(results);
+  }, [sortOptions]);
 
   if (!category) return <div>Loading...</div>;
 

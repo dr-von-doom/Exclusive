@@ -32,16 +32,16 @@ export const PaginatedProductList = ({
 
   return (
     <>
-      <div className="flex flex-row justify-between" ref={optionSection}>
+      <div className="grid gap-5 sm:grid-cols-2" ref={optionSection}>
         <div>
           {paginatedData.data.length} out of {paginatedData.totalResults}
         </div>
-        <div className="space-x-3">
+        <div className="flex space-x-3 sm:justify-self-end">
           <span>Sort by</span>
           <select
             name="sort-by"
             id="sort-by"
-            className="rounded border border-gray-300 p-1 focus:outline-none active:outline-none"
+            className="sm:flex-0 flex-1 rounded border border-gray-300 p-1 focus:outline-none active:outline-none"
             onChange={onSort}
           >
             {sortOptionsList.map((option, index) => (
@@ -54,7 +54,7 @@ export const PaginatedProductList = ({
       </div>
 
       <div
-        className="flex flex-col gap-5 overflow-y-auto scroll-smooth"
+        className="flex flex-col gap-5 overflow-y-auto scroll-smooth p-5"
         ref={resultsSection}
       >
         {paginatedData.data.map((product, index) => (
