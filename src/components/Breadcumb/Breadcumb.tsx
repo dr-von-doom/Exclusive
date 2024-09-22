@@ -10,7 +10,7 @@ export const Breadcrumb = () => {
   const capitalize = (s: string) => s.charAt(0).toUpperCase() + s.slice(1);
 
   return (
-    <div className="w-full rounded-md p-3">
+    <div className="w-full rounded-md p-3 ml-4">
       <ol className="list-reset flex">
         <li className="text-gray-500">
           <Link to="/">Home</Link>
