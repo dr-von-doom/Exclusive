@@ -24,9 +24,9 @@ export const Breadcrumb = () => {
             <li key={to} className="flex items-center">
               <span className="mx-2">/</span>
               {isLast ? (
-                <span className="hover:text-red-500">{capitalize(value)}</span>
+                <span>{capitalize(value)}</span>
               ) : (
-                <Link to={to} className="text-gray-500">
+                <Link to={to} className="text-gray-500 hover:text-red-500">
                   {capitalize(value)}
                 </Link>
               )}
