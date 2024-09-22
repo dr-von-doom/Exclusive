@@ -10,6 +10,14 @@ const router = createBrowserRouter(
       element: <HomePage />,
     },
     {
+      path: "/category",
+      element: <p>test 1</p>,
+    },
+    {
+      path: "/category/:group",
+      element: <p>test 2</p>,
+    },
+    {
       path: "/category/:group/:category",
       element: <ProductListPage />,
     },
