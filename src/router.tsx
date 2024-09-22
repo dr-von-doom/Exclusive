@@ -1,5 +1,6 @@
 import HomePage from "@/pages/HomePage";
 import NotFoundPage from "@/pages/NotFoundPage";
+import ProductListPage from "@/pages/Product/ProductListPage";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 
 const router = createBrowserRouter(
@@ -7,6 +8,18 @@ const router = createBrowserRouter(
     {
       path: "/",
       element: <HomePage />,
+    },
+    {
+      path: "/category",
+      element: <p>test 1</p>,
+    },
+    {
+      path: "/category/:group",
+      element: <p>test 2</p>,
+    },
+    {
+      path: "/category/:group/:category",
+      element: <ProductListPage />,
     },
     {
       path: "*",

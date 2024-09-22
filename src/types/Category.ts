@@ -10,4 +10,5 @@ export type Category = {
   name: string;
   groupId: number;
   description?: string;
+  imageUrl: string;
 };
