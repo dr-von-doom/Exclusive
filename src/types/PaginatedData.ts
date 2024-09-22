@@ -15,4 +15,5 @@ export type SortOptions<Type> = {
 /** Pagination data options */
 export type PaginationOptions<Type> = SortOptions<Type> & {
   page?: number;
+  filters?: Record<string, string[]>; 
 };

@@ -41,16 +41,6 @@
         "options": ["128GB", "256GB", "512GB", "1TB", "2TB"]
       },
       {
-        "name": "os",
-        "type": "checkbox",
-        "options": ["Windows", "macOS", "Linux"]
-      },
-      {
-        "name": "display",
-        "type": "checkbox",
-        "options": ["13-inch", "15-inch", "17-inch"]
-      },
-      {
         "name": "graphics",
         "type": "checkbox",
         "options": ["Intel HD", "NVIDIA GeForce", "AMD Radeon"]

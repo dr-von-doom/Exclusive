@@ -1,3 +1,4 @@
+import Filter from "@/components/Filter";
 import CategoryBanner from "@/components/Product/CategoryBanner";
 import ExploreMoreBanner from "@/components/Product/ExploreMoreBanner";
 import PaginatedProductList from "@/components/Product/PaginatedProductList";
@@ -103,16 +104,28 @@ export const ProductListPage = () => {
     }
   };
 
+  const handleFilterChange = (selectedOptions: Record<string, string[]>) => {
+    setSortOptions({});
+    const results = getProductByCategory(category.id, {
+      page: 1,
+      filters: selectedOptions,
+    });
+    setPaginatedData(results);
+  };
+
   return (
     <BaseLayout>
       <div className="flex h-full grow flex-col items-center justify-center gap-5 p-10">
         <CategoryBanner category={category} />
 
-        <div className="my-10 grid gap-4 sm:grid-cols-3">
+        <div className="my-10 grid gap-4 sm:grid-cols-4">
           <div className="sm:col-span-1">
-            <p>Filters</p>
+            <Filter
+              onFilterChange={handleFilterChange}
+              categoryId={category.id}
+            />
           </div>
-          <div className="flex flex-col gap-3 sm:col-span-2">
+          <div className="flex flex-col gap-3 sm:col-span-3">
             <PaginatedProductList
               paginatedData={paginatedData}
               sortOptionsList={sortOptionsList}
