@@ -10,7 +10,7 @@ interface HeaderProps {
 
 export const Header = ({ logoLink = '/', cartLink = '#' }: HeaderProps) => {
   return (
-    <header className="flex flex-col text-sm md:text-base md:flex-row items-center justify-between p-4 px-7 bg-white text-gray-800">
+    <header className="flex flex-col text-sm md:text-base md:flex-row items-center justify-between p-4 px-7 bg-white text-gray-800 font-poppins">
 
       <div className="flex items-center mb-2 md:mb-0 pb-4 md:pb-1">
         <a href={logoLink} className="flex items-center">
