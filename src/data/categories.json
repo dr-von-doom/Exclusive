@@ -1,0 +1,104 @@
+[
+  {
+    "id": 1,
+    "groupId": 1,
+    "name": "Computers",
+    "description": "Explore top-tier computers designed for performance, innovation, and reliability. Find your perfect match today"
+  },
+  {
+    "id": 2,
+    "groupId": 1,
+    "name": "Televisions",
+    "description": "Experience the next level of picture quality and entertainment with our range of televisions"
+  },
+  {
+    "id": 3,
+    "groupId": 1,
+    "name": "Audio",
+    "description": "Discover the best audio experience with our range of audio products"
+  },
+  {
+    "id": 4,
+    "groupId": 1,
+    "name": "Video",
+    "description": "Experience the next level of video quality and entertainment with our range of video products"
+  },
+  {
+    "id": 5,
+    "groupId": 1,
+    "name": "Printing",
+    "description": "Explore top-tier printing products designed for performance, innovation, and reliability. Find your perfect match today"
+  },
+  {
+    "id": 6,
+    "groupId": 1,
+    "name": "Cameras",
+    "description": "Discover the best camera experience with our range of camera products"
+  },
+  {
+    "id": 7,
+    "groupId": 2,
+    "name": "Air Conditioners",
+    "description": "Experience the next level of cooling and comfort with our range of air conditioners"
+  },
+  {
+    "id": 8,
+    "groupId": 2,
+    "name": "Refrigerators",
+    "description": "Discover the best refrigeration experience with our range of refrigerators"
+  },
+  {
+    "id": 9,
+    "groupId": 2,
+    "name": "Washing Machines",
+    "description": "Explore top-tier washing machines designed for performance, innovation, and reliability. Find your perfect match today"
+  },
+  {
+    "id": 10,
+    "groupId": 2,
+    "name": "Machines/Dryers",
+    "description": "Experience the next level of drying and comfort with our range of machines/dryers"
+  },
+  {
+    "id": 11,
+    "groupId": 3,
+    "name": "Mobile Phones",
+    "description": "Discover the best mobile phone experience with our range of mobile phones"
+  },
+  {
+    "id": 12,
+    "groupId": 3,
+    "name": "Tablets",
+    "description": "Explore top-tier tablets designed for performance, innovation, and reliability. Find your perfect match today"
+  },
+  {
+    "id": 13,
+    "groupId": 3,
+    "name": "Smart Watches",
+    "description": "Experience the next level of smart watch experience with our range of smart watches"
+  },
+  {
+    "id": 14,
+    "groupId": 4,
+    "name": "Living Room",
+    "description": "Discover the best living room experience with our range of living room products"
+  },
+  {
+    "id": 15,
+    "groupId": 4,
+    "name": "Dining Room",
+    "description": "Explore top-tier dining room products designed for performance, innovation, and reliability. Find your perfect match today"
+  },
+  {
+    "id": 16,
+    "groupId": 4,
+    "name": "Kitchen",
+    "description": "Experience the next level of kitchen experience with our range of kitchen products"
+  },
+  {
+    "id": 17,
+    "groupId": 4,
+    "name": "Bathroom",
+    "description": "Discover the best bathroom experience with our range of bathroom products"
+  }
+]

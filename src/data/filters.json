@@ -1,0 +1,520 @@
+[
+  {
+    "categoryId": 1,
+    "filters": [
+      {
+        "name": "brand",
+        "type": "checkbox",
+        "options": [
+          "Apple",
+          "Samsung",
+          "Dell",
+          "HP",
+          "Sony",
+          "LG",
+          "Bose",
+          "Canon",
+          "Nikon",
+          "Panasonic"
+        ]
+      },
+      {
+        "name": "processor",
+        "type": "checkbox",
+        "options": [
+          "Intel Core i3",
+          "Intel Core i5",
+          "Intel Core i7",
+          "AMD Ryzen 3",
+          "AMD Ryzen 5",
+          "AMD Ryzen 7"
+        ]
+      },
+      {
+        "name": "memory",
+        "type": "checkbox",
+        "options": ["4GB", "8GB", "16GB", "32GB", "64GB"]
+      },
+      {
+        "name": "storage",
+        "type": "checkbox",
+        "options": ["128GB", "256GB", "512GB", "1TB", "2TB"]
+      },
+      {
+        "name": "os",
+        "type": "checkbox",
+        "options": ["Windows", "macOS", "Linux"]
+      },
+      {
+        "name": "display",
+        "type": "checkbox",
+        "options": ["13-inch", "15-inch", "17-inch"]
+      },
+      {
+        "name": "graphics",
+        "type": "checkbox",
+        "options": ["Intel HD", "NVIDIA GeForce", "AMD Radeon"]
+      }
+    ]
+  },
+  {
+    "categoryId": 2,
+    "filters": [
+      {
+        "name": "brand",
+        "type": "checkbox",
+        "options": ["Samsung", "LG", "Sony", "TCL", "Hisense", "Vizio"]
+      },
+      {
+        "name": "resolution",
+        "type": "checkbox",
+        "options": ["HD", "Full HD", "4K", "8K"]
+      },
+      {
+        "name": "display",
+        "type": "checkbox",
+        "options": ["LED", "OLED", "QLED"]
+      },
+      {
+        "name": "size",
+        "type": "checkbox",
+        "options": ["32-inch", "43-inch", "55-inch", "65-inch", "75-inch"]
+      },
+      {
+        "name": "smart",
+        "type": "checkbox",
+        "options": ["Yes", "No"]
+      }
+    ]
+  },
+  {
+    "categoryId": 3,
+    "filters": [
+      {
+        "name": "brand",
+        "type": "checkbox",
+        "options": ["Bose", "Sony", "JBL", "Sennheiser", "Apple", "Samsung"]
+      },
+      {
+        "name": "type",
+        "type": "checkbox",
+        "options": ["Headphones", "Earphones", "Speakers", "Soundbars"]
+      },
+      {
+        "name": "wireless",
+        "type": "radio",
+        "options": ["Yes", "No"]
+      },
+      {
+        "name": "noiseCancellation",
+        "type": "radio",
+        "options": ["Yes", "No"]
+      },
+      {
+        "name": "waterproof",
+        "type": "radio",
+        "options": ["Yes", "No"]
+      }
+    ]
+  },
+  {
+    "categoryId": 4,
+    "filters": [
+      {
+        "name": "brand",
+        "type": "checkbox",
+        "options": ["Sony", "Canon", "Panasonic", "GoPro", "DJI"]
+      },
+      {
+        "name": "type",
+        "type": "checkbox",
+        "options": ["Camcorders", "Action Cameras", "Drones"]
+      },
+      {
+        "name": "resolution",
+        "type": "checkbox",
+        "options": ["HD", "Full HD", "4K", "8K"]
+      },
+      {
+        "name": "waterproof",
+        "type": "radio",
+        "options": ["Yes", "No"]
+      },
+      {
+        "name": "slowMotion",
+        "type": "radio",
+        "options": ["Yes", "No"]
+      }
+    ]
+  },
+  {
+    "categoryId": 5,
+    "filters": [
+      {
+        "name": "brand",
+        "type": "checkbox",
+        "options": ["Canon", "Epson", "HP", "Brother"]
+      },
+      {
+        "name": "type",
+        "type": "checkbox",
+        "options": ["Inkjet", "Laser", "All-in-One"]
+      },
+      {
+        "name": "color",
+        "type": "checkbox",
+        "options": ["Black", "White", "Grey"]
+      },
+      {
+        "name": "resolution",
+        "type": "checkbox",
+        "options": ["1200x600", "2400x1200", "4800x2400"]
+      },
+      {
+        "name": "connectivity",
+        "type": "checkbox",
+        "options": ["USB", "Wi-Fi", "Bluetooth"]
+      }
+    ]
+  },
+  {
+    "categoryId": 7,
+    "filters": [
+      {
+        "name": "brand",
+        "type": "checkbox",
+        "options": ["LG", "Samsung", "Whirlpool", "Voltas", "Blue Star"]
+      },
+      {
+        "name": "type",
+        "type": "checkbox",
+        "options": ["Split", "Window", "Portable"]
+      },
+      {
+        "name": "capacity",
+        "type": "checkbox",
+        "options": ["1 Ton", "1.5 Ton", "2 Ton", "3 Ton"]
+      },
+      {
+        "name": "energyRating",
+        "type": "checkbox",
+        "options": ["3 Star", "4 Star", "5 Star"]
+      },
+      {
+        "name": "cooling",
+        "type": "radio",
+        "options": ["Inverter", "Non-Inverter"]
+      }
+    ]
+  },
+  {
+    "categoryId": 8,
+    "filters": [
+      {
+        "name": "brand",
+        "type": "checkbox",
+        "options": ["LG", "Samsung", "Whirlpool", "Haier", "Godrej"]
+      },
+      {
+        "name": "type",
+        "type": "checkbox",
+        "options": ["Single Door", "Double Door", "Side-by-Side"]
+      },
+      {
+        "name": "capacity",
+        "type": "checkbox",
+        "options": ["150L", "250L", "350L", "500L"]
+      },
+      {
+        "name": "energyRating",
+        "type": "checkbox",
+        "options": ["3 Star", "4 Star", "5 Star"]
+      },
+      {
+        "name": "defrosting",
+        "type": "radio",
+        "options": ["Direct Cool", "Frost Free"]
+      }
+    ]
+  },
+  {
+    "categoryId": 9,
+    "filters": [
+      {
+        "name": "brand",
+        "type": "checkbox",
+        "options": ["LG", "Samsung", "Whirlpool", "IFB", "Bosch"]
+      },
+      {
+        "name": "type",
+        "type": "checkbox",
+        "options": ["Front Load", "Top Load"]
+      },
+      {
+        "name": "capacity",
+        "type": "checkbox",
+        "options": ["5kg", "7kg", "10kg", "12kg"]
+      },
+      {
+        "name": "energyRating",
+        "type": "checkbox",
+        "options": ["3 Star", "4 Star", "5 Star"]
+      },
+      {
+        "name": "technology",
+        "type": "radio",
+        "options": ["Inverter", "Direct Drive"]
+      }
+    ]
+  },
+  {
+    "categoryId": 10,
+    "filters": [
+      {
+        "name": "brand",
+        "type": "checkbox",
+        "options": ["LG", "Samsung", "Whirlpool", "IFB", "Bosch"]
+      },
+      {
+        "name": "type",
+        "type": "checkbox",
+        "options": ["Front Load", "Top Load"]
+      },
+      {
+        "name": "capacity",
+        "type": "checkbox",
+        "options": ["5kg", "7kg", "10kg", "12kg"]
+      },
+      {
+        "name": "energyRating",
+        "type": "checkbox",
+        "options": ["3 Star", "4 Star", "5 Star"]
+      },
+      {
+        "name": "technology",
+        "type": "radio",
+        "options": ["Inverter", "Direct Drive"]
+      }
+    ]
+  },
+  {
+    "categoryId": 11,
+    "filters": [
+      {
+        "name": "brand",
+        "type": "checkbox",
+        "options": ["Apple", "Samsung", "Google", "OnePlus", "Xiaomi", "Realme"]
+      },
+      {
+        "name": "os",
+        "type": "checkbox",
+        "options": ["iOS", "Android"]
+      },
+      {
+        "name": "display",
+        "type": "checkbox",
+        "options": ["5-inch", "6-inch", "7-inch"]
+      },
+      {
+        "name": "camera",
+        "type": "checkbox",
+        "options": ["12MP", "48MP", "64MP", "108MP"]
+      },
+      {
+        "name": "battery",
+        "type": "checkbox",
+        "options": ["3000mAh", "4000mAh", "5000mAh"]
+      }
+    ]
+  },
+  {
+    "categoryId": 12,
+    "filters": [
+      {
+        "name": "brand",
+        "type": "checkbox",
+        "options": ["Apple", "Samsung", "Lenovo", "Huawei", "Amazon"]
+      },
+      {
+        "name": "os",
+        "type": "checkbox",
+        "options": ["iOS", "Android"]
+      },
+      {
+        "name": "display",
+        "type": "checkbox",
+        "options": ["7-inch", "10-inch", "12-inch"]
+      },
+      {
+        "name": "storage",
+        "type": "checkbox",
+        "options": ["32GB", "64GB", "128GB", "256GB"]
+      },
+      {
+        "name": "battery",
+        "type": "checkbox",
+        "options": ["3000mAh", "4000mAh", "5000mAh"]
+      }
+    ]
+  },
+  {
+    "categoryId": 13,
+    "filters": [
+      {
+        "name": "brand",
+        "type": "checkbox",
+        "options": ["Apple", "Samsung", "Fitbit", "Garmin", "Huawei"]
+      },
+      {
+        "name": "os",
+        "type": "checkbox",
+        "options": ["watchOS", "Tizen", "Wear OS"]
+      },
+      {
+        "name": "display",
+        "type": "checkbox",
+        "options": ["1-inch", "1.5-inch", "2-inch"]
+      },
+      {
+        "name": "battery",
+        "type": "checkbox",
+        "options": ["300mAh", "400mAh", "500mAh"]
+      },
+      {
+        "name": "waterproof",
+        "type": "radio",
+        "options": ["Yes", "No"]
+      }
+    ]
+  },
+  {
+    "categoryId": 14,
+    "filters": [
+      {
+        "name": "furniture",
+        "type": "checkbox",
+        "options": ["Sofas", "Coffee Tables", "TV Units", "Bookshelves"]
+      },
+      {
+        "name": "seating",
+        "type": "checkbox",
+        "options": ["1 Seater", "2 Seater", "3 Seater", "4 Seater"]
+      },
+      {
+        "name": "material",
+        "type": "checkbox",
+        "options": ["Wood", "Metal", "Fabric", "Leather"]
+      },
+      {
+        "name": "color",
+        "type": "checkbox",
+        "options": ["Black", "White", "Brown", "Grey"]
+      },
+      {
+        "name": "style",
+        "type": "checkbox",
+        "options": ["Modern", "Contemporary", "Traditional"]
+      }
+    ]
+  },
+  {
+    "categoryId": 15,
+    "filters": [
+      {
+        "name": "furniture",
+        "type": "checkbox",
+        "options": [
+          "Dining Tables",
+          "Dining Chairs",
+          "Sideboards",
+          "Bar Cabinets"
+        ]
+      },
+      {
+        "name": "seating",
+        "type": "checkbox",
+        "options": ["2 Seater", "4 Seater", "6 Seater", "8 Seater"]
+      },
+      {
+        "name": "material",
+        "type": "checkbox",
+        "options": ["Wood", "Metal", "Glass", "Marble"]
+      },
+      {
+        "name": "color",
+        "type": "checkbox",
+        "options": ["Black", "White", "Brown", "Grey"]
+      },
+      {
+        "name": "style",
+        "type": "checkbox",
+        "options": ["Modern", "Contemporary", "Traditional"]
+      }
+    ]
+  },
+  {
+    "categoryId": 16,
+    "filters": [
+      {
+        "name": "appliances",
+        "type": "checkbox",
+        "options": ["Refrigerators", "Microwaves", "Chimneys", "Dishwashers"]
+      },
+      {
+        "name": "type",
+        "type": "checkbox",
+        "options": ["Single Door", "Double Door", "Convection", "Grill"]
+      },
+      {
+        "name": "capacity",
+        "type": "checkbox",
+        "options": ["20L", "30L", "40L", "50L"]
+      },
+      {
+        "name": "energyRating",
+        "type": "checkbox",
+        "options": ["3 Star", "4 Star", "5 Star"]
+      },
+      {
+        "name": "defrosting",
+        "type": "checkbox",
+        "options": ["Direct Cool", "Frost Free"]
+      }
+    ]
+  },
+  {
+    "categoryId": 17,
+    "filters": [
+      {
+        "name": "furniture",
+        "type": "checkbox",
+        "options": ["Vanities", "Mirrors", "Shelves", "Cabinets"]
+      },
+      {
+        "name": "material",
+        "type": "checkbox",
+        "options": ["Wood", "Metal", "Glass", "Marble"]
+      },
+      {
+        "name": "color",
+        "type": "checkbox",
+        "options": ["Black", "White", "Brown", "Grey"]
+      },
+      {
+        "name": "style",
+        "type": "checkbox",
+        "options": ["Modern", "Contemporary", "Traditional"]
+      },
+      {
+        "name": "accessories",
+        "type": "checkbox",
+        "options": [
+          "Towel Bars",
+          "Soap Dishes",
+          "Toilet Paper Holders",
+          "Robe Hooks"
+        ]
+      }
+    ]
+  }
+]

@@ -5,8 +5,7 @@ const HomePage = () => {
   return (
     <BaseLayout>
       <div className=" bg-slate-100 p-10">
-        <h1>Home Page</h1>
-        <FeaturedProductView></FeaturedProductView>
+        <FeaturedProductView />
       </div>
     </BaseLayout>
   );
