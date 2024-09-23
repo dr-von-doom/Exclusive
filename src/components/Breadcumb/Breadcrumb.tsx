@@ -5,7 +5,7 @@ export const Breadcrumb = () => {
   const pathnames = location.pathname.split("/").filter((x) => x);
 
   return (
-    <div className="flex justify-center w-full rounded-md p-3 font-poppins text-sm md:text-base lg:justify-start lg:ml-[21px]">
+    <div className="flex justify-center w-full rounded-md p-3 font-poppins text-sm md:text-base lg:justify-start lg:pl-8">
       <ol className="list-reset flex">
         <li className="text-gray-500 hover:text-red-500">
           <Link to="/">Home</Link>
