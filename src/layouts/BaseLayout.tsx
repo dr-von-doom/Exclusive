@@ -13,9 +13,11 @@ const BaseLayout = ({ children }: BaseLayoutProps) => {
     <div className="flex min-h-screen flex-col">
       <Header />
       <Nav />
-      
-      {children}
-      
+
+      <main className="flex-grow">
+        {children}
+      </main>
+
       <Footer />
     </div>
   );

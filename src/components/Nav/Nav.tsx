@@ -12,7 +12,7 @@ export const Subheader = () => {
 
   return (
     <nav className="bg-white m-0 p-4 text-center text-sm md:text-base font-poppins">
-      <ul className="flex justify-center list-none space-x-5 lg:justify-start pr-4">
+      <ul className="flex justify-center list-none space-x-5 lg:justify-start pr-4 lg:pl-4">
         {categoryGroups.map((category: CategoryGroup) => (
           <li className="relative group" key={category.id}>
             <a className="text-black hover:text-red-500 cursor-pointer py-3">
