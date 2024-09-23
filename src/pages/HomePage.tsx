@@ -1,6 +1,9 @@
 import bannerImage from "@/assets/images/products/products-banner.png";
 import Banner from "@/components/Banner/Banner";
+import AdImage from '@/components/AdImage/AdImage';
+import promotionalImagesData from '@/data/promotionalImages.json';
 import BaseLayout from "@/layouts/BaseLayout";
+import { AdImageProps } from '@/types/AdImage';
 import { IconProps } from "@/types/Banner";
 import { Link } from "react-router-dom";
 
@@ -74,9 +77,23 @@ const icons: IconProps[] = [
 ];
 
 const HomePage = () => {
+
+  const promotionalImages: AdImageProps[] = promotionalImagesData;
+
   return (
     <BaseLayout>
-      <div>
+      <div className="max-w-full">
+        <section>
+          {promotionalImages.map((image, index) => (
+            <AdImage
+              key={index}
+              src={image.src}
+              alt={image.alt}
+              href={image.href}
+              className={image.className}
+            />
+          ))}
+        </section>
         <Banner
           mainText="Everything you need, just a Click away"
           title="DON'T LET THE WINTER FREEZE"
