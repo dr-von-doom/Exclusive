@@ -1,15 +1,17 @@
-import { Category } from "@/types/Category";
+import { PromotionalImageProps } from "@/components/PromotionalImage";
 import categories from "@/data/categories.json";
+import filtersData from "@/data/filters.json";
 import products from "@/data/products.json";
-import { Product } from "@/types/Product";
-import _ from "lodash";
+import { Category } from "@/types/Category";
+import { CategoryFilters } from "@/types/Filter";
 import {
   CategoryFilterOptions,
   PaginatedData,
   PaginationOptions,
 } from "@/types/PaginatedData";
-import filtersData from "@/data/filters.json";
-import { CategoryFilters } from "@/types/Filter";
+import { Product } from "@/types/Product";
+import _ from "lodash";
+import promotionalImages from "../data/promotional-images.json";
 
 /**
  * It returns a category based on the category name
@@ -110,4 +112,8 @@ export const getFilters = (categoryId: number): CategoryFilters => {
   return filtersData.filter(
     (filter) => filter.categoryId === categoryId,
   )[0] as CategoryFilters;
+};
+
+export const getPromotionalImages = () => {
+  return promotionalImages as PromotionalImageProps[];
 };
