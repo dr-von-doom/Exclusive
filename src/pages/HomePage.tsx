@@ -1,8 +1,11 @@
 import bannerImage from "@/assets/images/products/products-banner.png";
+import AdImage from "@/components/AdImage/AdImage";
 import Banner from "@/components/Banner/Banner";
-import BaseLayout from "@/layouts/BaseLayout";
-import { IconProps } from "@/types/Banner";
 import FeaturedProductView from "@/components/Product/FeaturedProductView";
+import adImagesData from "@/data/adImages.json";
+import BaseLayout from "@/layouts/BaseLayout";
+import { AdImageProps } from "@/types/AdImage";
+import { IconProps } from "@/types/Banner";
 
 const icons: IconProps[] = [
   {
@@ -74,9 +77,22 @@ const icons: IconProps[] = [
 ];
 
 const HomePage = () => {
+  const adImages: AdImageProps[] = adImagesData;
+
   return (
     <BaseLayout>
-      <div>
+      <div className="max-w-full">
+        <section>
+          {adImages.map((image, index) => (
+            <AdImage
+              key={index}
+              src={image.src}
+              alt={image.alt}
+              href={image.href}
+              className={image.className}
+            />
+          ))}
+        </section>
         <FeaturedProductView />
         <Banner
           mainText="Everything you need, just a Click away"

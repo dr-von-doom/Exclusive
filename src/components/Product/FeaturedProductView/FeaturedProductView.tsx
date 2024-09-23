@@ -9,7 +9,7 @@ export const FeaturedProductView = () => {
 
   return (
     <div>
-      <h2 className="text-center text-xl font-bold mb-4 md:text-4xl">Featured Products</h2>
+      <h2 className="text-center text-xl font-bold my-6 md:text-4xl">Featured Products</h2>
       <div
         id="featured-product-container"
         className="grid grid-cols-[repeat(auto-fit,300px)] gap-8 justify-center mb-8">
