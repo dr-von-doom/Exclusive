@@ -36,7 +36,7 @@ export const PaginatedProductList = ({
         <div>
           {paginatedData.data.length} out of {paginatedData.totalResults}
         </div>
-        <div className="flex space-x-3 sm:justify-self-end">
+        <div className="flex items-center space-x-3 sm:justify-self-end">
           <span>Sort by</span>
           <select
             name="sort-by"

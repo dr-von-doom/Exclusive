@@ -1,15 +1,17 @@
-import filtersData from "@/data/filters.json";
-import { Filter as FilterType } from "@/types/Filter";
-import React, { useState } from "react";
-import ArrowOpen from "@/assets/icons/arrowopen.svg";
 import ArrowClosed from "@/assets/icons/arrowclosed.svg";
+import ArrowOpen from "@/assets/icons/arrowopen.svg";
+import { CategoryFilters } from "@/types/Filter";
+import React, { useState } from "react";
 
 export type FilterProps = {
+  categoryFilters: CategoryFilters;
   onFilterChange: (selectedOptions: Record<string, string[]>) => void;
-  categoryId: number;
 };
 
-export const Filter: React.FC<FilterProps> = ({ onFilterChange, categoryId }: FilterProps) => {
+export const Filter: React.FC<FilterProps> = ({
+  categoryFilters,
+  onFilterChange,
+}: FilterProps) => {
   const [openFilters, setOpenFilters] = useState<Set<string>>(new Set());
   const [selectedOptions, setSelectedOptions] = useState<
     Record<string, string[]>
@@ -46,23 +48,16 @@ export const Filter: React.FC<FilterProps> = ({ onFilterChange, categoryId }: Fi
     onFilterChange(newSelectedOptions);
   };
 
-  const filteredFilters =
-    (filtersData as FilterType[]).find(
-      (filterCategory) => filterCategory.categoryId === categoryId,
-    )?.filters || [];
-
   return (
     <div className="m-0 font-poppins">
       <h2 className="mb-4 text-xl text-black md:text-2xl">Filters</h2>
-      {filteredFilters.map((filter) => (
+      {categoryFilters.filters.map((filter) => (
         <div key={filter.name} className="mb-2">
           <div
             className="flex cursor-pointer items-center rounded-md border border-gray-200 bg-gray-100 p-4 px-3 py-2 font-medium"
             onClick={() => toggleFilter(filter.name)}
           >
-            <span
-              className={'mr-2'}
-            >
+            <span className={"mr-2"}>
               <img
                 src={openFilters.has(filter.name) ? ArrowOpen : ArrowClosed}
                 alt="Arrow Icon"

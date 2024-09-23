@@ -4,9 +4,18 @@ import ExploreMoreBanner from "@/components/Product/ExploreMoreBanner";
 import PaginatedProductList from "@/components/Product/PaginatedProductList";
 import BaseLayout from "@/layouts/BaseLayout";
 import { Category } from "@/types/Category";
-import { PaginatedData, SortOptions } from "@/types/PaginatedData";
+import { CategoryFilters } from "@/types/Filter";
+import {
+  CategoryFilterOptions,
+  PaginatedData,
+  SortOptions,
+} from "@/types/PaginatedData";
 import { Product } from "@/types/Product";
-import { getCategoryByName, getProductByCategory } from "@/utils/data";
+import {
+  getCategoryByName,
+  getFilters,
+  getProductByCategory,
+} from "@/utils/data";
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 
@@ -34,6 +43,10 @@ export const ProductListPage = () => {
   });
   const [category, setCategory] = useState<Category | null>(null);
   const [sortOptions, setSortOptions] = useState<SortOptions<Product>>({});
+  const [categoryFilters, setCategoryFilters] =
+    useState<CategoryFilters | null>(null);
+  const [selectedFilters, setSelectedFilters] =
+    useState<CategoryFilterOptions | null>(null);
 
   // Fetch the category data
   useEffect(() => {
@@ -41,27 +54,37 @@ export const ProductListPage = () => {
     setCategory(category);
   }, [categoryName]);
 
-  // Fetch the products by category
+  // Fetch the products by category and category filters
   useEffect(() => {
     if (!category) return;
-    const results = getProductByCategory(category.id, {
-      page: paginatedData.page,
-      ...sortOptions,
-    });
+    const results = getProductByCategory(
+      category.id,
+      {
+        page: paginatedData.page,
+        ...sortOptions,
+      },
+      selectedFilters,
+    );
 
+    const categoryFilters = getFilters(category.id);
+    setCategoryFilters(categoryFilters);
     setPaginatedData(results);
   }, [category]);
 
   useEffect(() => {
     if (!category) return;
 
-    const results = getProductByCategory(category.id, {
-      page: 1,
-      ...sortOptions,
-    });
+    const results = getProductByCategory(
+      category.id,
+      {
+        page: 1,
+        ...sortOptions,
+      },
+      selectedFilters,
+    );
 
     setPaginatedData(results);
-  }, [sortOptions]);
+  }, [sortOptions, selectedFilters]);
 
   if (!category) return <div>Loading...</div>;
 
@@ -71,10 +94,14 @@ export const ProductListPage = () => {
   const handleLoadMoreProducts = () => {
     if (!category) return;
 
-    const results = getProductByCategory(category.id, {
-      page: paginatedData.page + 1,
-      ...sortOptions,
-    });
+    const results = getProductByCategory(
+      category.id,
+      {
+        page: paginatedData.page + 1,
+        ...sortOptions,
+      },
+      selectedFilters,
+    );
 
     setPaginatedData({
       ...results,
@@ -104,13 +131,8 @@ export const ProductListPage = () => {
     }
   };
 
-  const handleFilterChange = (selectedOptions: Record<string, string[]>) => {
-    setSortOptions({});
-    const results = getProductByCategory(category.id, {
-      page: 1,
-      filters: selectedOptions,
-    });
-    setPaginatedData(results);
+  const handleFilterChange = (selectedOptions: CategoryFilterOptions) => {
+    setSelectedFilters(selectedOptions);
   };
 
   return (
@@ -120,10 +142,12 @@ export const ProductListPage = () => {
 
         <div className="my-10 grid gap-4 sm:grid-cols-4">
           <div className="sm:col-span-1">
-            <Filter
-              onFilterChange={handleFilterChange}
-              categoryId={category.id}
-            />
+            {categoryFilters && (
+              <Filter
+                onFilterChange={handleFilterChange}
+                categoryFilters={categoryFilters}
+              />
+            )}
           </div>
           <div className="flex flex-col gap-3 sm:col-span-3">
             <PaginatedProductList
