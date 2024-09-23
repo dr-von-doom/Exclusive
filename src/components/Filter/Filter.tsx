@@ -1,7 +1,7 @@
 import ArrowClosed from "@/assets/icons/arrowclosed.svg";
 import ArrowOpen from "@/assets/icons/arrowopen.svg";
 import { CategoryFilters } from "@/types/Filter";
-import React, { useState } from "react";
+import React, { useCallback, useState } from "react";
 
 export type FilterProps = {
   categoryFilters: CategoryFilters;
@@ -17,7 +17,7 @@ export const Filter: React.FC<FilterProps> = ({
     Record<string, string[]>
   >({});
 
-  const toggleFilter = (filterName: string) => {
+  const toggleFilter = useCallback((filterName: string) => {
     const newOpenFilters = new Set(openFilters);
     if (newOpenFilters.has(filterName)) {
       newOpenFilters.delete(filterName);
@@ -25,28 +25,26 @@ export const Filter: React.FC<FilterProps> = ({
       newOpenFilters.add(filterName);
     }
     setOpenFilters(newOpenFilters);
-    onFilterChange(selectedOptions);
-  };
+  }, []);
 
-  const handleOptionChange = (
-    filterName: string,
-    option: string,
-    checked: boolean,
-  ) => {
-    const newSelectedOptions = { ...selectedOptions };
-    if (!newSelectedOptions[filterName]) {
-      newSelectedOptions[filterName] = [];
-    }
-    if (checked) {
-      newSelectedOptions[filterName].push(option);
-    } else {
-      newSelectedOptions[filterName] = newSelectedOptions[filterName].filter(
-        (opt) => opt !== option,
-      );
-    }
-    setSelectedOptions(newSelectedOptions);
-    onFilterChange(newSelectedOptions);
-  };
+  const handleOptionChange = useCallback(
+    (filterName: string, option: string, checked: boolean) => {
+      const newSelectedOptions = { ...selectedOptions };
+      if (!newSelectedOptions[filterName]) {
+        newSelectedOptions[filterName] = [];
+      }
+      if (checked) {
+        newSelectedOptions[filterName].push(option);
+      } else {
+        newSelectedOptions[filterName] = newSelectedOptions[filterName].filter(
+          (opt) => opt !== option,
+        );
+      }
+      setSelectedOptions(newSelectedOptions);
+      onFilterChange(newSelectedOptions);
+    },
+    [onFilterChange],
+  );
 
   return (
     <div className="m-0 font-poppins">

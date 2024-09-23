@@ -42,6 +42,7 @@ export const ProductListPage = () => {
     totalResults: 0,
     totalPages: 0,
   });
+
   const [category, setCategory] = useState<Category | null>(null);
   const [sortOptions, setSortOptions] = useState<SortOptions<Product>>({});
   const [categoryFilters, setCategoryFilters] =
