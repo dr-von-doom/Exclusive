@@ -1,3 +1,4 @@
+import Breadcumb from "@/components/Breadcumb";
 import CategoryBanner from "@/components/Product/CategoryBanner";
 import ExploreMoreBanner from "@/components/Product/ExploreMoreBanner";
 import PaginatedProductList from "@/components/Product/PaginatedProductList";
@@ -105,6 +106,7 @@ export const ProductListPage = () => {
 
   return (
     <BaseLayout>
+      <Breadcumb />
       <div className="flex h-full grow flex-col items-center justify-center gap-5 p-10">
         <CategoryBanner category={category} />
 

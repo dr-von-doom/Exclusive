@@ -1,3 +1,3 @@
-import Breadcumb from "./Breadcumb";
+import Breadcumb from "./Breadcrumb";
 
 export default Breadcumb;

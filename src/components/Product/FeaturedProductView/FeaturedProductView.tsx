@@ -4,8 +4,8 @@ import productsData from "@/data/products.json";
 
 export const FeaturedProductView = () => {
   const topRatedProducts = productsData
-    .sort((a, b) => b.rating - a.rating) // Ordenar de mayor a menor
-    .slice(0, 12); // Tomar los primeros 12
+    .sort((a, b) => b.rating - a.rating) 
+    .slice(0, 12); 
 
   return (
     <div className="px-12">
