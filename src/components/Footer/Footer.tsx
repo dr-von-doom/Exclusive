@@ -52,7 +52,7 @@ export const Footer = () => {
 
       <div className="flex flex-col justify-between gap-7 bg-black p-10 text-center text-white lg:flex-row lg:text-left">
         <div>
-          <h3 className="font-inter mb-2 text-lg font-medium">Exclusive</h3>
+          <h3 className="mb-2 font-inter text-lg font-medium">Exclusive</h3>
           <p className="mb-1">Subscribe</p>
           <p className="mb-1">Get 10% off your first order</p>
           <form
@@ -74,7 +74,7 @@ export const Footer = () => {
         </div>
 
         <div>
-          <h3 className="font-inter mb-2 text-lg font-medium">Support</h3>
+          <h3 className="mb-2 font-inter text-lg font-medium">Support</h3>
           <p>111 Bijoy Sarani, Dhaka, Bangladesh.</p>
           <p className="mt-1">
             <a
@@ -95,7 +95,7 @@ export const Footer = () => {
         </div>
 
         <div>
-          <h3 className="font-inter mb-2 text-lg font-medium">Categories</h3>
+          <h3 className="mb-2 font-inter text-lg font-medium">Categories</h3>
           <ul className="list-none p-0">
             {categories.map((category: Category) => (
               <li key={category.id} className="mb-1">
@@ -108,7 +108,7 @@ export const Footer = () => {
         </div>
 
         <div>
-          <h3 className="font-inter mb-2 text-lg font-medium">Quick Links</h3>
+          <h3 className="mb-2 font-inter text-lg font-medium">Quick Links</h3>
           <ul className="list-none p-0">
             <li className="mb-1">
               <a href="#" className="text-gray-400 hover:text-white">
