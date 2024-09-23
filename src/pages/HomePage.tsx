@@ -1,7 +1,7 @@
 import bannerImage from "@/assets/images/products/products-banner.png";
 import Banner from "@/components/Banner/Banner";
 import AdImage from '@/components/AdImage/AdImage';
-import promotionalImagesData from '@/data/promotionalImages.json';
+import adImagesData from '@/data/adImages.json';
 import BaseLayout from "@/layouts/BaseLayout";
 import { AdImageProps } from '@/types/AdImage';
 import { IconProps } from "@/types/Banner";
@@ -78,13 +78,13 @@ const icons: IconProps[] = [
 
 const HomePage = () => {
 
-  const promotionalImages: AdImageProps[] = promotionalImagesData;
+  const adImages: AdImageProps[] = adImagesData;
 
   return (
     <BaseLayout>
       <div className="max-w-full">
         <section>
-          {promotionalImages.map((image, index) => (
+          {adImages.map((image, index) => (
             <AdImage
               key={index}
               src={image.src}
