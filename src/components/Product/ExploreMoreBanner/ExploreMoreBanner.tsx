@@ -1,7 +1,7 @@
 import CostumerServiceIcon from "@/assets/icons/service-costumer.svg";
 import ReturnServiceIcon from "@/assets/icons/service-returns.svg";
 import DeliveryServiceIcon from "@/assets/icons/service-transport.svg";
-import Button from "@/components/Button";
+import { Button } from "@/components/Button";
 
 export const ExploreMoreBanner = () => {
   return (

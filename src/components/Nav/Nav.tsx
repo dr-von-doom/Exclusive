@@ -3,25 +3,21 @@ import categoryGroups from "@/data/category-groups.json";
 import { CategoryGroup } from "@/types/Category";
 import { Link } from "react-router-dom";
 
-const toKebabCase = (str: string) =>
-  str.toLowerCase().replace(/\s+/g, "-");
+const toKebabCase = (str: string) => str.toLowerCase().replace(/\s+/g, "-");
 
-export const Subheader = () => {
+export const Nav = () => {
   const getSubcategoriesForCategory = (groupId: number) =>
     categories.filter((subcategory) => subcategory.groupId === groupId);
 
   return (
-    <nav className="bg-white m-0 p-4 text-center text-sm md:text-base font-poppins">
-      <ul className="flex justify-center list-none space-x-5 lg:justify-start pr-4 lg:pl-4">
+    <nav className="m-0 bg-white p-4 text-center font-poppins text-sm md:text-base">
+      <ul className="flex list-none justify-center space-x-5 pr-4 lg:justify-start lg:pl-4">
         {categoryGroups.map((category: CategoryGroup) => (
-          <li className="relative group" key={category.id}>
-            <a className="text-black hover:text-red-500 cursor-pointer py-3">
+          <li className="group relative" key={category.id}>
+            <a className="cursor-pointer py-3 text-black hover:text-red-500">
               {category.name}
             </a>
-            <ul
-              className="absolute hidden lg:text-start group-hover:block z-10 bg-white border border-gray-400 rounded mt-2 p-2 lg:w-auto lg:w-max lg:whitespace-nowrap
-              left-1/2 transform -translate-x-1/2 lg:left-auto lg:transform-none"
-            >
+            <ul className="absolute left-1/2 z-10 mt-2 hidden -translate-x-1/2 transform rounded border border-gray-400 bg-white p-2 group-hover:block lg:left-auto lg:w-max lg:transform-none lg:whitespace-nowrap lg:text-start">
               {getSubcategoriesForCategory(category.id).map((subcategory) => (
                 <li className="mb-2 last:mb-0" key={subcategory.id}>
                   <Link
@@ -40,4 +36,4 @@ export const Subheader = () => {
   );
 };
 
-export default Subheader;
+export default Nav;

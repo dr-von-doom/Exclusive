@@ -1,10 +1,10 @@
-export type FilterOption = {
+export type CategoryFiltersOptions = {
   name: string;
-  type: 'checkbox' | 'radio';
+  type: "checkbox" | "radio";
   options: string[];
 };
 
-export type Filter = {
+export type CategoryFilters = {
   categoryId: number;
-  filters: FilterOption[];
+  filters: CategoryFiltersOptions[];
 };

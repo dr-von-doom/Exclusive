@@ -1,10 +1,10 @@
 import type { Meta, StoryObj } from "@storybook/react";
 
-import Breadcumb from "./Breadcrumb";
+import Breadcrumb from "./Breadcrumb";
 
 const meta = {
-  component: Breadcumb,
-} satisfies Meta<typeof Breadcumb>;
+  component: Breadcrumb,
+} satisfies Meta<typeof Breadcrumb>;
 
 export default meta;
 

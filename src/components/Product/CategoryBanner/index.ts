@@ -1,3 +1,1 @@
-import CategoryBanner from "./CategoryBanner";
-
-export default CategoryBanner;
+export * from "./CategoryBanner";

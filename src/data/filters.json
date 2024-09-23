@@ -198,6 +198,36 @@
     ]
   },
   {
+    "categoryId": 6,
+    "filters": [
+      {
+        "name": "brand",
+        "type": "checkbox",
+        "options": ["Canon", "Nikon", "Sony", "Fujifilm", "Panasonic"]
+      },
+      {
+        "name": "type",
+        "type": "checkbox",
+        "options": ["DSLR", "Mirrorless", "Point & Shoot", "Inkjet"]
+      },
+      {
+        "name": "resolution",
+        "type": "checkbox",
+        "options": ["16MP", "24MP", "36MP", "48MP", "4800x2400"]
+      },
+      {
+        "name": "connectivity",
+        "type": "checkbox",
+        "options": ["USB", "Wi-Fi", "Bluetooth"]
+      },
+      {
+        "name": "color",
+        "type": "checkbox",
+        "options": ["Black", "White", "Grey"]
+      }
+    ]
+  },
+  {
     "categoryId": 8,
     "filters": [
       {

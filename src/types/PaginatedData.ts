@@ -12,8 +12,12 @@ export type SortOptions<Type> = {
   order?: "asc" | "desc";
 };
 
+/** Filter options */
+export type CategoryFilterOptions = {
+  [key: string]: string[];
+};
+
 /** Pagination data options */
 export type PaginationOptions<Type> = SortOptions<Type> & {
   page?: number;
-  filters?: Record<string, string[]>; 
 };

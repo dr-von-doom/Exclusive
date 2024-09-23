@@ -1,5 +1,5 @@
-import Button from "@/components/Button";
-import Rating from "@/components/Rating";
+import { Button } from "@/components/Button";
+import { Rating } from "@/components/Rating";
 import { Product } from "@/types/Product";
 
 export const DetailedProductCard = (data: Product) => {
