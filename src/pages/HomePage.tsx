@@ -1,11 +1,11 @@
 import bannerImage from "@/assets/images/products/products-banner.png";
+import AdImage from "@/components/AdImage/AdImage";
 import Banner from "@/components/Banner/Banner";
-import AdImage from '@/components/AdImage/AdImage';
-import adImagesData from '@/data/adImages.json';
+import FeaturedProductView from "@/components/Product/FeaturedProductView";
+import adImagesData from "@/data/adImages.json";
 import BaseLayout from "@/layouts/BaseLayout";
-import { AdImageProps } from '@/types/AdImage';
+import { AdImageProps } from "@/types/AdImage";
 import { IconProps } from "@/types/Banner";
-import { Link } from "react-router-dom";
 
 const icons: IconProps[] = [
   {
@@ -77,7 +77,6 @@ const icons: IconProps[] = [
 ];
 
 const HomePage = () => {
-
   const adImages: AdImageProps[] = adImagesData;
 
   return (
@@ -94,6 +93,7 @@ const HomePage = () => {
             />
           ))}
         </section>
+        <FeaturedProductView />
         <Banner
           mainText="Everything you need, just a Click away"
           title="DON'T LET THE WINTER FREEZE"
@@ -102,7 +102,6 @@ const HomePage = () => {
           icons={icons}
           shopNowLink="#"
         />
-        <Link to="/category">Category</Link>
       </div>
     </BaseLayout>
   );
