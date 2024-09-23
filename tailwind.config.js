@@ -10,8 +10,5 @@ export default {
     },
   },
   plugins: [],
-  rules: {
-    'react/prop-types': 'off', // Desactiva la validación de props
-  },
 }
 

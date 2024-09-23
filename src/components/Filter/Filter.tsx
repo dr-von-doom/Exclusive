@@ -1,19 +1,19 @@
 import filtersData from "@/data/filters.json";
 import { Filter as FilterType } from "@/types/Filter";
 import React, { useState } from "react";
+import ArrowOpen from "@/assets/icons/arrowopen.svg";
+import ArrowClosed from "@/assets/icons/arrowclosed.svg";
 
-interface FilterProps {
+export type FilterProps = {
   onFilterChange: (selectedOptions: Record<string, string[]>) => void;
-  categoryId: number; 
-}
+  categoryId: number;
+};
 
-export const Filter: React.FC<FilterProps> = ({ onFilterChange, categoryId }) => {
+export const Filter: React.FC<FilterProps> = ({ onFilterChange, categoryId }: FilterProps) => {
   const [openFilters, setOpenFilters] = useState<Set<string>>(new Set());
-  const [selectedOptions, setSelectedOptions] = useState<Record<string, string[]>>({});
-
-  const capitalizeFirstLetter = (string: string): string => {
-    return string.charAt(0).toUpperCase() + string.slice(1);
-  };
+  const [selectedOptions, setSelectedOptions] = useState<
+    Record<string, string[]>
+  >({});
 
   const toggleFilter = (filterName: string) => {
     const newOpenFilters = new Set(openFilters);
@@ -26,7 +26,11 @@ export const Filter: React.FC<FilterProps> = ({ onFilterChange, categoryId }) =>
     onFilterChange(selectedOptions);
   };
 
-  const handleOptionChange = (filterName: string, option: string, checked: boolean) => {
+  const handleOptionChange = (
+    filterName: string,
+    option: string,
+    checked: boolean,
+  ) => {
     const newSelectedOptions = { ...selectedOptions };
     if (!newSelectedOptions[filterName]) {
       newSelectedOptions[filterName] = [];
@@ -34,45 +38,42 @@ export const Filter: React.FC<FilterProps> = ({ onFilterChange, categoryId }) =>
     if (checked) {
       newSelectedOptions[filterName].push(option);
     } else {
-      newSelectedOptions[filterName] = newSelectedOptions[filterName].filter(opt => opt !== option);
+      newSelectedOptions[filterName] = newSelectedOptions[filterName].filter(
+        (opt) => opt !== option,
+      );
     }
     setSelectedOptions(newSelectedOptions);
     onFilterChange(newSelectedOptions);
   };
 
-  const filteredFilters = (filtersData as FilterType[]).find(filterCategory => filterCategory.categoryId === categoryId)?.filters || [];
+  const filteredFilters =
+    (filtersData as FilterType[]).find(
+      (filterCategory) => filterCategory.categoryId === categoryId,
+    )?.filters || [];
 
   return (
-    <div className="font-poppins m-0">
-      <h2 className="text-xl md:text-2xl text-black mb-4">Filters</h2>
+    <div className="m-0 font-poppins">
+      <h2 className="mb-4 text-xl text-black md:text-2xl">Filters</h2>
       {filteredFilters.map((filter) => (
         <div key={filter.name} className="mb-2">
           <div
-            className="flex cursor-pointer items-center border font-medium border-gray-200 bg-gray-100 p-4 px-3 py-2 rounded-md"
+            className="flex cursor-pointer items-center rounded-md border border-gray-200 bg-gray-100 p-4 px-3 py-2 font-medium"
             onClick={() => toggleFilter(filter.name)}
           >
             <span
-              className={`mr-2 transition-transform ${
-                openFilters.has(filter.name) ? "rotate-0" : "rotate-180"
-              }`}
+              className={'mr-2'}
             >
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
+              <img
+                src={openFilters.has(filter.name) ? ArrowOpen : ArrowClosed}
+                alt="Arrow Icon"
                 className="h-4 w-4"
-                viewBox="0 0 20 20"
-                fill="currentColor"
-              >
-                <path
-                  fillRule="evenodd"
-                  d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z"
-                  clipRule="evenodd"
-                />
-              </svg>
+              />
             </span>
-            <span className="text-sm">{capitalizeFirstLetter(filter.name)}</span>
+
+            <span className="text-sm capitalize">{filter.name}</span>
           </div>
           {openFilters.has(filter.name) && (
-            <ul className="border border-gray-300 p-2 rounded-md">
+            <ul className="rounded-md border border-gray-300 p-2">
               {filter.options.map((option) => (
                 <li key={option} className="flex items-center rounded p-2">
                   <input
@@ -80,7 +81,9 @@ export const Filter: React.FC<FilterProps> = ({ onFilterChange, categoryId }) =>
                     id={option}
                     name={filter.name}
                     className="h-4 w-4 cursor-pointer rounded border-gray-300 text-blue-600 focus:ring-blue-500"
-                    onChange={(e) => handleOptionChange(filter.name, option, e.target.checked)}
+                    onChange={(e) =>
+                      handleOptionChange(filter.name, option, e.target.checked)
+                    }
                   />
                   <label
                     htmlFor={option}
