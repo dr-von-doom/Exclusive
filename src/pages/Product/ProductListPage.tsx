@@ -1,7 +1,8 @@
-import Filter from "@/components/Filter";
-import CategoryBanner from "@/components/Product/CategoryBanner";
-import ExploreMoreBanner from "@/components/Product/ExploreMoreBanner";
-import PaginatedProductList from "@/components/Product/PaginatedProductList";
+import { Breadcrumb } from "@/components/Breadcrumb";
+import { Filter } from "@/components/Filter";
+import { CategoryBanner } from "@/components/Product/CategoryBanner";
+import { ExploreMoreBanner } from "@/components/Product/ExploreMoreBanner";
+import { PaginatedProductList } from "@/components/Product/PaginatedProductList";
 import BaseLayout from "@/layouts/BaseLayout";
 import { Category } from "@/types/Category";
 import { CategoryFilters } from "@/types/Filter";
@@ -18,7 +19,6 @@ import {
 } from "@/utils/data";
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
-import  Breadcrumb  from "@/components/Breadcumb/Breadcrumb";
 
 const sortOptionsList = [
   { value: "", label: "Default" },

@@ -1,8 +1,8 @@
-import Button from "@/components/Button";
+import { Button } from "@/components/Button";
 import { PaginatedData } from "@/types/PaginatedData";
 import { Product } from "@/types/Product";
 import { useEffect, useRef } from "react";
-import DetailedProductCard from "../DetailedProductCard";
+import { DetailedProductCard } from "../DetailedProductCard";
 
 export type PaginatedProductListProps = {
   paginatedData: PaginatedData<Product>;

@@ -1,6 +1,6 @@
 import bannerImage from "@/assets/images/products/products-banner.png";
 import Banner from "@/components/Banner/Banner";
-import FeaturedProductView from "@/components/Product/FeaturedProductView";
+import { FeaturedProductView } from "@/components/Product/FeaturedProductView";
 import { PromotionalImageProps } from "@/components/PromotionalImage";
 import PromotionalImage from "@/components/PromotionalImage/PromotionalIImage";
 import BaseLayout from "@/layouts/BaseLayout";

@@ -1,3 +1,1 @@
-import WorkInProgress from "./WorkInProgress";
-
-export default WorkInProgress;
+export * from "./WorkInProgress";

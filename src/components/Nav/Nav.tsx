@@ -5,7 +5,7 @@ import { Link } from "react-router-dom";
 
 const toKebabCase = (str: string) => str.toLowerCase().replace(/\s+/g, "-");
 
-export const Subheader = () => {
+export const Nav = () => {
   const getSubcategoriesForCategory = (groupId: number) =>
     categories.filter((subcategory) => subcategory.groupId === groupId);
 
@@ -36,4 +36,4 @@ export const Subheader = () => {
   );
 };
 
-export default Subheader;
+export default Nav;
