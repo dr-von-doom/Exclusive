@@ -8,11 +8,11 @@ export const FeaturedProductView = () => {
     .slice(0, 12); // Tomar los primeros 12
 
   return (
-    <div className="px-28">
+    <div className="px-12">
       <h2 className="text-xl font-bold mb-4 md:text-2xl">Featured Products</h2>
       <div
         id="featured-product-container"
-        className="mx-auto grid grid-cols-[repeat(auto-fit,_minmax(280px,_1fr))] gap-8">
+        className="mx-auto grid grid-cols-[repeat(auto-fit,_minmax(300px,_1fr))] gap-8">
         {topRatedProducts.map((product) => (
           <ProductCard key={product.id} {...product as Product} />
         ))}
