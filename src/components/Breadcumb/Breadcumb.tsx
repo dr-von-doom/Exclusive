@@ -10,11 +10,13 @@ export const Breadcrumb = () => {
   const capitalize = (s: string) => s.charAt(0).toUpperCase() + s.slice(1);
 
   return (
-    <div className="w-full rounded-md p-3 ml-4 font-poppins">
+    <div className="ml-4 w-full rounded-md p-3 font-poppins">
       <ol className="list-reset flex">
-        <li className="text-gray-500">
-          <Link to="/">Home</Link>
-        </li>
+        {location.pathname !== "/" && (
+          <li className="text-gray-500">
+            <Link to="/">Home</Link>
+          </li>
+        )}
         {pathnames.map((value, index) => {
           // Construye la ruta parcial para cada segmento del breadcrumb
           const to = `/${pathnames.slice(0, index + 1).join("/")}`;
