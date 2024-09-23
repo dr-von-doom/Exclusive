@@ -1,11 +1,11 @@
 import bannerImage from "@/assets/images/products/products-banner.png";
 import Banner from "@/components/Banner/Banner";
+import FeaturedProductView from "@/components/Product/FeaturedProductView";
 import { PromotionalImageProps } from "@/components/PromotionalImage";
 import PromotionalImage from "@/components/PromotionalImage/PromotionalIImage";
 import BaseLayout from "@/layouts/BaseLayout";
 import { getPromotionalImages } from "@/utils/data";
 import { useEffect, useState } from "react";
-import { Link } from "react-router-dom";
 
 const HomePage = () => {
   const [promotionalImages, setPromotionalImages] = useState<
@@ -30,6 +30,7 @@ const HomePage = () => {
             />
           ))}
         </section>
+        <FeaturedProductView />
         <Banner
           mainText="Everything you need, just a Click away"
           title="DON'T LET THE WINTER FREEZE"
@@ -37,7 +38,6 @@ const HomePage = () => {
           imageSrc={bannerImage}
           shopNowLink="#"
         />
-        <Link to="/category">Category</Link>
       </div>
     </BaseLayout>
   );

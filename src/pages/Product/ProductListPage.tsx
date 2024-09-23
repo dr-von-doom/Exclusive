@@ -18,6 +18,7 @@ import {
 } from "@/utils/data";
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
+import  Breadcrumb  from "@/components/Breadcumb/Breadcrumb";
 
 const sortOptionsList = [
   { value: "", label: "Default" },
@@ -137,6 +138,7 @@ export const ProductListPage = () => {
 
   return (
     <BaseLayout>
+      <Breadcrumb />
       <div className="flex h-full grow flex-col items-center justify-center gap-5 p-10">
         <CategoryBanner category={category} />
 
