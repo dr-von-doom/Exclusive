@@ -1,7 +1,5 @@
 import { Category } from "@/types/Category";
 
-const baseURL = import.meta.env.BASE_URL;
-
 export type CategoryBannerProps = {
   category: Category;
 };
@@ -18,7 +16,7 @@ export const CategoryBanner = ({ category }: CategoryBannerProps) => {
       <div>
         {category.imageUrl && (
           <img
-            src={`${baseURL}/${category.imageUrl}`}
+            src={category.imageUrl}
             alt="Category"
             className="md:max-w-60- h-full w-full rounded-md object-cover p-10"
           />
