@@ -17,7 +17,7 @@ export const FeaturedProductView = () => {
         className="mb-8 grid grid-cols-[repeat(auto-fit,300px)] justify-center gap-8"
       >
         {topRatedProducts.map((product) => (
-          <ProductCard key={product.id} {...(product as Product)} />
+          <ProductCard key={product.id} {...(product as unknown as Product)} />
         ))}
       </div>
     </div>
