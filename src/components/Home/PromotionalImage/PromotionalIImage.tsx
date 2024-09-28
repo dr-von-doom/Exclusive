@@ -5,7 +5,7 @@ export type PromotionalImageProps = {
   className?: string;
 };
 
-const PromotionalImage = ({
+export const PromotionalImage = ({
   src,
   alt,
   href,

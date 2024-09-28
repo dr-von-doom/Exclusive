@@ -1,6 +1,6 @@
 import categories from "@/data/categories.json";
 import categoryGroups from "@/data/category-groups.json";
-import { CategoryGroup } from "@/types/Category";
+import { CategoryGroup } from "@/types/category.type";
 import { Link } from "react-router-dom";
 
 const toKebabCase = (str: string) => str.toLowerCase().replace(/\s+/g, "-");

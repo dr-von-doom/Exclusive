@@ -1,17 +1,17 @@
-import { Breadcrumb } from "@/components/Breadcrumb";
-import { Filter } from "@/components/Filter";
+import { Breadcrumb } from "@/components/common/Breadcrumb";
 import { CategoryBanner } from "@/components/Product/CategoryBanner";
 import { ExploreMoreBanner } from "@/components/Product/ExploreMoreBanner";
 import { PaginatedProductList } from "@/components/Product/PaginatedProductList";
+import { ProductFilter } from "@/components/Product/ProductFilter";
 import BaseLayout from "@/layouts/BaseLayout";
-import { Category } from "@/types/Category";
-import { CategoryFilters } from "@/types/Filter";
+import { Category } from "@/types/category.type";
+import { CategoryFilters } from "@/types/filter.type";
 import {
   CategoryFilterOptions,
   PaginatedData,
   SortOptions,
-} from "@/types/PaginatedData";
-import { Product } from "@/types/Product";
+} from "@/types/paginatedData.type";
+import { Product } from "@/types/product.type";
 import {
   getCategoryByName,
   getFilters,
@@ -146,7 +146,7 @@ export const ProductListPage = () => {
         <div className="my-10 grid w-full gap-4 sm:grid-cols-4">
           <div className="sm:col-span-1">
             {categoryFilters && (
-              <Filter
+              <ProductFilter
                 onFilterChange={handleFilterChange}
                 categoryFilters={categoryFilters}
               />

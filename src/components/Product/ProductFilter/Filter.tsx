@@ -1,17 +1,17 @@
 import ArrowClosed from "@/assets/icons/arrowclosed.svg";
 import ArrowOpen from "@/assets/icons/arrowopen.svg";
-import { CategoryFilters } from "@/types/Filter";
+import { CategoryFilters } from "@/types/filter.type";
 import React, { useCallback, useState } from "react";
 
-export type FilterProps = {
+export type ProductFilterProps = {
   categoryFilters: CategoryFilters;
   onFilterChange: (selectedOptions: Record<string, string[]>) => void;
 };
 
-export const Filter: React.FC<FilterProps> = ({
+export const ProductFilter: React.FC<ProductFilterProps> = ({
   categoryFilters,
   onFilterChange,
-}: FilterProps) => {
+}: ProductFilterProps) => {
   const [openFilters, setOpenFilters] = useState<Set<string>>(new Set());
   const [selectedOptions, setSelectedOptions] = useState<
     Record<string, string[]>
@@ -94,4 +94,4 @@ export const Filter: React.FC<FilterProps> = ({
   );
 };
 
-export default Filter;
+export default ProductFilter;

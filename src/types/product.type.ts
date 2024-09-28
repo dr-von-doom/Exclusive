@@ -1,7 +1,6 @@
 /** Specification type */
 export type Spec = {
-  name: string;
-  value: string;
+  [key: string]: string | number | boolean;
 };
 
 /** Product type */
@@ -24,5 +23,5 @@ export type Product = {
   /** Sort list of features (3) */
   features: string[];
   /** List of specifications (used to filter) */
-  specs: Spec[];
+  specs: Spec;
 };

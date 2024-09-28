@@ -2,7 +2,7 @@ import CameraIcon from "@/assets/icons/camera-icon.svg?react";
 import HomeIcon from "@/assets/icons/home-icon.svg?react";
 import PhoneIcon from "@/assets/icons/phone-icon.svg?react";
 import TVIcon from "@/assets/icons/tv-icon.svg?react";
-import { Icon, IconProps } from "../Icon";
+import { Icon, IconProps } from "@/components/common/Icon";
 
 export type BannerProps = {
   mainText: string;
@@ -31,7 +31,7 @@ const icons: IconProps[] = [
   },
 ];
 
-const Banner = ({
+export const Banner = ({
   mainText,
   title,
   subtitle,
