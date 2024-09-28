@@ -2,14 +2,14 @@ import { PromotionalImageProps } from "@/components/PromotionalImage";
 import categories from "@/data/categories.json";
 import filtersData from "@/data/filters.json";
 import products from "@/data/products.json";
-import { Category } from "@/types/Category";
-import { CategoryFilters } from "@/types/Filter";
+import { Category } from "@/types/category.type";
+import { CategoryFilters } from "@/types/filter.type";
 import {
   CategoryFilterOptions,
   PaginatedData,
   PaginationOptions,
-} from "@/types/PaginatedData";
-import { Product } from "@/types/Product";
+} from "@/types/paginatedData.type";
+import { Product } from "@/types/product.type";
 import _ from "lodash";
 import promotionalImages from "../data/promotional-images.json";
 

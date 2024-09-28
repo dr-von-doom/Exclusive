@@ -1,6 +1,6 @@
-import { Button } from "@/components/Button";
-import { PaginatedData } from "@/types/PaginatedData";
-import { Product } from "@/types/Product";
+import { Button } from "@/components/common/Button";
+import { PaginatedData } from "@/types/paginatedData.type";
+import { Product } from "@/types/product.type";
 import { useEffect, useRef } from "react";
 import { DetailedProductCard } from "../DetailedProductCard";
 

@@ -2,7 +2,7 @@ import HomePage from "@/pages/HomePage";
 import NotFoundPage from "@/pages/NotFoundPage";
 import ProductListPage from "@/pages/Product/ProductListPage";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
-import { WorkInProgress } from "./components/WorkInProgress";
+import { WorkInProgress } from "./components/common/WorkInProgress";
 
 const router = createBrowserRouter(
   [
