@@ -1,4 +1,4 @@
-import { Category } from "@/types/Category";
+import { Category } from "@/types/category.type";
 
 const baseURL = import.meta.env.BASE_URL;
 

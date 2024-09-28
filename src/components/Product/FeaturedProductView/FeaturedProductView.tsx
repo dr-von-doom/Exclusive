@@ -1,5 +1,5 @@
 import productsData from "@/data/products.json";
-import { Product } from "@/types/Product";
+import { Product } from "@/types/product.type";
 import { ProductCard } from "../ProductCard";
 
 export const FeaturedProductView = () => {

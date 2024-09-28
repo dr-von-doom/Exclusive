@@ -1,8 +1,10 @@
 import bannerImage from "@/assets/images/products/products-banner.png";
-import Banner from "@/components/Banner/Banner";
+import { Banner } from "@/components/Home/Banner";
+import {
+  PromotionalImage,
+  PromotionalImageProps,
+} from "@/components/Home/PromotionalImage";
 import { FeaturedProductView } from "@/components/Product/FeaturedProductView";
-import { PromotionalImageProps } from "@/components/PromotionalImage";
-import PromotionalImage from "@/components/PromotionalImage/PromotionalIImage";
 import BaseLayout from "@/layouts/BaseLayout";
 import { getPromotionalImages } from "@/utils/data";
 import { useEffect, useState } from "react";
