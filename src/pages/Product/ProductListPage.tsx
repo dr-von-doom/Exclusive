@@ -1,15 +1,15 @@
 import { Breadcrumb } from "@/components/common/Breadcrumb";
 import { CategoryBanner } from "@/components/Product/CategoryBanner";
 import { ExploreMoreBanner } from "@/components/Product/ExploreMoreBanner";
+import { PaginatedProductList } from "@/components/Product/PaginatedProductList";
 import { ProductFilter } from "@/components/Product/ProductFilter";
+import { useGetCategoryByName } from "@/hooks/useGetCategoryByName";
 import { useGetProducts } from "@/hooks/useGetProducts";
 import BaseLayout from "@/layouts/BaseLayout";
-import { Category } from "@/types/category.type";
 import { CategoryFilters } from "@/types/filter.type";
 import { CategoryFilterOptions, SortOptions } from "@/types/paginatedData.type";
 import { Product } from "@/types/product.type";
-import { getCategoryByName } from "@/utils/data";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { useParams } from "react-router-dom";
 
 const sortOptionsList = [
@@ -27,30 +27,35 @@ export const ProductListPage = () => {
   // Check if the group and category
   if (!groupName || !categoryName) return <div>Invalid URL</div>;
 
-  const [category, setCategory] = useState<Category | null>(null);
   const [sortOptions, setSortOptions] = useState<SortOptions<Product>>({});
   const [categoryFilters] = useState<CategoryFilters | null>(null);
   const [selectedFilters, setSelectedFilters] =
     useState<CategoryFilterOptions | null>(null);
 
-  const { isLoading, isSuccess, isError, data: products } = useGetProducts();
+  const {
+    isLoading: isCategoryLoading,
+    isError: isCategoryError,
+    data: category,
+  } = useGetCategoryByName(categoryName);
 
-  console.log(products);
-
-  // Fetch the category data
-  useEffect(() => {
-    const category = getCategoryByName(categoryName);
-    setCategory(category);
-  }, [categoryName]);
-
-  if (!category) return <div>Loading...</div>;
+  const {
+    isLoading: isProductsLoading,
+    isError: isProductsError,
+    data: products,
+  } = useGetProducts(
+    {
+      categoryId: category?.id,
+      filters: {
+        "specs.memory": "32GB",
+      },
+    },
+    { _page: 1, _per_page: 10 },
+  );
 
   /**
    * It handles loading more products
    */
-  const handleLoadMoreProducts = () => {
-    if (!category) return;
-  };
+  const handleLoadMoreProducts = () => {};
 
   /**
    * It handles sorting products
@@ -78,6 +83,11 @@ export const ProductListPage = () => {
     setSelectedFilters(selectedOptions);
   };
 
+  if (isCategoryLoading || isProductsLoading) return <div>Loading...</div>;
+
+  if (!category) return <div>Category not found</div>;
+  if (!products) return <div>No products found</div>;
+
   return (
     <BaseLayout>
       <Breadcrumb />
@@ -94,12 +104,12 @@ export const ProductListPage = () => {
             )}
           </div>
           <div className="flex flex-col gap-3 sm:col-span-3">
-            {/* <PaginatedProductList
-              paginatedData=}
+            <PaginatedProductList
+              products={products}
               sortOptionsList={sortOptionsList}
               onLoadMore={handleLoadMoreProducts}
               onSort={handleSortProducts}
-            /> */}
+            />
           </div>
         </div>
       </div>

@@ -17,8 +17,12 @@ export const getAllProducts = async (
 ): Promise<Product[]> => {
   const response = await requestApi(route, apiMethods.GET, {
     queryParams: {
+      categoryId: params.categoryId?.toString() ?? "",
       ...Object.fromEntries(
-        Object.entries(params).map(([key, value]) => [key, value?.toString()]),
+        Object.entries(params.filters ?? {}).map(([key, value]) => [
+          key,
+          value?.toString(),
+        ]),
       ),
       ...Object.fromEntries(
         Object.entries(options).map(([key, value]) => [key, value?.toString()]),

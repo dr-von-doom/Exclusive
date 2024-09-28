@@ -67,6 +67,8 @@ export const requestApi = async (
     ? replacePathParams(route, options.pathParams)
     : route;
 
+  console.log(`request ${baseURL}/${route}?${queryParams}`);
+
   const response = await fetch(`${baseURL}/${route}?${queryParams}`, {
     method,
     headers: {
