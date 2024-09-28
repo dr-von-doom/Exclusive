@@ -4,33 +4,28 @@ import ProductListPage from "@/pages/Product/ProductListPage";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import { WorkInProgress } from "./components/common/WorkInProgress";
 
-const router = createBrowserRouter(
-  [
-    {
-      path: "/",
-      element: <HomePage />,
-    },
-    {
-      path: "/category",
-      element: <WorkInProgress />,
-    },
-    {
-      path: "/category/:group",
-      element: <WorkInProgress />,
-    },
-    {
-      path: "/category/:group/:category",
-      element: <ProductListPage />,
-    },
-    {
-      path: "*",
-      element: <NotFoundPage />,
-    },
-  ],
+const router = createBrowserRouter([
   {
-    basename: "/exclusive",
+    path: "/",
+    element: <HomePage />,
   },
-);
+  {
+    path: "/category",
+    element: <WorkInProgress />,
+  },
+  {
+    path: "/category/:group",
+    element: <WorkInProgress />,
+  },
+  {
+    path: "/category/:group/:category",
+    element: <ProductListPage />,
+  },
+  {
+    path: "*",
+    element: <NotFoundPage />,
+  },
+]);
 
 export const AppRouter = () => {
   return <RouterProvider router={router} />;
