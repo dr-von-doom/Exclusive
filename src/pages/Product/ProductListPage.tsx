@@ -1,22 +1,14 @@
 import { Breadcrumb } from "@/components/common/Breadcrumb";
 import { CategoryBanner } from "@/components/Product/CategoryBanner";
 import { ExploreMoreBanner } from "@/components/Product/ExploreMoreBanner";
-import { PaginatedProductList } from "@/components/Product/PaginatedProductList";
 import { ProductFilter } from "@/components/Product/ProductFilter";
+import { useGetProducts } from "@/hooks/useGetProducts";
 import BaseLayout from "@/layouts/BaseLayout";
 import { Category } from "@/types/category.type";
 import { CategoryFilters } from "@/types/filter.type";
-import {
-  CategoryFilterOptions,
-  PaginatedData,
-  SortOptions,
-} from "@/types/paginatedData.type";
+import { CategoryFilterOptions, SortOptions } from "@/types/paginatedData.type";
 import { Product } from "@/types/product.type";
-import {
-  getCategoryByName,
-  getFilters,
-  getProductByCategory,
-} from "@/utils/data";
+import { getCategoryByName } from "@/utils/data";
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 
@@ -35,58 +27,21 @@ export const ProductListPage = () => {
   // Check if the group and category
   if (!groupName || !categoryName) return <div>Invalid URL</div>;
 
-  // Initialize the state
-  const [paginatedData, setPaginatedData] = useState<PaginatedData<Product>>({
-    data: [],
-    page: 1,
-    totalResults: 0,
-    totalPages: 0,
-  });
-
   const [category, setCategory] = useState<Category | null>(null);
   const [sortOptions, setSortOptions] = useState<SortOptions<Product>>({});
-  const [categoryFilters, setCategoryFilters] =
-    useState<CategoryFilters | null>(null);
+  const [categoryFilters] = useState<CategoryFilters | null>(null);
   const [selectedFilters, setSelectedFilters] =
     useState<CategoryFilterOptions | null>(null);
+
+  const { isLoading, isSuccess, isError, data: products } = useGetProducts();
+
+  console.log(products);
 
   // Fetch the category data
   useEffect(() => {
     const category = getCategoryByName(categoryName);
     setCategory(category);
   }, [categoryName]);
-
-  // Fetch the products by category and category filters
-  useEffect(() => {
-    if (!category) return;
-    const results = getProductByCategory(
-      category.id,
-      {
-        page: paginatedData.page,
-        ...sortOptions,
-      },
-      selectedFilters,
-    );
-
-    const categoryFilters = getFilters(category.id);
-    setCategoryFilters(categoryFilters);
-    setPaginatedData(results);
-  }, [category]);
-
-  useEffect(() => {
-    if (!category) return;
-
-    const results = getProductByCategory(
-      category.id,
-      {
-        page: 1,
-        ...sortOptions,
-      },
-      selectedFilters,
-    );
-
-    setPaginatedData(results);
-  }, [sortOptions, selectedFilters]);
 
   if (!category) return <div>Loading...</div>;
 
@@ -95,20 +50,6 @@ export const ProductListPage = () => {
    */
   const handleLoadMoreProducts = () => {
     if (!category) return;
-
-    const results = getProductByCategory(
-      category.id,
-      {
-        page: paginatedData.page + 1,
-        ...sortOptions,
-      },
-      selectedFilters,
-    );
-
-    setPaginatedData({
-      ...results,
-      data: [...paginatedData.data, ...results.data],
-    });
   };
 
   /**
@@ -153,12 +94,12 @@ export const ProductListPage = () => {
             )}
           </div>
           <div className="flex flex-col gap-3 sm:col-span-3">
-            <PaginatedProductList
-              paginatedData={paginatedData}
+            {/* <PaginatedProductList
+              paginatedData=}
               sortOptionsList={sortOptionsList}
               onLoadMore={handleLoadMoreProducts}
               onSort={handleSortProducts}
-            />
+            /> */}
           </div>
         </div>
       </div>
