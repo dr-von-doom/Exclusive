@@ -1,5 +1,5 @@
 import { Category } from "@/types/category.type";
-import { Skeleton } from "./Skeleton";
+import { CategoryBannerSkeleton } from "./CategoryBannerSkeleton";
 
 const baseUrl = import.meta.env.BASE_URL;
 
@@ -12,7 +12,7 @@ export const CategoryBanner = ({
   category,
   isLoading = false,
 }: CategoryBannerProps) => {
-  if (isLoading) return <Skeleton />;
+  if (isLoading) return <CategoryBannerSkeleton />;
 
   if (!category) return null;
 

@@ -16,6 +16,6 @@ export enum OrderOptions {
 export type PaginationOptions = {
   _page?: number;
   _per_page?: number;
-  _sort?: string;
-  _order?: OrderOptions;
+  _sort?: string | null;
+  _order?: OrderOptions | null;
 };

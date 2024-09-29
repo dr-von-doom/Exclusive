@@ -6,11 +6,13 @@ import {
 } from "@/types/product.type";
 import { useEffect, useRef } from "react";
 import { DetailedProductCard } from "../DetailedProductCard";
+import { PaginatedProductListSkeleton } from "./PaginatedProductListSkeleton";
 
 export type PaginatedProductListProps = {
   products: Product[];
   totalProducts: number;
   hasNextPage: boolean;
+  isLoading?: boolean;
   onLoadMore: () => void;
   onSort: (sortingOption: ProductSortingOptions) => void;
 };
@@ -19,11 +21,14 @@ export const PaginatedProductList = ({
   products,
   totalProducts,
   hasNextPage,
+  isLoading = false,
   onLoadMore,
   onSort,
 }: PaginatedProductListProps) => {
   const optionSection = useRef<HTMLDivElement>(null);
   const resultsSection = useRef<HTMLDivElement>(null);
+
+  if (isLoading) return <PaginatedProductListSkeleton />;
 
   useEffect(() => {
     const rect = optionSection.current?.getClientRects()[0];
@@ -70,7 +75,7 @@ export const PaginatedProductList = ({
         ref={resultsSection}
       >
         {products.map((product, index) => (
-          <DetailedProductCard key={index} {...product} />
+          <DetailedProductCard key={index} product={product} />
         ))}
       </div>
 
