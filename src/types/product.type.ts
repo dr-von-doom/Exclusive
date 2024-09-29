@@ -44,10 +44,11 @@ export type GetAllProductsResponse = {
 
 /** Product sort options */
 export enum ProductSortingOptions {
+  DEFAULT = "DEFAULT",
   PRICE_LOW_TO_HIGH = "PRICE_LOW_TO_HIGH",
   PRICE_HIGH_TO_LOW = "PRICE_HIGH_TO_LOW",
-  RATING_LOW_TO_HIGH = "RATING_LOW_TO_HIGH",
   RATING_HIGH_TO_LOW = "RATING_HIGH_TO_LOW",
+  DISCOUNT_HIGH_TO_LOW = "DISCOUNT_HIGH_TO_LOW",
 }
 
 /** Product sort option type */
@@ -55,36 +56,43 @@ export const productSortingOptions: {
   [key in ProductSortingOptions]: {
     label: string;
     value: {
-      sort: string;
-      order: OrderOptions;
+      sort: string | null;
+      order: OrderOptions | null;
     };
   };
 } = {
+  [ProductSortingOptions.DEFAULT]: {
+    label: "Default",
+    value: {
+      sort: null,
+      order: null,
+    },
+  },
+  [ProductSortingOptions.RATING_HIGH_TO_LOW]: {
+    label: "Rating",
+    value: {
+      sort: "rating",
+      order: OrderOptions.DESC,
+    },
+  },
+  [ProductSortingOptions.DISCOUNT_HIGH_TO_LOW]: {
+    label: "Discount",
+    value: {
+      sort: "discount",
+      order: OrderOptions.DESC,
+    },
+  },
   [ProductSortingOptions.PRICE_LOW_TO_HIGH]: {
-    label: "Price: Low to High",
+    label: "Price (Low to High)",
     value: {
       sort: "price",
       order: OrderOptions.ASC,
     },
   },
   [ProductSortingOptions.PRICE_HIGH_TO_LOW]: {
-    label: "Price: High to Low",
+    label: "Price (High to Low)",
     value: {
       sort: "price",
-      order: OrderOptions.DESC,
-    },
-  },
-  [ProductSortingOptions.RATING_LOW_TO_HIGH]: {
-    label: "Rating: Low to High",
-    value: {
-      sort: "rating",
-      order: OrderOptions.ASC,
-    },
-  },
-  [ProductSortingOptions.RATING_HIGH_TO_LOW]: {
-    label: "Rating: High to Low",
-    value: {
-      sort: "rating",
       order: OrderOptions.DESC,
     },
   },

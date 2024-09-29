@@ -1,6 +1,6 @@
 import { Button } from "@/components/common/Button";
 import {
-  GetAllProductsResponse,
+  Product,
   ProductSortingOptions,
   productSortingOptions,
 } from "@/types/product.type";
@@ -8,13 +8,17 @@ import { useEffect, useRef } from "react";
 import { DetailedProductCard } from "../DetailedProductCard";
 
 export type PaginatedProductListProps = {
-  products: GetAllProductsResponse;
+  products: Product[];
+  totalProducts: number;
+  hasNextPage: boolean;
   onLoadMore: () => void;
   onSort: (sortingOption: ProductSortingOptions) => void;
 };
 
 export const PaginatedProductList = ({
   products,
+  totalProducts,
+  hasNextPage,
   onLoadMore,
   onSort,
 }: PaginatedProductListProps) => {
@@ -35,7 +39,7 @@ export const PaginatedProductList = ({
     <>
       <div className="grid gap-5 p-5 sm:grid-cols-2" ref={optionSection}>
         <div className="flex items-center">
-          {products.data.length} out of {products.totalProducts}
+          {products.length} out of {totalProducts}
         </div>
         <div className="flex items-center space-x-3 sm:justify-self-end">
           <span>Sort by</span>
@@ -65,13 +69,13 @@ export const PaginatedProductList = ({
         className="flex flex-col gap-5 overflow-y-auto scroll-smooth p-5"
         ref={resultsSection}
       >
-        {products.data.map((product, index) => (
+        {products.map((product, index) => (
           <DetailedProductCard key={index} {...product} />
         ))}
       </div>
 
       <div className="mt-10 flex justify-center">
-        {products.page < products.totalPages && (
+        {hasNextPage && (
           <Button
             type="secondary"
             onClick={() => onLoadMore()}

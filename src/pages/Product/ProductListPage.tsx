@@ -11,7 +11,7 @@ import {
   ProductSortingOptions,
 } from "@/types/product.type";
 import { PaginationOptions } from "@/types/request.type";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 
 export const ProductListPage = () => {
@@ -37,9 +37,10 @@ export const ProductListPage = () => {
   } = useGetCategoryByName(categoryName);
 
   const {
-    isLoading: isProductsLoading,
-    isError: isProductsError,
-    data: products,
+    data: productData,
+    fetchNextPage,
+    hasNextPage,
+    refetch,
   } = useGetProducts(
     {
       categoryId: category?.id,
@@ -49,12 +50,9 @@ export const ProductListPage = () => {
   );
 
   const onLoadMore = () => {
-    if (!products || !products.data.length) return;
+    if (!hasNextPage) return;
 
-    setPaginationOptions((prev) => ({
-      ...prev,
-      _page: (prev._page ?? 0) + 1,
-    }));
+    fetchNextPage();
   };
 
   const onSort = (sortingOption: ProductSortingOptions) => {
@@ -68,6 +66,10 @@ export const ProductListPage = () => {
     }));
   };
 
+  useEffect(() => {
+    refetch();
+  }, [paginationOptions, refetch]);
+
   return (
     <BaseLayout>
       <div className="flex h-full grow flex-col items-center justify-center gap-5 p-8">
@@ -76,7 +78,7 @@ export const ProductListPage = () => {
             title="Category not found"
             message="The category you are looking for does not exist."
           />
-        ) : !products || isProductsError ? (
+        ) : !productData ? (
           <ErrorMsg
             title="Products not found"
             message="We wouldn't find any products for this category."
@@ -96,8 +98,12 @@ export const ProductListPage = () => {
               </div>
               <div className="flex flex-col gap-3 sm:col-span-3">
                 <PaginatedProductList
-                  products={products}
-                  onLoadMore={() => console.log("Load more")}
+                  products={
+                    productData?.pages.flatMap((page) => page.data) || []
+                  }
+                  totalProducts={productData?.pages[0]?.totalProducts || 0}
+                  hasNextPage={hasNextPage}
+                  onLoadMore={onLoadMore}
                   onSort={onSort}
                 />
               </div>

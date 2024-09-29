@@ -4,14 +4,38 @@ import {
   GetAllProductsResponse,
 } from "@/types/product.type";
 import { PaginationOptions } from "@/types/request.type";
-import { useQuery } from "@tanstack/react-query";
+import {
+  InfiniteData,
+  QueryKey,
+  useInfiniteQuery,
+} from "@tanstack/react-query";
 
 export const useGetProducts = (
   params: GetAllProductsParams,
   options: PaginationOptions,
 ) => {
-  return useQuery<GetAllProductsResponse, Error>({
-    queryKey: ["products", params, options],
-    queryFn: async () => await getAllProducts(params, options),
+  return useInfiniteQuery<
+    GetAllProductsResponse,
+    Error,
+    InfiniteData<GetAllProductsResponse, number>,
+    QueryKey,
+    number
+  >({
+    queryKey: ["products", params],
+    queryFn: async ({ pageParam = 1 }) => {
+      const response = await getAllProducts(params, {
+        ...options,
+        _page: pageParam,
+      });
+      return response;
+    },
+    getNextPageParam: (lastPage) => {
+      // Ensure to return next page param correctly
+      if (lastPage.page < lastPage.totalPages) {
+        return lastPage.page + 1;
+      }
+      return undefined;
+    },
+    initialPageParam: 1,
   });
 };
