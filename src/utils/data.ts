@@ -1,16 +1,7 @@
-import { PromotionalImageProps } from "@/components/PromotionalImage";
-import categories from "@/data/categories.json";
+import { PromotionalImageProps } from "@/components/Home/PromotionalImage";
 import filtersData from "@/data/filters.json";
-import products from "@/data/products.json";
 import { Category } from "@/types/category.type";
 import { CategoryFilters } from "@/types/filter.type";
-import {
-  CategoryFilterOptions,
-  PaginatedData,
-  PaginationOptions,
-} from "@/types/paginatedData.type";
-import { Product } from "@/types/product.type";
-import _ from "lodash";
 import promotionalImages from "../data/promotional-images.json";
 
 /**
@@ -18,23 +9,9 @@ import promotionalImages from "../data/promotional-images.json";
  * @param {string} name - Category name
  * @returns {Category | null} - Category object or null
  */
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
 export const getCategoryByName = (name: string): Category | null => {
-  return (
-    (categories as Category[]).find(
-      (category) => _.kebabCase(category.name) === _.kebabCase(name),
-    ) ?? null
-  );
-};
-
-/**
- * It applies a discount to the price
- *
- * @param {number} price original price
- * @param {number} discount discount rate
- * @returns {number} - discounted price
- */
-export const applyDiscount = (price: number, discount?: number) => {
-  return price - price * (discount ?? 0);
+  return null;
 };
 
 /**
@@ -49,57 +26,14 @@ export const applyDiscount = (price: number, discount?: number) => {
  * @returns {Product[]} - List of products
  */
 export const getProductByCategory = (
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   categoryId: number,
-  options: PaginationOptions<Product>,
-  filters: CategoryFilterOptions | null,
-): PaginatedData<Product> => {
-  const { page = 1, sortBy, order = "desc" } = options;
-
-  let data = (products as Product[]).filter(
-    (product: Product) => product.categoryId === categoryId,
-  );
-
-  if (filters) {
-    Object.keys(filters).forEach((filter) => {
-      const filterSelectedValues = filters[filter];
-
-      data = data.filter((product: Product) => {
-        if (!filterSelectedValues.length) return true;
-        const productSpecs = product.specs.find((spec) => spec.name === filter);
-        return filterSelectedValues.includes(productSpecs?.value ?? "");
-      });
-    });
-  }
-
-  const totalResults = data.length;
-
-  if (sortBy) {
-    data = data.sort((a: Product, b: Product) => {
-      // Apply the discount if sort is by price
-      if (sortBy === "price") {
-        const priceA = applyDiscount(a.price, a.discount);
-        const priceB = applyDiscount(b.price, b.discount);
-
-        if (order === "asc") {
-          return priceA - priceB;
-        }
-        return priceB - priceA;
-      }
-
-      if (order === "asc") {
-        return (a[sortBy!] as number) - (b[sortBy!] as number);
-      }
-      return (b[sortBy!] as number) - (a[options.sortBy!] as number);
-    });
-  }
-  data = data.slice((page - 1) * 10, page * 10);
-
-  return {
-    data,
-    page,
-    totalResults,
-    totalPages: Math.ceil(totalResults / 10),
-  };
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
+  options: object,
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
+  filters: object,
+) => {
+  return {};
 };
 
 /**

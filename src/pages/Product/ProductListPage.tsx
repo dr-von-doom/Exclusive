@@ -1,23 +1,18 @@
 import { Breadcrumb } from "@/components/common/Breadcrumb";
+import { ErrorMsg } from "@/components/common/ErrorMsg";
 import { CategoryBanner } from "@/components/Product/CategoryBanner";
 import { ExploreMoreBanner } from "@/components/Product/ExploreMoreBanner";
 import { PaginatedProductList } from "@/components/Product/PaginatedProductList";
-import { ProductFilter } from "@/components/Product/ProductFilter";
 import { useGetCategoryByName } from "@/hooks/useGetCategoryByName";
 import { useGetProducts } from "@/hooks/useGetProducts";
 import BaseLayout from "@/layouts/BaseLayout";
-import { CategoryFilters } from "@/types/filter.type";
-import { CategoryFilterOptions, SortOptions } from "@/types/paginatedData.type";
-import { Product } from "@/types/product.type";
+import {
+  productSortingOptions,
+  ProductSortingOptions,
+} from "@/types/product.type";
+import { PaginationOptions } from "@/types/request.type";
 import { useState } from "react";
 import { useParams } from "react-router-dom";
-
-const sortOptionsList = [
-  { value: "", label: "Default" },
-  { value: "price-asc", label: "Price: Low to High" },
-  { value: "price-desc", label: "Price: High to Low" },
-  { value: "rating", label: "Rating" },
-];
 
 export const ProductListPage = () => {
   // Get the group and category name from the URL
@@ -27,10 +22,13 @@ export const ProductListPage = () => {
   // Check if the group and category
   if (!groupName || !categoryName) return <div>Invalid URL</div>;
 
-  const [sortOptions, setSortOptions] = useState<SortOptions<Product>>({});
-  const [categoryFilters] = useState<CategoryFilters | null>(null);
-  const [selectedFilters, setSelectedFilters] =
-    useState<CategoryFilterOptions | null>(null);
+  // Init the states
+  const [paginationOptions, setPaginationOptions] = useState<PaginationOptions>(
+    {
+      _page: 1,
+      _per_page: 10,
+    },
+  );
 
   const {
     isLoading: isCategoryLoading,
@@ -45,73 +43,67 @@ export const ProductListPage = () => {
   } = useGetProducts(
     {
       categoryId: category?.id,
-      filters: {
-        "specs.memory": "32GB",
-      },
+      filters: {},
     },
-    { _page: 1, _per_page: 10 },
+    paginationOptions,
   );
 
-  /**
-   * It handles loading more products
-   */
-  const handleLoadMoreProducts = () => {};
+  const onLoadMore = () => {
+    if (!products || !products.data.length) return;
 
-  /**
-   * It handles sorting products
-   */
-  const handleSortProducts = (event: React.ChangeEvent<HTMLSelectElement>) => {
-    const value = event.target.value;
-
-    switch (value) {
-      case "price-asc":
-        setSortOptions({ sortBy: "price", order: "asc" });
-        break;
-      case "price-desc":
-        setSortOptions({ sortBy: "price", order: "desc" });
-        break;
-      case "rating":
-        setSortOptions({ sortBy: "rating", order: "desc" });
-        break;
-      default:
-        setSortOptions({});
-        break;
-    }
+    setPaginationOptions((prev) => ({
+      ...prev,
+      _page: (prev._page ?? 0) + 1,
+    }));
   };
 
-  const handleFilterChange = (selectedOptions: CategoryFilterOptions) => {
-    setSelectedFilters(selectedOptions);
+  const onSort = (sortingOption: ProductSortingOptions) => {
+    const { sort, order } = productSortingOptions[sortingOption].value;
+
+    console.log(sort, order);
+    setPaginationOptions((prev) => ({
+      ...prev,
+      _sort: sort,
+      _order: order,
+    }));
   };
-
-  if (isCategoryLoading || isProductsLoading) return <div>Loading...</div>;
-
-  if (!category) return <div>Category not found</div>;
-  if (!products) return <div>No products found</div>;
 
   return (
     <BaseLayout>
-      <Breadcrumb />
-      <div className="flex h-full grow flex-col items-center justify-center gap-5 p-10">
-        <CategoryBanner category={category} />
-
-        <div className="my-10 grid w-full gap-4 sm:grid-cols-4">
-          <div className="sm:col-span-1">
-            {categoryFilters && (
-              <ProductFilter
-                onFilterChange={handleFilterChange}
-                categoryFilters={categoryFilters}
-              />
-            )}
-          </div>
-          <div className="flex flex-col gap-3 sm:col-span-3">
-            <PaginatedProductList
-              products={products}
-              sortOptionsList={sortOptionsList}
-              onLoadMore={handleLoadMoreProducts}
-              onSort={handleSortProducts}
-            />
-          </div>
-        </div>
+      <div className="flex h-full grow flex-col items-center justify-center gap-5 p-8">
+        {!category || isCategoryError ? (
+          <ErrorMsg
+            title="Category not found"
+            message="The category you are looking for does not exist."
+          />
+        ) : !products || isProductsError ? (
+          <ErrorMsg
+            title="Products not found"
+            message="We wouldn't find any products for this category."
+          />
+        ) : (
+          <>
+            <Breadcrumb className="!p-0" />
+            <CategoryBanner category={category} isLoading={isCategoryLoading} />
+            <div className="my-10 grid w-full gap-4 sm:grid-cols-4">
+              <div className="sm:col-span-1">
+                {/* {categoryFilters && (
+                  <ProductFilter
+                    onFilterChange={handleFilterChange}
+                    categoryFilters={categoryFilters}
+                  />
+                )} */}
+              </div>
+              <div className="flex flex-col gap-3 sm:col-span-3">
+                <PaginatedProductList
+                  products={products}
+                  onLoadMore={() => console.log("Load more")}
+                  onSort={onSort}
+                />
+              </div>
+            </div>
+          </>
+        )}
       </div>
 
       <ExploreMoreBanner />
