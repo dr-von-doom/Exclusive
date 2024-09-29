@@ -1,4 +1,4 @@
-import { PromotionalImageProps } from "@/components/PromotionalImage";
+import { PromotionalImageProps } from "@/components/Home/PromotionalImage";
 import categories from "@/data/categories.json";
 import filtersData from "@/data/filters.json";
 import products from "@/data/products.json";
@@ -50,53 +50,20 @@ export const applyDiscount = (price: number, discount?: number) => {
  */
 export const getProductByCategory = (
   categoryId: number,
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   options: PaginationOptions<Product>,
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   filters: CategoryFilterOptions | null,
 ): PaginatedData<Product> => {
-  const { page = 1, sortBy, order = "desc" } = options;
-
-  let data = (products as Product[]).filter(
+  const data = (products as unknown as Product[]).filter(
     (product: Product) => product.categoryId === categoryId,
   );
 
-  if (filters) {
-    Object.keys(filters).forEach((filter) => {
-      const filterSelectedValues = filters[filter];
-
-      data = data.filter((product: Product) => {
-        if (!filterSelectedValues.length) return true;
-        const productSpecs = product.specs.find((spec) => spec.name === filter);
-        return filterSelectedValues.includes(productSpecs?.value ?? "");
-      });
-    });
-  }
-
   const totalResults = data.length;
-
-  if (sortBy) {
-    data = data.sort((a: Product, b: Product) => {
-      // Apply the discount if sort is by price
-      if (sortBy === "price") {
-        const priceA = applyDiscount(a.price, a.discount);
-        const priceB = applyDiscount(b.price, b.discount);
-
-        if (order === "asc") {
-          return priceA - priceB;
-        }
-        return priceB - priceA;
-      }
-
-      if (order === "asc") {
-        return (a[sortBy!] as number) - (b[sortBy!] as number);
-      }
-      return (b[sortBy!] as number) - (a[options.sortBy!] as number);
-    });
-  }
-  data = data.slice((page - 1) * 10, page * 10);
 
   return {
     data,
-    page,
+    page: 1,
     totalResults,
     totalPages: Math.ceil(totalResults / 10),
   };
