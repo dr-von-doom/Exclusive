@@ -1,10 +1,19 @@
 import { Category } from "@/types/category.type";
+import { Skeleton } from "./Skeleton";
+
+const baseUrl = import.meta.env.BASE_URL;
 
 export type CategoryBannerProps = {
-  category: Category;
+  category?: Category;
+  isLoading?: boolean;
 };
 
-export const CategoryBanner = ({ category }: CategoryBannerProps) => {
+export const CategoryBanner = ({
+  category,
+  isLoading = false,
+}: CategoryBannerProps) => {
+  if (isLoading) return <Skeleton />;
+
   if (!category) return null;
 
   return (
@@ -16,7 +25,7 @@ export const CategoryBanner = ({ category }: CategoryBannerProps) => {
       <div>
         {category.imageUrl && (
           <img
-            src={category.imageUrl}
+            src={`${baseUrl}${category.imageUrl}`}
             alt="Category"
             className="md:max-w-60- h-full w-full rounded-md object-cover p-10"
           />
