@@ -1,21 +1,24 @@
-import { Product } from "@/types/product.type";
-import { apiMethods, requestApi } from "./api";
+import {
+  GetAllProductsParams,
+  GetAllProductsResponse,
+} from "@/types/product.type";
+import { Methods, PaginationOptions } from "@/types/request.type";
+import { requestApi } from "./api";
 
 const route = "products";
 
+/**
+ * Get all products from the API
+ *
+ * @param {GetAllProductsParams} params - Query params
+ * @param {PaginationOptions} options - Pagination options
+ * @returns {Promise<Product[]>} - List of products
+ */
 export const getAllProducts = async (
-  params: {
-    categoryId?: number;
-    filters?: Record<string, string>;
-  },
-  options: {
-    _page?: number;
-    _per_page?: number;
-    _sort?: string;
-    _order?: "asc" | "desc";
-  },
-): Promise<Product[]> => {
-  const response = await requestApi(route, apiMethods.GET, {
+  params: GetAllProductsParams,
+  options: PaginationOptions,
+): Promise<GetAllProductsResponse> => {
+  const response = await requestApi(`${route}/paginated`, Methods.GET, {
     queryParams: {
       categoryId: params.categoryId?.toString() ?? "",
       ...Object.fromEntries(
@@ -30,5 +33,5 @@ export const getAllProducts = async (
     },
   });
 
-  return response as Product[];
+  return response as GetAllProductsResponse;
 };
