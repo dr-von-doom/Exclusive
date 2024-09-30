@@ -6,7 +6,7 @@ const baseURL =
     : "https://exclusive-be.onrender.com";
 
 /** Api methods */
-export enum apiMethods {
+export enum Methods {
   GET = "GET",
   POST = "POST",
   PUT = "PUT",
@@ -37,7 +37,7 @@ export const replacePathParams = (
  * It makes a request to the API
  *
  * @param {string} route route to be called
- * @param {apiMethods} method method to be used
+ * @param {methods} method method to be used
  * @param {object} options
  * @param {object} options.headers headers to be sent
  * @param {object} options.body body to be sent
@@ -48,7 +48,7 @@ export const replacePathParams = (
  */
 export const requestApi = async (
   route: string,
-  method: apiMethods,
+  method: Methods,
   options: {
     headers?: Record<string, string>;
     body?: Record<string, unknown> | string;

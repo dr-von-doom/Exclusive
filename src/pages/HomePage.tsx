@@ -1,36 +1,46 @@
 import bannerImage from "@/assets/images/products/products-banner.png";
 import { Banner } from "@/components/Home/Banner";
-import {
-  PromotionalImage,
-  PromotionalImageProps,
-} from "@/components/Home/PromotionalImage";
+import { PromotionalImage } from "@/components/Home/PromotionalImage";
+import { PromotionalImageSkeleton } from "@/components/Home/PromotionalImage/PromotionalImagesSkeleton";
 import { FeaturedProductView } from "@/components/Product/FeaturedProductView";
+import { useGetPromotionalImages } from "@/Hooks/usePromotionalImages"; 
 import BaseLayout from "@/layouts/BaseLayout";
-import { getPromotionalImages } from "@/utils/data";
-import { useEffect, useState } from "react";
 
 const HomePage = () => {
-  const [promotionalImages, setPromotionalImages] = useState<
-    PromotionalImageProps[]
-  >([]);
+  const {
+    data: promotionalImages,
+    error,
+    isLoading,
+  } = useGetPromotionalImages();
 
-  useEffect(() => {
-    setPromotionalImages(getPromotionalImages());
-  });
 
   return (
     <BaseLayout>
       <div className="max-w-full">
         <section>
-          {promotionalImages.map((image, index) => (
-            <PromotionalImage
-              key={index}
-              src={image.src}
-              alt={image.alt}
-              href={image.href}
-              className={image.className}
-            />
-          ))}
+          {isLoading ? (
+            <div className="flex flex-col space-y-4">
+              {[...Array(2)].map((_, index) => (
+                <PromotionalImageSkeleton key={index} />
+              ))}
+            </div>
+          ) : error ? (
+            <p className="text-red-500">
+              Error fetching promotional images: {error.message}
+            </p>
+          ) : promotionalImages && promotionalImages.length > 0 ? (
+            promotionalImages.map((image) => (
+              <PromotionalImage
+                key={image.href}
+                src={image.src}
+                alt={image.alt}
+                href={image.href}
+                className={image.className}
+              />
+            ))
+          ) : (
+            <p>No hay imágenes promocionales disponibles.</p>
+          )}
         </section>
         <FeaturedProductView />
         <Banner
