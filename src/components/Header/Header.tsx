@@ -8,7 +8,7 @@ interface HeaderProps {
   cartLink?: string;
 }
 
-export const Header = ({ logoLink = '/', cartLink = '#' }: HeaderProps) => {
+export const Header = ({ logoLink = '/', cartLink = '/exclusive/cart' }: HeaderProps) => {
   return (
     <header className="flex flex-col text-sm md:text-base md:flex-row items-center justify-between p-4 px-7 bg-white text-gray-800 font-poppins">
 
