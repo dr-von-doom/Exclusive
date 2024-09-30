@@ -1,13 +1,13 @@
-import WorkInProgress from "@/components/common/WorkInProgress/WorkInProgress";
-import HomePage from "@/pages/HomePage";
 import NotFoundPage from "@/pages/NotFoundPage";
 import ProductListPage from "@/pages/Product/ProductListPage";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
+import { WorkInProgress } from "./components/common/WorkInProgress";
+import ProductDetailPage from "./pages/Product/ProductDetailPage";
 
 const router = createBrowserRouter([
   {
     path: "/",
-    element: <HomePage />,
+    element: <ProductDetailPage />,
   },
   {
     path: "/category",
