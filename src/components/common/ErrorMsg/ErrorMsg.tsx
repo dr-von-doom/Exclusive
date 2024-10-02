@@ -18,6 +18,4 @@ export const ErrorMsg = ({
   );
 };
 
-
 export default ErrorMsg;
-

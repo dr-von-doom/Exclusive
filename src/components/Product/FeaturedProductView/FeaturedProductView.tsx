@@ -32,21 +32,9 @@ export const FeaturedProductView = () => {
         id="featured-product-container"
         className="mb-8 grid grid-cols-[repeat(auto-fit,300px)] justify-center gap-8"
       >
-        {topRatedProducts && topRatedProducts.length > 0 ? (
-          topRatedProducts.map((product: Product) => (
-            <Link
-              key={product.id}
-              to={`/product/${product.id}/category/${product.categoryId}`}
-              className="block"
-            >
-              <ProductCard {...product} />
-            </Link>
-          ))
-        ) : (
-          <div className="p-5 text-center text-xl">
-            No featured products available
-          </div>
-        )}
+        {topRatedProducts.map((product) => (
+          <ProductCard key={product.id} {...(product as Product)} />
+        ))}
       </div>
     </div>
   );

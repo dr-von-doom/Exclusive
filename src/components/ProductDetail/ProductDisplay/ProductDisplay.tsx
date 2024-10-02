@@ -1,69 +1,56 @@
-import React from 'react';
+interface ProductData {
+  id: number;
+  name: string;
+  description: string;
+  rating: number;
+  totalRatings: number;
+  imageURL: string;
+  categoryId: number;
+  price: number;
+  discount?: number;
+  features: string[];
+}
 
-const ProductDisplay: React.FC = () => {
+const ProductDisplay = ({ product }: { product: ProductData }) => {
+  if (!product) {
+    return <div>No product details available</div>;
+  }
+
   return (
     <div className="flex flex-col md:flex-row justify-center items-center gap-20 mb-8">
       <div className="product-images flex flex-col gap-4">
-        <div className="thumbnail-images flex flex-col gap-2">
-          <img
-            src="images/products/product-00000000-00.png"
-            alt=""
-            className="w-16 h-16 object-cover rounded-lg"
-          />
-          <img
-            src="images/products/product-00000000-01.png"
-            alt=""
-            className="w-16 h-16 object-cover rounded-lg"
-          />
-          <img
-            src="images/products/product-00000000-02.png"
-            alt=""
-            className="w-16 h-16 object-cover rounded-lg"
-          />
-        </div>
         <div className="main-image">
           <img
-            src="images/products/product-00000000-close.png"
-            alt="LENOVO IdeaPad Slim 3"
+            src={product.imageURL}
+            alt={product.name}
             className="w-full max-w-xs object-cover rounded-lg"
           />
         </div>
       </div>
 
       <div className="product-info max-w-sm w-full">
-        <h1 className="font-bold text-2xl">LENOVO IdeaPad Slim 3</h1>
-        <p className="text-lg text-red-600 font-bold">$529.99</p>
-        <p className="text-sm text-green-500">In Stock</p>
-        <p className="text-sm text-gray-600">230 Reviews | 4.9 Stars</p>
-        <p className="text-base text-gray-700 mb-4">
-          In the LENOVO IdeaPad Slim 3 Gray laptop, find all the performance
-          you need, an elegant laptop that meets your needs.
+        <h1 className="font-bold text-2xl">{product.name}</h1>
+        <p className="text-lg text-red-600 font-bold">
+          ${((product.discount ? product.price * (1 - product.discount) : product.price)).toFixed(2)}
         </p>
 
-        <div className="product-options flex flex-col gap-2 mb-4">
-          <div className="option">
-            <label htmlFor="color-select" className="font-medium">Colours:</label>
-            <select id="color-select" className="w-full border border-gray-300 rounded p-2">
-              <option>Gray</option>
-              <option>Black</option>
-            </select>
-          </div>
-          <div className="option">
-            <label htmlFor="size-select" className="font-medium">Size:</label>
-            <select id="size-select" className="w-full border border-gray-300 rounded p-2">
-              <option>13"</option>
-              <option>14"</option>
-              <option>15.6"</option>
-              <option>17.3"</option>
-            </select>
-          </div>
+        <p className={`text-sm ${product.rating >= 4 ? 'text-green-500' : 'text-red-500'}`}>
+          {product.totalRatings} Reviews | {product.rating} Stars
+        </p>
+        <p className="text-base text-gray-700 mb-4">{product.description}</p>
+
+        <div className="features mb-4">
+          <h2 className="font-semibold">Features:</h2>
+          <ul className="list-disc pl-5">
+            {product.features.map((feature, index) => (
+              <li key={index} className="text-gray-600">{feature}</li>
+            ))}
+          </ul>
         </div>
 
         <div className="purchase-options flex flex-col gap-2">
           <button className="bg-red-600 text-white rounded py-2">Buy Now</button>
-          <a href="cart.html">
-            <button className="bg-red-600 text-white rounded py-2 w-full">Add to Cart</button>
-          </a>
+          <button className="bg-red-600 text-white rounded py-2 w-full">Add to Cart</button>
         </div>
       </div>
     </div>

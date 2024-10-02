@@ -33,6 +33,7 @@ export type GetAllProductsParams = {
 
 /** Product response */
 export type GetAllProductsResponse = {
+  products: any;
   data: Product[];
   page: number;
   totalPages: number;
@@ -94,4 +95,3 @@ export const productSortingOptions: {
     },
   },
 };
-
