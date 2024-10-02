@@ -1,20 +1,23 @@
-import { Product } from "@/types/Product";
-import ProductCard from "../ProductCard";
 import productsData from "@/data/products.json";
+import { Product } from "@/types/product.type";
+import { ProductCard } from "../ProductCard";
 
 export const FeaturedProductView = () => {
   const topRatedProducts = productsData
-    .sort((a, b) => b.rating - a.rating) 
-    .slice(0, 12); 
+    .sort((a, b) => b.rating - a.rating)
+    .slice(0, 12);
 
   return (
     <div>
-      <h2 className="text-center text-xl font-bold my-6 md:text-4xl">Featured Products</h2>
+      <h2 className="my-6 text-center text-xl font-bold md:text-4xl">
+        Featured Products
+      </h2>
       <div
         id="featured-product-container"
-        className="grid grid-cols-[repeat(auto-fit,300px)] gap-8 justify-center mb-8">
+        className="mb-8 grid grid-cols-[repeat(auto-fit,300px)] justify-center gap-8"
+      >
         {topRatedProducts.map((product) => (
-          <ProductCard key={product.id} {...product as Product} />
+          <ProductCard key={product.id} {...(product as unknown as Product)} />
         ))}
       </div>
     </div>

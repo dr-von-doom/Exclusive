@@ -2,14 +2,15 @@
   "cSpell.enabled": true,
   "editor.formatOnSave": true,
   "editor.codeActionsOnSave": {
-    "source.organizeImports": "always"
+    "source.organizeImports": "always",
+    "source.fixAll.eslint": "always"
   },
   "eslint.validate": ["typescript"],
   "[typescript]": {
     "editor.codeActionsOnSave": {
       "source.fixAll.eslint": "explicit",
       "editor.formatOnSave": "explicit",
-      "source.organizeImports": "never"
+      "source.organizeImports": "always"
     },
     "editor.formatOnSave": true,
     "editor.defaultFormatter": "esbenp.prettier-vscode"

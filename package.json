@@ -3,24 +3,23 @@
   "private": true,
   "version": "0.0.0",
   "type": "module",
-  "homepage": "https://dr-von-doom.github.io/exclusive/",
   "scripts": {
     "dev": "vite",
     "build": "tsc -b && vite build",
     "lint": "eslint .",
     "preview": "vite preview",
-    "plop": "plop",
-    "deploy": "npm run build && gh-pages -d dist",
     "storybook": "storybook dev -p 6006",
     "build-storybook": "storybook build"
   },
   "dependencies": {
+    "@tanstack/react-query": "^5.56.2",
     "clsx": "^2.1.1",
     "lodash": "^4.17.21",
     "react": "^18.3.1",
     "react-dom": "^18.3.1",
     "react-router-dom": "^6.26.2",
     "ts-node": "^10.9.2",
+    "vite-plugin-svgr": "^4.2.0",
     "vite-tsconfig-paths": "^5.0.1"
   },
   "devDependencies": {

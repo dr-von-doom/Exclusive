@@ -1,3 +1,1 @@
-import ExploreMoreBanner from "./ExploreMoreBanner";
-
-export default ExploreMoreBanner;
+export * from "./ExploreMoreBanner";

@@ -4,7 +4,7 @@
     "groupId": 1,
     "name": "Computers",
     "description": "Explore top-tier computers designed for performance, innovation, and reliability. Find your perfect match today",
-    "imageUrl": "assets/images/category-banner-1.png"
+    "imageUrl": "/assets/images/category-banner-1.png"
   },
   {
     "id": 2,
@@ -57,8 +57,8 @@
   {
     "id": 10,
     "groupId": 2,
-    "name": "Machines/Dryers",
-    "description": "Experience the next level of drying and comfort with our range of machines/dryers"
+    "name": "Machine-Dryers",
+    "description": "Experience the next level of drying and comfort with our range of Machine-Dryers"
   },
   {
     "id": 11,

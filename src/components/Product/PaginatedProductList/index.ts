@@ -1,3 +1,1 @@
-import DetailedProductList from "./PaginatedProductList";
-
-export default DetailedProductList;
+export * from "./PaginatedProductList";

@@ -1,0 +1,13 @@
+[
+  {
+    "src": "/assets/images/ads/ad-phone.svg",
+    "alt": "iPhone 14 Series. Up to 10% off voucher. Shop now",
+    "href": "#"
+  },
+  {
+    "src": "/assets/images/ads/ad-home.svg",
+    "alt": "Sale. Get up to 30% off all home products. Buy now",
+    "href": "#",
+    "className": "shadow-[1px_4px_29px_-23px_rgba(0,0,0,0.75)] border-2 border-[#d8d2be]"
+  }
+]

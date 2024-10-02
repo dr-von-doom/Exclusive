@@ -1,8 +1,8 @@
-import Button from "@/components/Button";
-import { PaginatedData } from "@/types/PaginatedData";
-import { Product } from "@/types/Product";
+import { Button } from "@/components/common/Button";
+import { PaginatedData } from "@/types/paginatedData.type";
+import { Product } from "@/types/product.type";
 import { useEffect, useRef } from "react";
-import DetailedProductCard from "../DetailedProductCard";
+import { DetailedProductCard } from "../DetailedProductCard";
 
 export type PaginatedProductListProps = {
   paginatedData: PaginatedData<Product>;
@@ -32,11 +32,11 @@ export const PaginatedProductList = ({
 
   return (
     <>
-      <div className="grid gap-5 sm:grid-cols-2" ref={optionSection}>
-        <div>
+      <div className="grid gap-5 p-5 sm:grid-cols-2" ref={optionSection}>
+        <div className="flex items-center">
           {paginatedData.data.length} out of {paginatedData.totalResults}
         </div>
-        <div className="flex space-x-3 sm:justify-self-end">
+        <div className="flex items-center space-x-3 sm:justify-self-end">
           <span>Sort by</span>
           <select
             name="sort-by"

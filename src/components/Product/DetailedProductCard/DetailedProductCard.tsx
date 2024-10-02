@@ -1,6 +1,6 @@
-import Button from "@/components/Button";
-import Rating from "@/components/Rating";
-import { Product } from "@/types/Product";
+import { Button } from "@/components/common/Button";
+import { Rating } from "@/components/common/Rating";
+import { Product } from "@/types/product.type";
 
 export const DetailedProductCard = (data: Product) => {
   const currentPrice = data.price - data.price * (data.discount ?? 0);

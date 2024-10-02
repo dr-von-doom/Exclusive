@@ -1,9 +1,17 @@
-import { Category } from "@/types/Category";
+import { PromotionalImageProps } from "@/components/Home/PromotionalImage";
 import categories from "@/data/categories.json";
+import filtersData from "@/data/filters.json";
 import products from "@/data/products.json";
-import { Product } from "@/types/Product";
+import { Category } from "@/types/category.type";
+import { CategoryFilters } from "@/types/filter.type";
+import {
+  CategoryFilterOptions,
+  PaginatedData,
+  PaginationOptions,
+} from "@/types/paginatedData.type";
+import { Product } from "@/types/product.type";
 import _ from "lodash";
-import { PaginatedData, PaginationOptions } from "@/types/PaginatedData";
+import promotionalImages from "../data/promotional-images.json";
 
 /**
  * It returns a category based on the category name
@@ -19,6 +27,17 @@ export const getCategoryByName = (name: string): Category | null => {
 };
 
 /**
+ * It applies a discount to the price
+ *
+ * @param {number} price original price
+ * @param {number} discount discount rate
+ * @returns {number} - discounted price
+ */
+export const applyDiscount = (price: number, discount?: number) => {
+  return price - price * (discount ?? 0);
+};
+
+/**
  * It returns a list of products based on the category ID
  *
  * @param {number} categoryId - Category ID
@@ -31,41 +50,37 @@ export const getCategoryByName = (name: string): Category | null => {
  */
 export const getProductByCategory = (
   categoryId: number,
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   options: PaginationOptions<Product>,
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
+  filters: CategoryFilterOptions | null,
 ): PaginatedData<Product> => {
-  const { page = 1, sortBy, order = "desc" } = options;
-
-  let data = (products as Product[]).filter(
+  const data = (products as unknown as Product[]).filter(
     (product: Product) => product.categoryId === categoryId,
   );
+
   const totalResults = data.length;
-
-  if (sortBy) {
-    data = data.sort((a: Product, b: Product) => {
-      // Apply the discount if sort is by price
-      if (sortBy === "price") {
-        const priceA = a.price - a.price * (a.discount ?? 0);
-        const priceB = b.price - b.price * (b.discount ?? 0);
-
-        if (order === "asc") {
-          return priceA - priceB;
-        }
-        return priceB - priceA;
-      }
-
-      if (order === "asc") {
-        return (a[sortBy!] as number) - (b[sortBy!] as number);
-      }
-      return (b[sortBy!] as number) - (a[options.sortBy!] as number);
-    });
-  }
-
-  data = data.slice((page - 1) * 10, page * 10);
 
   return {
     data,
-    page,
+    page: 1,
     totalResults,
     totalPages: Math.ceil(totalResults / 10),
   };
+};
+
+/**
+ * It returns a product based on the category ID
+ *
+ * @param {number} categoryId Category ID
+ * @returns {object[]} - List of filters
+ */
+export const getFilters = (categoryId: number): CategoryFilters => {
+  return filtersData.filter(
+    (filter) => filter.categoryId === categoryId,
+  )[0] as CategoryFilters;
+};
+
+export const getPromotionalImages = () => {
+  return promotionalImages as PromotionalImageProps[];
 };
