@@ -32,7 +32,7 @@ export const ProductListPage = () => {
 
   const {
     isLoading: isCategoryLoading,
-    isError: isCategoryError,
+    error: categoryError,
     data: category,
   } = useGetCategoryByName(categoryName);
 
@@ -40,6 +40,8 @@ export const ProductListPage = () => {
     data: productData,
     fetchNextPage,
     hasNextPage,
+    isLoadingError: isProductLoadingError,
+    isLoading: isProductLoading,
     refetch,
   } = useGetProducts(
     {
@@ -73,20 +75,21 @@ export const ProductListPage = () => {
   return (
     <BaseLayout>
       <div className="flex h-full grow flex-col items-center justify-center gap-5 p-8">
-        {!category || isCategoryError ? (
+        <Breadcrumb className="!p-0" />
+
+        {isProductLoadingError || categoryError ? (
           <ErrorMsg
-            title="Category not found"
-            message="The category you are looking for does not exist."
-          />
-        ) : !productData ? (
-          <ErrorMsg
-            title="Products not found"
-            message="We wouldn't find any products for this category."
+            title="Something went wrong."
+            message="Please try again later. If the problem persists, please contact us."
           />
         ) : (
           <>
-            <Breadcrumb className="!p-0" />
-            <CategoryBanner category={category} isLoading={isCategoryLoading} />
+            <CategoryBanner
+              category={category}
+              isLoading={isCategoryLoading}
+              error={categoryError}
+            />
+
             <div className="my-10 grid w-full gap-4 sm:grid-cols-4">
               <div className="sm:col-span-1">
                 {/* {categoryFilters && (
@@ -101,6 +104,7 @@ export const ProductListPage = () => {
                   products={
                     productData?.pages.flatMap((page) => page.data) || []
                   }
+                  isLoading={isProductLoading}
                   totalProducts={productData?.pages[0]?.totalProducts || 0}
                   hasNextPage={hasNextPage}
                   onLoadMore={onLoadMore}

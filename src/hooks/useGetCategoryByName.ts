@@ -4,7 +4,7 @@ import { useQuery } from "@tanstack/react-query";
 
 export const useGetCategoryByName = (categoryName: string) => {
   return useQuery<Category, Error>({
-    queryKey: ["category", categoryName],
+    queryKey: ["category-by-name", categoryName],
     queryFn: async () => {
       const category = await getCategoryByName(categoryName);
 

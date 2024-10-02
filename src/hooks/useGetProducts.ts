@@ -21,7 +21,7 @@ export const useGetProducts = (
     QueryKey,
     number
   >({
-    queryKey: ["products", params],
+    queryKey: ["all-products", params],
     queryFn: async ({ pageParam = 1 }) => {
       const response = await getAllProducts(params, {
         ...options,
@@ -36,6 +36,7 @@ export const useGetProducts = (
       }
       return undefined;
     },
+    enabled: !!params.categoryId,
     initialPageParam: 1,
   });
 };

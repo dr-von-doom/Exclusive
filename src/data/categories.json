@@ -4,7 +4,7 @@
     "groupId": 1,
     "name": "Computers",
     "description": "Explore top-tier computers designed for performance, innovation, and reliability. Find your perfect match today",
-    "imageUrl": "assets/images/category-banner-1.png"
+    "imageUrl": "/assets/images/category-banner-1.png"
   },
   {
     "id": 2,

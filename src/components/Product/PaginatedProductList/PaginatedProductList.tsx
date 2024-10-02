@@ -28,8 +28,6 @@ export const PaginatedProductList = ({
   const optionSection = useRef<HTMLDivElement>(null);
   const resultsSection = useRef<HTMLDivElement>(null);
 
-  if (isLoading) return <PaginatedProductListSkeleton />;
-
   useEffect(() => {
     const rect = optionSection.current?.getClientRects()[0];
     if (rect) {
@@ -39,6 +37,8 @@ export const PaginatedProductList = ({
       );
     }
   }, [optionSection]);
+
+  if (isLoading) return <PaginatedProductListSkeleton />;
 
   return (
     <>
@@ -74,8 +74,11 @@ export const PaginatedProductList = ({
         className="flex flex-col gap-5 overflow-y-auto scroll-smooth p-5"
         ref={resultsSection}
       >
-        {products.map((product, index) => (
-          <DetailedProductCard key={index} product={product} />
+        {products.map((product) => (
+          <DetailedProductCard
+            key={`product-${product.id}`}
+            product={product}
+          />
         ))}
       </div>
 
