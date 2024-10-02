@@ -1,5 +1,5 @@
 import BaseLayout from "@/layouts/BaseLayout";
-import Breadcrumb from "@/components/Breadcumb/Breadcrumb";
+import Breadcrumb from "@/components/common/Breadcrumb/Breadcrumb";
 import CartProduct from "@/components/CartProduct";
 import PurchaseSummary from "@/components/PurchaseSummary";
 
