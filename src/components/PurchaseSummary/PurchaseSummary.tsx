@@ -1,4 +1,4 @@
-import Button from "../Button";
+import Button from "../common/Button/Button";
 
 export const PurchaseSummary = () => {
   return (
