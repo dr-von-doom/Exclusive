@@ -1,16 +1,34 @@
+import { PromotionalImageData } from "@/types/promotional.images";
+import { ErrorMsg } from "@/components/ErrorMsg"; 
+import { PromotionalImageSkeleton } from "@/components/Home/PromotionalImage/PromotionalImagesSkeleton";
+
 export type PromotionalImageProps = {
-  src: string;
-  alt: string;
-  href: string;
-  className?: string;
-};
+  isLoading?: boolean;
+  error?: Error | null;
+} & PromotionalImageData; 
+
 
 export const PromotionalImage = ({
   src,
   alt,
   href,
   className = "",
+  isLoading = false,
+  error = null,
 }: PromotionalImageProps) => {
+  if (error) {
+    return (
+      <ErrorMsg
+        title="Something went wrong. Please try again later."
+        message={error.message}
+      />
+    );
+  }
+
+  if (isLoading) {
+    return <PromotionalImageSkeleton />;
+  }
+
   return (
     <a href={href} className="block p-4">
       <img

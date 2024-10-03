@@ -1,13 +1,13 @@
 // hooks/usePromotionalImages.ts
 import { useQuery } from "@tanstack/react-query";
-import { getPromotionalImagesFromApi } from "@/services/promotionalImage.ts"; // Asegúrate de que la ruta sea correcta
-import { PromotionalImageProps } from "@/components/Home/PromotionalImage";
+import { getPromotionalImages } from "@/services/promotionalImage.ts"; 
+import { PromotionalImageData } from "@/types/promotional.images";
 
 export const useGetPromotionalImages = () => {
-  return useQuery<PromotionalImageProps[], Error>({
+  return useQuery<PromotionalImageData[], Error>({
     queryKey: ["promotionalImages"],
     queryFn: async () => {
-      const images = await getPromotionalImagesFromApi();
+      const images = await getPromotionalImages();
       if (!images || images.length === 0) {
         throw new Error("No promotional images found");
       }

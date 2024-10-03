@@ -1,21 +1,16 @@
 import { requestApi } from "@/services/api";
 import { Methods } from "@/types/request.type";
+import { PromotionalImageData } from "@/types/promotional.images";
 
 const route = "promotional_imanges";
 
-export type PromotionalImageProps = {
-  src: string;
-  alt: string;
-  href: string;
-  className?: string;
-};
+
 /**
- * Fetch promotional images from the API
  * @returns {Promise<PromotionalImageProps[]>}
  */
-export const getPromotionalImagesFromApi = async (): Promise<
-  PromotionalImageProps[]
+export const getPromotionalImages = async (): Promise<
+  PromotionalImageData[]
 > => {
   const response = await requestApi(route, Methods.GET, {});
-  return response as PromotionalImageProps[];
+  return response as PromotionalImageData[];
 };
