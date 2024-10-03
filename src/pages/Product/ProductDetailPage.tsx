@@ -5,8 +5,10 @@ import { ErrorMsg } from "@/components/common/ErrorMsg";
 import { useGetProducts } from "@/hooks/useGetProducts";
 import BaseLayout from "@/layouts/BaseLayout";
 import { useEffect, useState } from "react";
+import { useParams } from "react-router-dom";
 
 const ProductDetailPage = () => {
+  const { productId, categoryId } = useParams<{ productId: string; categoryId: string }>();
   const [paginationOptions] = useState({
     _page: 1,
     _per_page: 10,
@@ -19,7 +21,7 @@ const ProductDetailPage = () => {
     refetch,
   } = useGetProducts(
     {
-      categoryId: 1,
+      categoryId: Number(categoryId),
       filters: {},
     },
     paginationOptions
@@ -30,10 +32,10 @@ const ProductDetailPage = () => {
   }, [refetch]);
 
   let selectedProduct;
+
   if (productData) {
     const allProducts = productData?.pages?.flatMap((page) => page.data) ?? [];
-    const randomIndex = Math.floor(Math.random() * allProducts.length);
-    selectedProduct = allProducts[randomIndex];
+    selectedProduct = allProducts.find((product) => product.id === Number(productId));
 
     if (selectedProduct && selectedProduct.discount === undefined) {
       selectedProduct.discount = 0;
@@ -54,7 +56,11 @@ const ProductDetailPage = () => {
   }
 
   if (!selectedProduct) {
-    return <ErrorMsg title="Product not found" message="No products were found." />;
+    return (
+      <BaseLayout>
+        <ErrorMsg title="Product not found" message="No products were found." />
+      </BaseLayout>
+    );
   }
 
   return (
