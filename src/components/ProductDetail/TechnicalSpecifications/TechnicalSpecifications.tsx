@@ -1,9 +1,5 @@
 interface Specs {
-  brand?: string;
-  processor?: string;
-  memory?: string;
-  storage?: string;
-  graphics?: string;
+  [key: string]: string | number | boolean | undefined;
 }
 
 interface TechnicalSpecificationsProps {
@@ -15,31 +11,25 @@ const TechnicalSpecifications = ({ specs }: TechnicalSpecificationsProps) => {
     return <div>No product specs available</div>;
   }
 
+  const formatKey = (key: string) => {
+    return key
+      .replace(/([A-Z])/g, ' $1') 
+      .replace(/^./, (str) => str.toUpperCase()); 
+  };
+
   return (
     <div className="technical-specifications mb-8">
-      <h2 className="text-xl font-bold p-4 mx-auto md:ml-[170px]">Technical specifications</h2>
+      <h2 className="text-xl font-bold p-4 mx-auto md:ml-[170px]">Technical Specifications</h2>
       <table className="max-w-3xl w-full border-none mx-auto md:ml-[170px]">
         <tbody>
-          <tr>
-            <td className="border border-transparent p-2 px-4">Brand:</td>
-            <td className="border border-transparent p-2 px-4">{specs.brand}</td>
-          </tr>
-          <tr>
-            <td className="border border-transparent p-2 px-4">Processor:</td>
-            <td className="border border-transparent p-2 px-4">{specs.processor}</td>
-          </tr>
-          <tr>
-            <td className="border border-transparent p-2 px-4">Memory:</td>
-            <td className="border border-transparent p-2 px-4">{specs.memory}</td>
-          </tr>
-          <tr>
-            <td className="border border-transparent p-2 px-4">Storage:</td>
-            <td className="border border-transparent p-2 px-4">{specs.storage}</td>
-          </tr>
-          <tr>
-            <td className="border border-transparent p-2 px-4">Graphics:</td>
-            <td className="border border-transparent p-2 px-4">{specs.graphics}</td>
-          </tr>
+          {Object.entries(specs).map(([key, value]) => (
+            value !== undefined && (
+              <tr key={key}>
+                <td className="border border-transparent p-2 px-4">{formatKey(key)}:</td>
+                <td className="border border-transparent p-2 px-4">{String(value)}</td> 
+              </tr>
+            )
+          ))}
         </tbody>
       </table>
     </div>
