@@ -7,17 +7,6 @@ const baseURL =
     ? "http://localhost:3000"
     : "https://exclusive-be.onrender.com";
 
-
-/** Api methods */
-export enum Methods {
-  GET = "GET",
-  POST = "POST",
-  PUT = "PUT",
-  DELETE = "DELETE",
-  PATCH = "PATCH",
-}
-
-
 /**
  * It replaces the path params in the path
  *

@@ -1,19 +1,18 @@
 import bannerImage from "@/assets/images/products/products-banner.png";
+import { ErrorMsg } from "@/components/common/ErrorMsg";
 import { Banner } from "@/components/Home/Banner";
 import { PromotionalImage } from "@/components/Home/PromotionalImage";
-import { FeaturedProductView } from "@/components/Product/FeaturedProductView";
-import { useGetPromotionalImages } from "@/Hooks/usePromotionalImages"; 
-import BaseLayout from "@/layouts/BaseLayout";
-import { ErrorMsg } from "@/components/common/ErrorMsg"; 
 import { PromotionalImageSkeleton } from "@/components/Home/PromotionalImage/PromotionalImagesSkeleton";
+import { FeaturedProductView } from "@/components/Product/FeaturedProductView";
+import { useGetPromotionalImages } from "@/hooks/usePromotionalImages";
+import BaseLayout from "@/layouts/BaseLayout";
 
 const HomePage = () => {
   const {
     data: promotionalImages,
-    error: promotionalImageError, 
-    isLoading,  
+    error: promotionalImageError,
+    isLoading,
   } = useGetPromotionalImages();
-
 
   if (isLoading) {
     return (
@@ -25,11 +24,10 @@ const HomePage = () => {
     );
   }
 
-
   if (promotionalImageError) {
     return (
       <BaseLayout>
-        <ErrorMsg 
+        <ErrorMsg
           title="Something went wrong. Please try again later."
           message={promotionalImageError.message}
         />
@@ -53,11 +51,11 @@ const HomePage = () => {
                 />
               ))
             ) : (
-              <p >No promotional images available</p> 
+              <p>No promotional images available</p>
             )}
           </div>
         </section>
-        <FeaturedProductView/>
+        <FeaturedProductView />
         <Banner
           mainText="Everything you need, just a Click away"
           title="DON'T LET THE WINTER FREEZE"
