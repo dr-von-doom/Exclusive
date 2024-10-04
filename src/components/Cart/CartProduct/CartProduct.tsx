@@ -1,4 +1,4 @@
-import { priceFormatter } from "@/utils/functions";
+import { getDiscountedPrice, priceFormatter } from "@/utils/functions";
 import ShippingMethod from "../ShippingMethod";
 import { Product } from "@/types/product.type";
 
@@ -26,9 +26,9 @@ export const CartProduct = ({ product }: CartProductProps) => {
             <option value="5">5</option>
           </select>
         </div>
-        <div id="product-price" className="absolute right-0 text-sm max-md:bottom-4 md:text-base md:text-center ">
+        <div id="product-price" className="absolute right-0 text-sm max-md:bottom-4 md:text-base md:text-center md:mt-3">
           <p className="hidden md:block">Price</p>
-          <p className="font-semibold">{priceFormatter(product.price)}</p>
+          <p className="font-semibold">{priceFormatter(getDiscountedPrice(product.price, product.discount ? product.discount: 0))}</p>
         </div>
       </div>
     </div>
