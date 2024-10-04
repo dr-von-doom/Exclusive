@@ -1,11 +1,16 @@
 import bannerImage from "@/assets/images/products/products-banner.png";
 import { Banner } from "@/components/Home/Banner";
-import { PromotionalImage } from "@/components/Home/PromotionalImage";
+
+import {
+  PromotionalImage,
+  PromotionalImageProps,
+} from "@/components/Home/PromotionalImage";
 import { FeaturedProductView } from "@/components/Product/FeaturedProductView";
 import { useGetPromotionalImages } from "@/Hooks/usePromotionalImages"; 
 import BaseLayout from "@/layouts/BaseLayout";
 import { ErrorMsg } from "@/components/common/ErrorMsg"; 
 import { PromotionalImageSkeleton } from "@/components/Home/PromotionalImage/PromotionalImagesSkeleton";
+
 
 const HomePage = () => {
   const {
