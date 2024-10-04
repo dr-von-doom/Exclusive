@@ -2,7 +2,8 @@ import HomePage from "@/pages/HomePage";
 import NotFoundPage from "@/pages/NotFoundPage";
 import ProductListPage from "@/pages/Product/ProductListPage";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
-import { WorkInProgress } from "./components/common/WorkInProgress";
+import WorkInProgress from "@/components/common/WorkInProgress/WorkInProgress";
+import  ShoppingCartPage  from "@/pages/Shopping-cart/ShoppingCartPage";
 
 const router = createBrowserRouter([
   {
@@ -24,6 +25,10 @@ const router = createBrowserRouter([
   {
     path: "*",
     element: <NotFoundPage />,
+  },
+  {
+    path: "/cart",
+    element: <ShoppingCartPage />,
   },
 ]);
 
