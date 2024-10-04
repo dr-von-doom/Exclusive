@@ -1,6 +1,7 @@
 import bannerImage from "@/assets/images/products/products-banner.png";
 import { ErrorMsg } from "@/components/common/ErrorMsg";
 import { Banner } from "@/components/Home/Banner";
+
 import { PromotionalImage } from "@/components/Home/PromotionalImage";
 import { PromotionalImageSkeleton } from "@/components/Home/PromotionalImage/PromotionalImagesSkeleton";
 import { FeaturedProductView } from "@/components/Product/FeaturedProductView";

@@ -21,8 +21,8 @@ export const Button = ({
         {
           "hover:bg-red-700 hover:text-white": type === "primary",
           "border-2 bg-transparent": !filled,
-          "bg-red-500 text-white": filled && type === "primary",
-          "bg-red-500": !filled && type === "primary",
+          " bg-red-500 text-white": filled && type === "primary",
+          "border-red-500": !filled && type === "primary",
           "hover:bg-green-500 hover:text-white": type === "secondary",
           "bg-green-400 text-white": filled && type === "secondary",
           "border-green-400": !filled && type === "secondary",
