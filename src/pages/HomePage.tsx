@@ -57,7 +57,7 @@ const HomePage = () => {
             )}
           </div>
         </section>
-        <FeaturedProductView />
+        <FeaturedProductView/>
         <Banner
           mainText="Everything you need, just a Click away"
           title="DON'T LET THE WINTER FREEZE"
