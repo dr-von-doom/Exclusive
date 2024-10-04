@@ -1,9 +1,14 @@
-import ShippingMethod from "../ShippingMethod";
 import { priceFormatter } from "@/utils/functions";
+import ShippingMethod from "../ShippingMethod";
+import { Product } from "@/types/product.type";
 
-export const CartProduct = ({ product }: any) => {
+interface CartProductProps {
+  product: Product;
+}
+
+export const CartProduct = ({ product }: CartProductProps) => {
   return (
-    <div className="relative flex gap-4 mb-4">
+    <div className="relative mb-4 flex gap-4">
       <div>
         <img src={product.imageURL} alt={product.name} />
       </div>
@@ -21,7 +26,10 @@ export const CartProduct = ({ product }: any) => {
             <option value="5">5</option>
           </select>
         </div>
-        <div id="product-price" className="absolute bottom-0 right-0 mb-2 flex flex-col items-center md:top-14 md:mb-0">
+        <div
+          id="product-price"
+          className="absolute bottom-0 right-0 mb-2 flex flex-col items-center md:top-14 md:mb-0"
+        >
           <p className="hidden md:block">Price</p>
           <p className="font-semibold">{priceFormatter(product.price)}</p>
         </div>
