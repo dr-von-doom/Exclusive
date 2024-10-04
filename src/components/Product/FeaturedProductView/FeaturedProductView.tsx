@@ -1,8 +1,8 @@
-import { ProductCard } from "../ProductCard";
 import { useGetFeaturedProducts } from "@/hooks/useGetFeaturedProducts";
-import { FeaturedProductsSkeleton } from "./FeaturedProductsSkeleton";
-import { Link } from "react-router-dom"; 
 import { Product } from "@/types/product.type";
+import { Link } from "react-router-dom";
+import { ProductCard } from "../ProductCard";
+import { FeaturedProductsSkeleton } from "./FeaturedProductsSkeleton";
 
 export const FeaturedProductView = () => {
   const { data: topRatedProducts, isLoading, error } = useGetFeaturedProducts();
@@ -12,12 +12,15 @@ export const FeaturedProductView = () => {
   }
 
   if (error) {
-    return <div className="text-center p-5 text-xl">Error loading products: {error.message}</div>;
+    return (
+      <div className="p-5 text-center text-xl">
+        Error loading products: {error.message}
+      </div>
+    );
   }
 
   return (
     <div>
-      <FeaturedProductsSkeleton />
       <h2
         className="my-6 text-center text-xl font-bold md:text-4xl"
         style={{ wordSpacing: "0.3em" }}
@@ -33,14 +36,16 @@ export const FeaturedProductView = () => {
           topRatedProducts.map((product: Product) => (
             <Link
               key={product.id}
-              to={`/product/${product.id}/category/${product.categoryId}`} 
-              className="block" 
+              to={`/product/${product.id}/category/${product.categoryId}`}
+              className="block"
             >
               <ProductCard {...product} />
             </Link>
           ))
         ) : (
-          <div  className="text-center p-5 text-xl">No featured products available</div>
+          <div className="p-5 text-center text-xl">
+            No featured products available
+          </div>
         )}
       </div>
     </div>
