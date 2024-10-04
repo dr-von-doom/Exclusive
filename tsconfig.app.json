@@ -11,8 +11,12 @@
       "@/*": ["./src/*"]
     },
 
+    /* Enable JSON Imports */
+    "resolveJsonModule": true,
+    "allowSyntheticDefaultImports": true,
+
     /* Bundler mode */
-    "moduleResolution": "bundler",
+    "moduleResolution": "node",
     "allowImportingTsExtensions": true,
     "isolatedModules": true,
     "moduleDetection": "force",

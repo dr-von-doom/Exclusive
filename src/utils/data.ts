@@ -8,7 +8,7 @@ import { CategoryFilters } from "@/types/filter.type";
  * @returns {object[]} - List of filters
  */
 export const getFilters = (categoryId: number): CategoryFilters => {
-  return filtersData.filter(
-    (filter) => filter.categoryId === categoryId,
+  return (filtersData as CategoryFilters[]).filter(
+    (filter: CategoryFilters) => filter.categoryId === categoryId,
   )[0] as CategoryFilters;
 };
