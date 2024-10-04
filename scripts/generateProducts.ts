@@ -2,8 +2,8 @@ import { faker } from "@faker-js/faker";
 import fs from "fs";
 import categories from "../src/data/categories.json";
 import filters from "../src/data/filters.json";
-import { CategoryFilters } from "../src/types/Filter";
-import { Product } from "../src/types/Product";
+import { CategoryFilters } from "../src/types/filter.type";
+import { Product } from "../src/types/product.type";
 
 const products: Product[] = [];
 
@@ -12,7 +12,7 @@ categories.forEach((category, i) => {
     (f) => f.categoryId === category.id,
   ) as CategoryFilters;
 
-  const p = [...Array(faker.number.int({ min: 5, max: 5 }))].map(
+  const p = [...Array(faker.number.int({ min: 5, max: 20 }))].map(
     (_, j): Product =>
       ({
         id: products.length + 1 + j,

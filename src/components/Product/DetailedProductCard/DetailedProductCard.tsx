@@ -1,32 +1,45 @@
 import { Button } from "@/components/common/Button";
 import { Rating } from "@/components/common/Rating";
 import { Product } from "@/types/product.type";
+import { DetailedProductCardSkeleton } from "./DetailedProductCardSkeleton";
 
-export const DetailedProductCard = (data: Product) => {
-  const currentPrice = data.price - data.price * (data.discount ?? 0);
+export type DetailedProductCardProps = {
+  product?: Product;
+  isLoading?: boolean;
+};
+
+export const DetailedProductCard = ({
+  product,
+  isLoading,
+}: DetailedProductCardProps) => {
+  if (isLoading) return <DetailedProductCardSkeleton />;
+
+  if (!product) return;
+
+  const currentPrice = product.price - product.price * (product.discount ?? 0);
 
   return (
     <div
-      key={data.id}
+      key={product.id}
       className="grid gap-5 rounded-lg border border-slate-200 shadow-sm lg:grid-cols-5"
     >
       <div className="flex items-center justify-center rounded-bl-lg rounded-tl-lg bg-gray-100 p-5 lg:col-span-2">
-        <img src={data.imageURL} alt={data.name} className="max-h-60" />
+        <img src={product.imageURL} alt={product.name} className="max-h-60" />
       </div>
 
       <div className="flex flex-col justify-evenly gap-5 p-5 lg:col-span-3">
         <div className="flex flex-row items-center gap-2">
-          <span>{data.rating}</span>
-          <Rating value={data.rating} />
-          <span className="text-sm font-light">({data.totalRatings})</span>
+          <span>{product.rating}</span>
+          <Rating value={product.rating} />
+          <span className="text-sm font-light">({product.totalRatings})</span>
         </div>
 
         <div className="flex flex-col gap-1">
-          <p className="text-lg font-semibold">{data.name}</p>
-          <p>{data.description}</p>
+          <p className="text-lg font-semibold">{product.name}</p>
+          <p>{product.description}</p>
 
           <ul className="list-disc pl-5 text-sm lg:text-base">
-            {data.features.map((feature, index) => (
+            {product.features.map((feature, index) => (
               <li key={index}>{feature}</li>
             ))}
           </ul>
@@ -38,9 +51,9 @@ export const DetailedProductCard = (data: Product) => {
               $ {currentPrice.toFixed(2)}
             </strong>
 
-            {(data.discount ?? 0) > 0 && (
+            {(product.discount ?? 0) > 0 && (
               <span className="text-sm text-gray-500 line-through">
-                $ {data.price.toFixed(2)}
+                $ {product.price.toFixed(2)}
               </span>
             )}
           </div>
