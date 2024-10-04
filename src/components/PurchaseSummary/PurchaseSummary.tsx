@@ -2,7 +2,7 @@ import Button from "../common/Button/Button";
 
 export const PurchaseSummary = () => {
   return (
-    <div className="relative p-8 border border-black rounded-lg shadow-md">
+    <div className="relative p-8 border border-neutral-300 rounded-lg shadow-md">
       <h2 className="text-2xl font-semibold my-6">Purchase Summary</h2>
       <div className="flex justify-between border-b-2 pb-2 mb-4">
         <p>Subtotal</p>
