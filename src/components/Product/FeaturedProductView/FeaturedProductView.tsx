@@ -1,12 +1,19 @@
 import { ProductCard } from "../ProductCard";
 import { useGetProductSummaries } from "@/hooks/useGetFeaturedProducts";
-import { SkeletonLoader } from "./FeaturedProductsSkeleton";
+import { FeaturedProductsSkeleton } from "./FeaturedProductsSkeleton";
+import { useNavigate } from "react-router-dom";
+import { Product } from "@/types/product.type";
 
 export const FeaturedProductView = () => {
+  const navigate = useNavigate();
   const { data: topRatedProducts, isLoading, error } = useGetProductSummaries();
 
+  const handleProductClick = (product: Product) => {
+    navigate(`/product/${product.id}/category/${product.categoryId}`);
+  };
+
   if (isLoading) {
-    return <SkeletonLoader />;
+    return <FeaturedProductsSkeleton />;
   }
 
   if (error) {
@@ -28,7 +35,9 @@ export const FeaturedProductView = () => {
       >
         {topRatedProducts && topRatedProducts.length > 0 ? (
           topRatedProducts.map((product) => (
-            <ProductCard key={product.name} {...product} />
+            <div key={product.id} onClick={() => handleProductClick(product)}>
+              <ProductCard {...product} />
+            </div>
           ))
         ) : (
           <div>No products available</div>

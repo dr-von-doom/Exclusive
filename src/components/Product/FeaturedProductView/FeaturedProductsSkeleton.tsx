@@ -1,4 +1,4 @@
-export const SkeletonLoader = () => {
+export const FeaturedProductsSkeleton = () => {
   return (
     <div>
       <div
@@ -28,4 +28,4 @@ export const SkeletonLoader = () => {
   );
 };
 
-export default SkeletonLoader;
+export default FeaturedProductsSkeleton;

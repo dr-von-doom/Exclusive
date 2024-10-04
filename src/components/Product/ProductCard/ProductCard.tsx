@@ -1,7 +1,7 @@
-import { ProductSummary } from "@/services/featuredproducts"; 
+import { Product } from "@/types/product.type";
 import { getDiscountedPrice, priceFormatter } from "@/utils/functions";
 
-export const ProductCard = (product: ProductSummary) => {
+export const ProductCard = (product: Product) => {
   return (
     <div className="relative flex max-w-[300px] flex-col justify-between rounded-md border border-neutral-300 bg-white p-4 font-poppins shadow-sm">
       {product.discount ? (
@@ -10,7 +10,7 @@ export const ProductCard = (product: ProductSummary) => {
         </div>
       ) : null}
       <div className="flex w-full items-center justify-center p-4">
-        <img src={product.image} alt={product.name} /> 
+        <img src={product.imageURL} alt={product.name} /> 
       </div>
       <div>
         <p className="text-lg font-bold">{product.name}</p>

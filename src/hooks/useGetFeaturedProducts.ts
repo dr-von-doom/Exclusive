@@ -1,14 +1,14 @@
 import { useQuery } from "@tanstack/react-query";
 import { getProductSummaries } from "@/services/featuredproducts";
-import { ProductSummary } from "@/services/featuredproducts"; 
+import { Product } from "@/types/product.type";
 
 export const useGetProductSummaries = () => {
-  return useQuery<ProductSummary[], Error>({
+  return useQuery<Product[], Error>({
     queryKey: ["productSummaries"],
-    queryFn: async (): Promise<ProductSummary[]> => {
+    queryFn: async (): Promise<Product[]> => {
       const productSummaries = await getProductSummaries();
-      console.log("Fetched products:", productSummaries); // Aquí verificamos la respuesta
       return productSummaries; 
     },
   });
 };
+
