@@ -7,6 +7,17 @@ const baseURL =
     ? "http://localhost:3000"
     : "https://exclusive-be.onrender.com";
 
+
+/** Api methods */
+export enum Methods {
+  GET = "GET",
+  POST = "POST",
+  PUT = "PUT",
+  DELETE = "DELETE",
+  PATCH = "PATCH",
+}
+
+
 /**
  * It replaces the path params in the path
  *
@@ -30,7 +41,7 @@ export const replacePathParams = (
  * It makes a request to the API
  *
  * @param {string} route route to be called
- * @param {apiMethods} method method to be used
+ * @param {methods} method method to be used
  * @param {object} options
  * @param {object} options.headers headers to be sent
  * @param {object} options.body body to be sent
