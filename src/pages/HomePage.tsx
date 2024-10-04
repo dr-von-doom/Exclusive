@@ -6,35 +6,63 @@ import {
   PromotionalImageProps,
 } from "@/components/Home/PromotionalImage";
 import { FeaturedProductView } from "@/components/Product/FeaturedProductView";
+import { useGetPromotionalImages } from "@/Hooks/usePromotionalImages"; 
 import BaseLayout from "@/layouts/BaseLayout";
-import { getPromotionalImages } from "@/utils/data";
-import { useEffect, useState } from "react";
+import { ErrorMsg } from "@/components/common/ErrorMsg"; 
+import { PromotionalImageSkeleton } from "@/components/Home/PromotionalImage/PromotionalImagesSkeleton";
 
 
 const HomePage = () => {
-  const [promotionalImages, setPromotionalImages] = useState<
-    PromotionalImageProps[]
-  >([]);
+  const {
+    data: promotionalImages,
+    error: promotionalImageError, 
+    isLoading,  
+  } = useGetPromotionalImages();
 
-  useEffect(() => {
-    setPromotionalImages(getPromotionalImages());
-  });
+
+  if (isLoading) {
+    return (
+      <BaseLayout>
+        <div className="flex flex-wrap justify-center gap-4">
+          <PromotionalImageSkeleton />
+        </div>
+      </BaseLayout>
+    );
+  }
+
+
+  if (promotionalImageError) {
+    return (
+      <BaseLayout>
+        <ErrorMsg 
+          title="Something went wrong. Please try again later."
+          message={promotionalImageError.message}
+        />
+      </BaseLayout>
+    );
+  }
 
   return (
     <BaseLayout>
       <div className="max-w-full">
         <section>
-          {promotionalImages.map((image, index) => (
-            <PromotionalImage
-              key={index}
-              src={image.src}
-              alt={image.alt}
-              href={image.href}
-              className={image.className}
-            />
-          ))}
+          <div className="flex flex-col">
+            {promotionalImages && promotionalImages.length > 0 ? (
+              promotionalImages.map((image) => (
+                <PromotionalImage
+                  key={image.href}
+                  src={image.src}
+                  alt={image.alt}
+                  href={image.href}
+                  className={image.className}
+                />
+              ))
+            ) : (
+              <p >No promotional images available</p> 
+            )}
+          </div>
         </section>
-        <FeaturedProductView />
+        <FeaturedProductView/>
         <Banner
           mainText="Everything you need, just a Click away"
           title="DON'T LET THE WINTER FREEZE"

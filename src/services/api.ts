@@ -1,9 +1,12 @@
+import { Methods } from "@/types/request.type";
+
 const env = process.env.NODE_ENV;
 
 const baseURL =
   env === "development"
     ? "http://localhost:3000"
     : "https://exclusive-be.onrender.com";
+
 
 /** Api methods */
 export enum Methods {
@@ -13,6 +16,7 @@ export enum Methods {
   DELETE = "DELETE",
   PATCH = "PATCH",
 }
+
 
 /**
  * It replaces the path params in the path
@@ -66,6 +70,8 @@ export const requestApi = async (
   route = options.pathParams
     ? replacePathParams(route, options.pathParams)
     : route;
+
+  console.log(`request ${baseURL}/${route}?${queryParams}`);
 
   const response = await fetch(`${baseURL}/${route}?${queryParams}`, {
     method,
