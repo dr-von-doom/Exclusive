@@ -1,6 +1,6 @@
+import { getPromotionalImages } from "@/services/promotionalImage.service";
+import { PromotionalImageData } from "@/types/promotionalImages.type";
 import { useQuery } from "@tanstack/react-query";
-import { getPromotionalImages } from "@/services/promotionalImage.ts"; 
-import { PromotionalImageData } from "@/types/promotional.images";
 
 export const useGetPromotionalImages = () => {
   return useQuery<PromotionalImageData[], Error>({
@@ -12,5 +12,5 @@ export const useGetPromotionalImages = () => {
       }
       return images;
     },
-  });  
+  });
 };
