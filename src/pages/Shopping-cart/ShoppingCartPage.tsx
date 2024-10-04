@@ -1,5 +1,5 @@
 import CartProduct from "@/components/Cart/CartProduct";
-import PurchaseSummary from "@/components/Cart/PurchaseSummary";
+// import PurchaseSummary from "@/components/Cart/PurchaseSummary/PurchaseSummary";
 import Breadcrumb from "@/components/common/Breadcrumb/Breadcrumb";
 import BaseLayout from "@/layouts/BaseLayout";
 import { Product } from "@/types/product.type";
@@ -10,7 +10,7 @@ imageU: "https://via.placeholder.com/150";
 const CartProducts: Product[] = [
   {
     "id": 1,
-    "name": "Apple MacBook Air",
+    "name": "Apple MacBook Air Pro",
     "description": "Lightweight and powerful laptop with an all-day battery life, perfect for on-the-go productivity.",
     "rating": 4.8,
     "totalRatings": 254,
@@ -89,9 +89,9 @@ export const ShoppingCartPage = () => {
   return (
     <BaseLayout>
       <Breadcrumb></Breadcrumb>
-      <section className="grid grid-cols-1 grid-rows-2 gap-8 p-8 lg:grid-cols-3 lg:grid-rows-1">
-        <div className="rounded-lg bg-white border border-neutral-300 p-8 shadow-xl lg:col-span-2">
-          <h2 className="mb-4 text-2xl font-semibold">Cart</h2>
+      <section className="grid grid-cols-1 grid-rows-2 gap-4 p-4 lg:grid-cols-3 lg:grid-rows-1">
+        <div className="rounded-lg bg-white border border-neutral-300 p-6 shadow-xl lg:col-span-2">
+          <h2 className="mb-2 text-2xl font-semibold">Cart</h2>
           <div className="flex flex-col gap-4">
             {CartProducts.map((product, index) => (
               <div key={product.id}>
@@ -101,7 +101,6 @@ export const ShoppingCartPage = () => {
             ))}
           </div>
         </div>
-        <PurchaseSummary></PurchaseSummary>
       </section>
     </BaseLayout>
   );

@@ -1,8 +1,8 @@
 export const ShippingMethod = () => {
   return (
-    <details>
-      <summary className="font-semibold text-sm">Shipping method</summary>
-      <div id="shipping-method" className="text-sm font-light">
+    <details className="mt-1 md:absolute">
+      <summary className="font-semibold text-xs md:text-sm">Shipping method</summary>
+      <div id="shipping-method" className="text-xs md:text-sm font-light mb-7">
         <div id="standard-sh" className="flex items-center gap-2">
           <label htmlFor="standard">Standard</label>
           <input type="radio" name="shipping" id="standard" />
