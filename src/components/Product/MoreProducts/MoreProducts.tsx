@@ -1,14 +1,16 @@
+import { Link } from 'react-router-dom'; 
 import { useGetProducts } from '@/components/Hooks/useGetProducts'; 
 import { ProductCard } from '../ProductCard'; 
-import { useNavigate } from 'react-router-dom';
 import { Product } from '@/types/product.type';
-import { SkeletonCard } from '@/components/Product/MoreProducts/MoreProductsSkeleton';
+import { YouMightLikeSkeleton } from '@/components/Product/MoreProducts/MoreProductsSkeleton';
 
-export const YouMightLike = () => {
-  const navigate = useNavigate();
-  
+interface YouMightLikeProps {
+  currentCategoryId: number; 
+}
+
+export const YouMightLike = ({ currentCategoryId }: YouMightLikeProps) => {
   const params = {
-    categoryId: null, 
+    categoryId: currentCategoryId,
   };
   
   const options = {
@@ -17,29 +19,25 @@ export const YouMightLike = () => {
 
   const { data, isLoading, error } = useGetProducts(params, options);
 
-  const handleProductClick = (product: Product) => {
-    navigate(`/product/${product.id}/category/${product.categoryId}`);
-  };
-
   if (isLoading) {
-    return <SkeletonCard />;
+    return <YouMightLikeSkeleton />;
   }
 
   if (error) {
-    return <div>Error loading products: {error.message}</div>;
+    console.error("Error fetching products:", error);
+    return <div className="text-center text-xl">Error loading products: {error.message}</div>;
   }
 
-  const productsToShow: Product[] = data?.pages.flatMap(page => page.products) || [];
+  const productsToShow: Product[] = (data?.pages || []).flatMap(page => page.data || []);
 
   if (!productsToShow.length) {
-    return <div>No products available</div>;
+    return <div className='text-xl text-center'>No recommended products available</div>;
   }
-
   
   return (
     <div>
-      <h2 className="my-6 text-xl font-bold md:text-4xl" style={{ letterSpacing: "0.07em", wordSpacing: "0.3em" }}>
-        You Might Like
+      <h2 className="my-6 ml-5 text-xl font-bold md:text-4xl" style={{ letterSpacing: "0.02em", wordSpacing: "0.3em" }}>
+        You Might Also Like
       </h2>
 
       <div
@@ -47,9 +45,11 @@ export const YouMightLike = () => {
         className="mb-8 grid grid-cols-[repeat(auto-fit,300px)] justify-center gap-8"
       >
         {productsToShow.map((product) => (
-          <div key={product.id} onClick={() => handleProductClick(product)}>
-            <ProductCard {...product} />
-          </div>
+          product.id && (
+            <Link key={product.id} to={`/product/${product.id}/category/${product.categoryId}`} className="cursor-pointer">
+              <ProductCard {...product} />
+            </Link>
+          )
         ))}
       </div>
     </div>

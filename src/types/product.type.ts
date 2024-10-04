@@ -33,7 +33,6 @@ export type GetAllProductsParams = {
 
 /** Product response */
 export type GetAllProductsResponse = {
-  products: Product[];
   data: Product[];
   page: number;
   totalPages: number;

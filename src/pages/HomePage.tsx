@@ -1,14 +1,15 @@
 import bannerImage from "@/assets/images/products/products-banner.png";
 import { Banner } from "@/components/Home/Banner";
+
 import {
   PromotionalImage,
   PromotionalImageProps,
 } from "@/components/Home/PromotionalImage";
 import { FeaturedProductView } from "@/components/Product/FeaturedProductView";
-import { YouMightLike } from "@/components/Product/MoreProducts";
 import BaseLayout from "@/layouts/BaseLayout";
 import { getPromotionalImages } from "@/utils/data";
 import { useEffect, useState } from "react";
+
 
 const HomePage = () => {
   const [promotionalImages, setPromotionalImages] = useState<
@@ -34,7 +35,6 @@ const HomePage = () => {
           ))}
         </section>
         <FeaturedProductView />
-        <YouMightLike />
         <Banner
           mainText="Everything you need, just a Click away"
           title="DON'T LET THE WINTER FREEZE"
