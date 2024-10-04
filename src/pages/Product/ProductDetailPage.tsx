@@ -43,15 +43,18 @@ const ProductDetailPage = () => {
   }
 
   if (isProductLoading) {
-    return <Spinner />;
+    return <BaseLayout>
+      <Spinner />
+    </BaseLayout>
+
   }
 
   if (isProductError) {
     return (
-      <ErrorMsg
+      <BaseLayout><ErrorMsg
         title="Error loading product"
         message="There was an issue loading the product details."
-      />
+      /></BaseLayout>
     );
   }
 
