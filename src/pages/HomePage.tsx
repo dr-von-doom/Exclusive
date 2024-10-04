@@ -5,8 +5,9 @@ import { Banner } from "@/components/Home/Banner";
 import { PromotionalImage } from "@/components/Home/PromotionalImage";
 import { PromotionalImageSkeleton } from "@/components/Home/PromotionalImage/PromotionalImagesSkeleton";
 import { FeaturedProductView } from "@/components/Product/FeaturedProductView";
-import { useGetPromotionalImages } from "@/hooks/usePromotionalImages";
+import { useGetPromotionalImages } from "@/hooks/useGetPromotionalImages";
 import BaseLayout from "@/layouts/BaseLayout";
+import { PromotionalImageData } from "@/types/promotional.images";
 
 const HomePage = () => {
   const {
@@ -42,7 +43,7 @@ const HomePage = () => {
         <section>
           <div className="flex flex-col">
             {promotionalImages && promotionalImages.length > 0 ? (
-              promotionalImages.map((image) => (
+              promotionalImages.map((image: PromotionalImageData) => (
                 <PromotionalImage
                   key={image.href}
                   src={image.src}
