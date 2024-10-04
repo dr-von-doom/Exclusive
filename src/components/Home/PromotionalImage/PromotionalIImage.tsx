@@ -1,5 +1,5 @@
 import { PromotionalImageData } from "@/types/promotional.images";
-import { ErrorMsg } from "@/components/ErrorMsg"; 
+import { ErrorMsg } from "@/components/common/ErrorMsg"; 
 import { PromotionalImageSkeleton } from "@/components/Home/PromotionalImage/PromotionalImagesSkeleton";
 
 export type PromotionalImageProps = {
