@@ -1,11 +1,17 @@
 import { Link, useLocation } from "react-router-dom";
 
-export const Breadcrumb = () => {
+export type BreadcrumbProps = {
+  className?: string;
+};
+
+export const Breadcrumb = ({ className = "" }: BreadcrumbProps) => {
   const location = useLocation();
   const pathnames = location.pathname.split("/").filter((x) => x);
 
   return (
-    <div className="flex justify-center w-full rounded-md p-3 font-poppins text-sm md:text-base lg:justify-start lg:pl-8">
+    <div
+      className={`flex w-full justify-center rounded-md p-3 font-poppins text-sm md:text-base lg:justify-start lg:pl-8 ${className}`}
+    >
       <ol className="list-reset flex">
         <li className="text-gray-500 hover:text-red-500">
           <Link to="/">Home</Link>

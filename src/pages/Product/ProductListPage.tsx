@@ -1,31 +1,18 @@
 import { Breadcrumb } from "@/components/common/Breadcrumb";
+import { ErrorMsg } from "@/components/common/ErrorMsg";
 import { CategoryBanner } from "@/components/Product/CategoryBanner";
 import { ExploreMoreBanner } from "@/components/Product/ExploreMoreBanner";
 import { PaginatedProductList } from "@/components/Product/PaginatedProductList";
-import { ProductFilter } from "@/components/Product/ProductFilter";
+import { useGetCategoryByName } from "@/hooks/useGetCategoryByName";
+import { useGetProducts } from "@/hooks/useGetProducts";
 import BaseLayout from "@/layouts/BaseLayout";
-import { Category } from "@/types/category.type";
-import { CategoryFilters } from "@/types/filter.type";
 import {
-  CategoryFilterOptions,
-  PaginatedData,
-  SortOptions,
-} from "@/types/paginatedData.type";
-import { Product } from "@/types/product.type";
-import {
-  getCategoryByName,
-  getFilters,
-  getProductByCategory,
-} from "@/utils/data";
+  productSortingOptions,
+  ProductSortingOptions,
+} from "@/types/product.type";
+import { PaginationOptions } from "@/types/request.type";
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
-
-const sortOptionsList = [
-  { value: "", label: "Default" },
-  { value: "price-asc", label: "Price: Low to High" },
-  { value: "price-desc", label: "Price: High to Low" },
-  { value: "rating", label: "Rating" },
-];
 
 export const ProductListPage = () => {
   // Get the group and category name from the URL
@@ -35,132 +22,98 @@ export const ProductListPage = () => {
   // Check if the group and category
   if (!groupName || !categoryName) return <div>Invalid URL</div>;
 
-  // Initialize the state
-  const [paginatedData, setPaginatedData] = useState<PaginatedData<Product>>({
-    data: [],
-    page: 1,
-    totalResults: 0,
-    totalPages: 0,
-  });
+  // Init the states
+  const [paginationOptions, setPaginationOptions] = useState<PaginationOptions>(
+    {
+      _page: 1,
+      _per_page: 10,
+    },
+  );
 
-  const [category, setCategory] = useState<Category | null>(null);
-  const [sortOptions, setSortOptions] = useState<SortOptions<Product>>({});
-  const [categoryFilters, setCategoryFilters] =
-    useState<CategoryFilters | null>(null);
-  const [selectedFilters, setSelectedFilters] =
-    useState<CategoryFilterOptions | null>(null);
+  const {
+    isLoading: isCategoryLoading,
+    error: categoryError,
+    data: category,
+  } = useGetCategoryByName(categoryName);
 
-  // Fetch the category data
-  useEffect(() => {
-    const category = getCategoryByName(categoryName);
-    setCategory(category);
-  }, [categoryName]);
+  const {
+    data: productData,
+    fetchNextPage,
+    hasNextPage,
+    isLoadingError: isProductLoadingError,
+    isLoading: isProductLoading,
+    refetch,
+  } = useGetProducts(
+    {
+      categoryId: category?.id,
+      filters: {},
+    },
+    paginationOptions,
+  );
 
-  // Fetch the products by category and category filters
-  useEffect(() => {
-    if (!category) return;
-    const results = getProductByCategory(
-      category.id,
-      {
-        page: paginatedData.page,
-        ...sortOptions,
-      },
-      selectedFilters,
-    );
+  const onLoadMore = () => {
+    if (!hasNextPage) return;
 
-    const categoryFilters = getFilters(category.id);
-    setCategoryFilters(categoryFilters);
-    setPaginatedData(results);
-  }, [category]);
-
-  useEffect(() => {
-    if (!category) return;
-
-    const results = getProductByCategory(
-      category.id,
-      {
-        page: 1,
-        ...sortOptions,
-      },
-      selectedFilters,
-    );
-
-    setPaginatedData(results);
-  }, [sortOptions, selectedFilters]);
-
-  if (!category) return <div>Loading...</div>;
-
-  /**
-   * It handles loading more products
-   */
-  const handleLoadMoreProducts = () => {
-    if (!category) return;
-
-    const results = getProductByCategory(
-      category.id,
-      {
-        page: paginatedData.page + 1,
-        ...sortOptions,
-      },
-      selectedFilters,
-    );
-
-    setPaginatedData({
-      ...results,
-      data: [...paginatedData.data, ...results.data],
-    });
+    fetchNextPage();
   };
 
-  /**
-   * It handles sorting products
-   */
-  const handleSortProducts = (event: React.ChangeEvent<HTMLSelectElement>) => {
-    const value = event.target.value;
+  const onSort = (sortingOption: ProductSortingOptions) => {
+    const { sort, order } = productSortingOptions[sortingOption].value;
 
-    switch (value) {
-      case "price-asc":
-        setSortOptions({ sortBy: "price", order: "asc" });
-        break;
-      case "price-desc":
-        setSortOptions({ sortBy: "price", order: "desc" });
-        break;
-      case "rating":
-        setSortOptions({ sortBy: "rating", order: "desc" });
-        break;
-      default:
-        setSortOptions({});
-        break;
-    }
+    console.log(sort, order);
+    setPaginationOptions((prev) => ({
+      ...prev,
+      _sort: sort,
+      _order: order,
+    }));
   };
 
-  const handleFilterChange = (selectedOptions: CategoryFilterOptions) => {
-    setSelectedFilters(selectedOptions);
-  };
+  useEffect(() => {
+    refetch();
+  }, [paginationOptions, refetch]);
 
   return (
     <BaseLayout>
-      <Breadcrumb />
-      <div className="flex h-full grow flex-col items-center justify-center gap-5 p-10">
-        <CategoryBanner category={category} />
+      <div className="flex h-full grow flex-col items-center justify-center gap-5 p-8">
+        <Breadcrumb className="!p-0" />
 
-        <div className="my-10 grid w-full gap-4 sm:grid-cols-4">
-          <div className="sm:col-span-1">
-            {categoryFilters && (
-              <ProductFilter
-                onFilterChange={handleFilterChange}
-                categoryFilters={categoryFilters}
-              />
-            )}
-          </div>
-          <div className="flex flex-col gap-3 sm:col-span-3">
-            <PaginatedProductList
-              paginatedData={paginatedData}
-              sortOptionsList={sortOptionsList}
-              onLoadMore={handleLoadMoreProducts}
-              onSort={handleSortProducts}
+        {isProductLoadingError || categoryError ? (
+          <ErrorMsg
+            title="Something went wrong."
+            message="Please try again later. If the problem persists, please contact us."
+          />
+        ) : (
+          <>
+            <CategoryBanner
+              category={category}
+              isLoading={isCategoryLoading}
+              error={categoryError}
             />
-          </div>
-        </div>
+
+            <div className="my-10 grid w-full gap-4 sm:grid-cols-4">
+              <div className="sm:col-span-1">
+                {/* {categoryFilters && (
+                  <ProductFilter
+                    onFilterChange={handleFilterChange}
+                    categoryFilters={categoryFilters}
+                  />
+                )} */}
+              </div>
+              <div className="flex flex-col gap-3 sm:col-span-3">
+                <PaginatedProductList
+                  products={
+                    productData?.pages.flatMap((page) => page.data) || []
+                  }
+                  isLoading={isProductLoading}
+                  totalProducts={productData?.pages[0]?.totalProducts || 0}
+                  hasNextPage={hasNextPage}
+                  onLoadMore={onLoadMore}
+                  onSort={onSort}
+                />
+              </div>
+            </div>
+          </>
+        )}
       </div>
 
       <ExploreMoreBanner />
