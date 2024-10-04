@@ -1,16 +1,14 @@
-import PlaceholderImage from "@/assets/icons/placeholder.svg?react";
-
 export const PromotionalImageSkeleton = () => {
   return (
-    <div className="flex flex-col items-center justify-center">
-      <div className="h-40 w-full max-w-md animate-pulse overflow-hidden rounded-lg bg-gray-200 p-4 shadow-lg">
-        <PlaceholderImage className="h-full w-full" />
-      </div>
+    <div className="flex flex-col items-center justify-center gap-6">
 
-      <div className="h-40 w-full max-w-md animate-pulse overflow-hidden rounded-lg bg-gray-200 p-4 shadow-lg mt-4 mb-4">
-        <PlaceholderImage className="h-full w-full" />
+      <div className="w-full max-w-3xl animate-pulse rounded-[30px] bg-gray-200 shadow-lg">
+        <div className="w-full h-80 bg-gray-300 rounded-[30px]"></div> 
       </div>
-
+      
+      <div className="w-full max-w-3xl animate-pulse rounded-[30px] bg-gray-200 shadow-lg mb-6">
+        <div className="w-full h-80 bg-gray-300 rounded-[30px]"></div> 
+      </div>
     </div>
   );
 };

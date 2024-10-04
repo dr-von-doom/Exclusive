@@ -53,7 +53,7 @@ const HomePage = () => {
                 />
               ))
             ) : (
-              <p>No promotional images available</p> 
+              <p >No promotional images available</p> 
             )}
           </div>
         </section>
