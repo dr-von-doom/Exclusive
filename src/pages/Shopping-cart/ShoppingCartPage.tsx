@@ -1,5 +1,5 @@
 import CartProduct from "@/components/Cart/CartProduct";
-// import PurchaseSummary from "@/components/Cart/PurchaseSummary/PurchaseSummary";
+import PurchaseSummary from "@/components/Cart/PurchaseSummary/PurchaseSummary";
 import Breadcrumb from "@/components/common/Breadcrumb/Breadcrumb";
 import BaseLayout from "@/layouts/BaseLayout";
 import { Product } from "@/types/product.type";
@@ -101,6 +101,7 @@ export const ShoppingCartPage = () => {
             ))}
           </div>
         </div>
+        <PurchaseSummary/>
       </section>
     </BaseLayout>
   );
