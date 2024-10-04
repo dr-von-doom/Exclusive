@@ -11,12 +11,8 @@
       "@/*": ["./src/*"]
     },
 
-    /* Enable JSON Imports */
-    "resolveJsonModule": true,
-    "allowSyntheticDefaultImports": true,
-
     /* Bundler mode */
-    "moduleResolution": "node",
+    "moduleResolution": "Bundler",
     "allowImportingTsExtensions": true,
     "isolatedModules": true,
     "moduleDetection": "force",
@@ -29,5 +25,5 @@
     "noUnusedParameters": true,
     "noFallthroughCasesInSwitch": true
   },
-  "include": ["src", "src/**/*.(ts|tsx)"]
+  "include": ["src"]
 }
