@@ -1,4 +1,3 @@
-// hooks/usePromotionalImages.ts
 import { useQuery } from "@tanstack/react-query";
 import { getPromotionalImages } from "@/services/promotionalImage.ts"; 
 import { PromotionalImageData } from "@/types/promotional.images";

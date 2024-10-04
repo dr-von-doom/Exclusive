@@ -4,19 +4,44 @@ import { PromotionalImage } from "@/components/Home/PromotionalImage";
 import { FeaturedProductView } from "@/components/Product/FeaturedProductView";
 import { useGetPromotionalImages } from "@/Hooks/usePromotionalImages"; 
 import BaseLayout from "@/layouts/BaseLayout";
+import { ErrorMsg } from "@/components/common/ErrorMsg"; 
+import { PromotionalImageSkeleton } from "@/components/Home/PromotionalImage/PromotionalImagesSkeleton";
 
 const HomePage = () => {
   const {
     data: promotionalImages,
     error: promotionalImageError, 
-    isLoadingError, 
+    isLoading,  
   } = useGetPromotionalImages();
+
+
+  if (isLoading) {
+    return (
+      <BaseLayout>
+        <div className="flex flex-wrap justify-center gap-4">
+          <PromotionalImageSkeleton />
+        </div>
+      </BaseLayout>
+    );
+  }
+
+
+  if (promotionalImageError) {
+    return (
+      <BaseLayout>
+        <ErrorMsg 
+          title="Something went wrong. Please try again later."
+          message={promotionalImageError.message}
+        />
+      </BaseLayout>
+    );
+  }
 
   return (
     <BaseLayout>
       <div className="max-w-full">
         <section>
-          <div className="flex flex-col space-y-4">
+          <div className="flex flex-col">
             {promotionalImages && promotionalImages.length > 0 ? (
               promotionalImages.map((image) => (
                 <PromotionalImage
@@ -25,12 +50,10 @@ const HomePage = () => {
                   alt={image.alt}
                   href={image.href}
                   className={image.className}
-                  isLoading={isLoadingError}
-                  error={promotionalImageError}
                 />
               ))
             ) : (
-              <p>No promotional images available</p>
+              <p>No promotional images available</p> 
             )}
           </div>
         </section>

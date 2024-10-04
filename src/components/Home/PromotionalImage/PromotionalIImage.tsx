@@ -7,7 +7,6 @@ export type PromotionalImageProps = {
   error?: Error | null;
 } & PromotionalImageData; 
 
-
 export const PromotionalImage = ({
   src,
   alt,
@@ -30,7 +29,7 @@ export const PromotionalImage = ({
   }
 
   return (
-    <a href={href} className="block p-4">
+    <a href={href} className="block p-3">
       <img
         src={src}
         alt={alt}
