@@ -7,31 +7,15 @@ const baseUrl = import.meta.env.BASE_URL;
 export type CategoryBannerProps = {
   category?: Category;
   isLoading?: boolean;
-  error?: Error | null;
 };
 
 export const CategoryBanner = ({
   category,
   isLoading = false,
-  error = null,
 }: CategoryBannerProps) => {
-  if (error)
-    return (
-      <ErrorMsg
-        title="Something went wrong. Please try again later."
-        message={error.message}
-      />
-    );
-
   if (isLoading) return <CategoryBannerSkeleton />;
 
-  if (!category)
-    return (
-      <ErrorMsg
-        title="Category not found"
-        message="The category you are looking for does not exist."
-      />
-    );
+  if (!category) return null;
 
   return (
     <div className="min-h-30 grid w-full justify-evenly gap-10 rounded-md bg-[radial-gradient(circle,_rgba(46,_46,_46,_1)_0%,_rgba(0,_0,_0,_1)_100%)] px-10 py-5 text-white shadow-md first-line:bg-[rgb(46,_46,_46)] md:grid-cols-2 lg:px-32">

@@ -1,4 +1,3 @@
-
 import {
   GetAllProductsParams,
   GetAllProductsResponse,
@@ -36,3 +35,5 @@ export const getAllProducts = async (
 
   return response as GetAllProductsResponse;
 };
+
+
