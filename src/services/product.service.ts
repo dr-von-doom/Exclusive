@@ -36,4 +36,9 @@ export const getAllProducts = async (
   return response as GetAllProductsResponse;
 };
 
+export const getProductById = async (productId: string) => {
+  return await requestApi(`${route}/${productId}`, Methods.GET, {
+    pathParams: { productId },
+  });
+};
 

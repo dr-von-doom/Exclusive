@@ -1,5 +1,6 @@
 import { useGetFeaturedProducts } from "@/hooks/useGetFeaturedProducts";
 import { Product } from "@/types/product.type";
+import { Link } from "react-router-dom";
 import { ProductCard } from "../ProductCard";
 import { FeaturedProductsSkeleton } from "./FeaturedProductsSkeleton";
 
@@ -32,7 +33,11 @@ export const FeaturedProductView = () => {
         className="mb-8 grid grid-cols-[repeat(auto-fit,300px)] justify-center gap-8"
       >
         {topRatedProducts.map((product) => (
-          <ProductCard key={product.id} {...(product as Product)} />
+          <Link key={product.id}
+            to={`/product/${product.id}`}
+            className="cursor-pointer">
+            <ProductCard key={product.id} {...(product as Product)} />
+          </Link>
         ))}
       </div>
     </div>
