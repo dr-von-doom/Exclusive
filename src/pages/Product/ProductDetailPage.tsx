@@ -1,60 +1,45 @@
+import { YouMightLike } from "@/components/Product/MoreProducts";
 import ProductDisplay from "@/components/ProductDetail/ProductDisplay/ProductDisplay";
 import { Spinner } from "@/components/ProductDetail/Spinner";
 import TechnicalSpecifications from "@/components/ProductDetail/TechnicalSpecifications/TechnicalSpecifications";
+import { Breadcrumb } from "@/components/common/Breadcrumb";
 import { ErrorMsg } from "@/components/common/ErrorMsg";
-import { useGetProducts } from "@/hooks/useGetProducts";
+import { useGetProductById } from "@/hooks/useGetProductsById";
 import BaseLayout from "@/layouts/BaseLayout";
-import { useEffect, useState } from "react";
+import { useEffect } from "react"; // Asegúrate de importar useEffect
 import { useParams } from "react-router-dom";
 
 const ProductDetailPage = () => {
-  const { productId, categoryId } = useParams<{ productId: string; categoryId: string }>();
-  const [paginationOptions] = useState({
-    _page: 1,
-    _per_page: 10,
-  });
+  const { productId = "" } = useParams<{ productId: string }>();
 
+  // Utiliza el nuevo hook para obtener el producto por ID
   const {
-    data: productData,
+    data: selectedProduct,
     isLoading: isProductLoading,
     isError: isProductError,
-    refetch,
-  } = useGetProducts(
-    {
-      categoryId: Number(categoryId),
-      filters: {},
-    },
-    paginationOptions
-  );
+  } = useGetProductById(productId); // Cambia aquí
 
+  // Agrega un efecto para desplazar suavemente hacia arriba
   useEffect(() => {
-    refetch();
-  }, [refetch]);
-
-  let selectedProduct;
-
-  if (productData) {
-    const allProducts = productData?.pages?.flatMap((page) => page.data) ?? [];
-    selectedProduct = allProducts.find((product) => product.id === Number(productId));
-
-    if (selectedProduct && selectedProduct.discount === undefined) {
-      selectedProduct.discount = 0;
-    }
-  }
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  }, []);
 
   if (isProductLoading) {
-    return <BaseLayout>
-      <Spinner />
-    </BaseLayout>
-
+    return (
+      <BaseLayout>
+        <Spinner />
+      </BaseLayout>
+    );
   }
 
   if (isProductError) {
     return (
-      <BaseLayout><ErrorMsg
-        title="Error loading product"
-        message="There was an issue loading the product details."
-      /></BaseLayout>
+      <BaseLayout>
+        <ErrorMsg
+          title="Error loading product"
+          message="There was an issue loading the product details."
+        />
+      </BaseLayout>
     );
   }
 
@@ -66,10 +51,17 @@ const ProductDetailPage = () => {
     );
   }
 
+  // Asegúrate de que el descuento esté definido
+  if (selectedProduct.discount === undefined) {
+    selectedProduct.discount = 0;
+  }
+
   return (
     <BaseLayout>
+      <Breadcrumb className="p-4 pb-20" />
       <ProductDisplay product={selectedProduct} />
       <TechnicalSpecifications specs={selectedProduct.specs} />
+      <YouMightLike currentCategoryId={selectedProduct.categoryId} />
     </BaseLayout>
   );
 };

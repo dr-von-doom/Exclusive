@@ -40,14 +40,12 @@ export const replacePathParams = (
  * @returns response
  */
 export const requestApi = async (
-  route: string,
-  method: Methods,
-  options: {
-    headers?: Record<string, string>;
-    body?: Record<string, unknown> | string;
-    pathParams?: Record<string, string>;
-    queryParams?: Record<string, string>;
-  },
+route: string, method: Methods, options: {
+  headers?: Record<string, string>;
+  body?: Record<string, unknown> | string;
+  pathParams?: Record<string, string>;
+  queryParams?: Record<string, string>;
+},
 ) => {
   const body = options.body ? JSON.stringify(options.body) : undefined;
   const queryParams = options.queryParams

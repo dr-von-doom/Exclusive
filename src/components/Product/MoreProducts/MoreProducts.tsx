@@ -47,7 +47,7 @@ export const YouMightLike = ({ currentCategoryId }: YouMightLikeProps) => {
   return (
     <div>
       <h2
-        className="my-6 ml-5 text-xl font-bold md:text-4xl"
+        className="my-6 pt-4  text-xl font-bold text-center "
         style={{ letterSpacing: "0.02em", wordSpacing: "0.3em" }}
       >
         You Might Also Like
@@ -55,14 +55,14 @@ export const YouMightLike = ({ currentCategoryId }: YouMightLikeProps) => {
 
       <div
         id="recommended-product-container"
-        className="mb-8 grid grid-cols-[repeat(auto-fit,300px)] justify-center gap-8"
+        className="mb-8 grid grid-cols-[repeat(auto-fit,300px)] justify-center gap-20"
       >
         {productsToShow.map(
           (product) =>
             product.id && (
               <Link
                 key={product.id}
-                to={`/product/${product.id}/category/${product.categoryId}`}
+                to={`/product/${product.id}`}
                 className="cursor-pointer"
               >
                 <ProductCard {...product} />
