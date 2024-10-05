@@ -30,7 +30,7 @@ export const replacePathParams = (
  * It makes a request to the API
  *
  * @param {string} route route to be called
- * @param {apiMethods} method method to be used
+ * @param {Methods} method method to be used
  * @param {object} options
  * @param {object} options.headers headers to be sent
  * @param {object} options.body body to be sent

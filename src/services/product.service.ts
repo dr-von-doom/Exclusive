@@ -35,3 +35,5 @@ export const getAllProducts = async (
 
   return response as GetAllProductsResponse;
 };
+
+

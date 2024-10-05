@@ -1,24 +1,52 @@
-export type PromotionalImageProps = {
-  src: string;
-  alt: string;
-  href: string;
-  className?: string;
-};
+import { PromotionalImageData } from "@/types/promotional.images";
+import { PromotionalImageSkeleton } from "@/components/Home/PromotionalImage/PromotionalImagesSkeleton";
+import { useGetPromotionalImages } from "@/hooks/useGetPromotionalImages";
+import { ErrorMsg } from "@/components/common/ErrorMsg"; 
 
-export const PromotionalImage = ({
-  src,
-  alt,
-  href,
-  className = "",
-}: PromotionalImageProps) => {
-  return (
-    <a href={href} className="block p-4">
-      <img
-        src={src}
-        alt={alt}
-        className={`h-auto max-w-full rounded-[20px] shadow-md ${className}`}
+export const PromotionalImage = () => {
+  const {
+    data: promotionalImages,
+    isLoading,
+    error,
+  } = useGetPromotionalImages();
+
+  if (isLoading) {
+    return (
+        <PromotionalImageSkeleton />
+    );
+  }
+
+  if (error) {
+    return (
+      <ErrorMsg
+        title="Error loading promotional images"
+        message={error.message}
       />
-    </a>
+    );
+  }
+
+  return (
+    <section>
+      <div className="flex flex-col">
+        {promotionalImages && promotionalImages.length > 0 ? (
+          promotionalImages.map((image: PromotionalImageData) => (
+            <a
+              key={image.href}
+              href={image.href}
+              className="block p-3"
+            >
+              <img
+                src={image.src}
+                alt={image.alt}
+                className={`h-auto max-w-full rounded-[20px] shadow-md ${image.className}`}
+              />
+            </a>
+          ))
+        ) : (
+          <p>No promotional images available</p>
+        )}
+      </div>
+    </section>
   );
 };
 

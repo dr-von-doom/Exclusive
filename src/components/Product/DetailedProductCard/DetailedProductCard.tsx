@@ -1,6 +1,7 @@
 import { Button } from "@/components/common/Button";
 import { Rating } from "@/components/common/Rating";
 import { Product } from "@/types/product.type";
+import { useNavigate } from "react-router-dom";
 import { DetailedProductCardSkeleton } from "./DetailedProductCardSkeleton";
 
 export type DetailedProductCardProps = {
@@ -12,16 +13,24 @@ export const DetailedProductCard = ({
   product,
   isLoading,
 }: DetailedProductCardProps) => {
+  const navigate = useNavigate(); // Hook para navegación
+
   if (isLoading) return <DetailedProductCardSkeleton />;
 
-  if (!product) return;
+  if (!product) return null;
 
   const currentPrice = product.price - product.price * (product.discount ?? 0);
+
+  const handleProductClick = () => {
+    navigate(`/product/${product.id}/category/${product.categoryId}`);
+
+  };
 
   return (
     <div
       key={product.id}
-      className="grid gap-5 rounded-lg border border-slate-200 shadow-sm lg:grid-cols-5"
+      onClick={handleProductClick}
+      className="grid gap-5 rounded-lg border border-slate-200 shadow-sm lg:grid-cols-5 cursor-pointer"
     >
       <div className="flex items-center justify-center rounded-bl-lg rounded-tl-lg bg-gray-100 p-5 lg:col-span-2">
         <img src={product.imageURL} alt={product.name} className="max-h-60" />

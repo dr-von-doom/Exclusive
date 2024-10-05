@@ -4,7 +4,6 @@ import { OrderOptions } from "./request.type";
 export type Spec = {
   [key: string]: string | number | boolean;
 };
-
 /** Product type */
 export type Product = {
   id: number;
@@ -12,7 +11,6 @@ export type Product = {
   categoryId: number;
   imageURL: string;
   description: string;
-
   /** Ratting 0 to 5 */
   rating: number;
   /** Total number of rating */
@@ -21,7 +19,6 @@ export type Product = {
   price: number;
   /** Discount (0 to 1) */
   discount?: number;
-
   /** Sort list of features (3) */
   features: string[];
   /** List of specifications (used to filter) */
@@ -36,6 +33,7 @@ export type GetAllProductsParams = {
 
 /** Product response */
 export type GetAllProductsResponse = {
+  products: any;
   data: Product[];
   page: number;
   totalPages: number;

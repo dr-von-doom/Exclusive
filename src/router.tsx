@@ -1,9 +1,9 @@
-import HomePage from "@/pages/HomePage";
 import NotFoundPage from "@/pages/NotFoundPage";
+import ProductDetailPage from "@/pages/Product/ProductDetailPage";
 import ProductListPage from "@/pages/Product/ProductListPage";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
-import WorkInProgress from "@/components/common/WorkInProgress/WorkInProgress";
-import  ShoppingCartPage  from "@/pages/Shopping-cart/ShoppingCartPage";
+import { WorkInProgress } from "./components/common/WorkInProgress";
+import HomePage from "./pages/HomePage";
 
 const router = createBrowserRouter([
   {
@@ -23,12 +23,12 @@ const router = createBrowserRouter([
     element: <ProductListPage />,
   },
   {
-    path: "*",
-    element: <NotFoundPage />,
+    path: "/product/:productId/category/:categoryId",
+    element: <ProductDetailPage />,
   },
   {
-    path: "/cart",
-    element: <ShoppingCartPage />,
+    path: "*",
+    element: <NotFoundPage />,
   },
 ]);
 
