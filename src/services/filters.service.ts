@@ -14,5 +14,5 @@ export const getFilters = async (categoryId: string): Promise<CategoryFilters> =
 
   if (response.length === 0) throw new Error("Filters not found");
 
-  return response as CategoryFilters;
+  return response[0] as CategoryFilters;
 }

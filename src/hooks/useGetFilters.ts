@@ -9,5 +9,6 @@ export const useGetFilters = (categoryId: string) => {
       const filters = await getFilters(categoryId);
       return filters;
     },
+    enabled: !!categoryId,
   });
 };
