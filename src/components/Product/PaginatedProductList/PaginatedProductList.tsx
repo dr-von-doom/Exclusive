@@ -34,7 +34,7 @@ export const PaginatedProductList = ({
     const rect = optionSection.current?.getClientRects()[0];
     if (rect) {
       resultsSection.current?.style.setProperty(
-        "height",
+        "min-height",
         `calc(100vh - ${rect.height}px)`,
       );
     }

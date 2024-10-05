@@ -81,12 +81,12 @@ export const ProductListPage = () => {
   return (
     <BaseLayout>
       <div className="flex h-full grow flex-col items-center justify-center gap-5 p-8">
-        {!category || isCategoryError ? (
+        {(!category || isCategoryError) && !isCategoryLoading ? (
           <ErrorMsg
             title="Category not found"
             message="The category you are looking for does not exist."
           />
-        ) : !productData ? (
+        ) : !productData && !isFiltersLoading ? (
           <ErrorMsg
             title="Products not found"
             message="We wouldn't find any products for this category."
