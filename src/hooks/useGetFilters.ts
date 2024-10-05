@@ -7,10 +7,6 @@ export const useGetFilters = (categoryId: string) => {
     queryKey: ["filters", categoryId],
     queryFn: async () => {
       const filters = await getFilters(categoryId);
-
-      if (!filters) {
-        throw new Error("Filters not found");
-      }
       return filters;
     },
   });
