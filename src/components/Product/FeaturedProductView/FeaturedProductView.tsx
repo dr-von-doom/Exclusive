@@ -1,8 +1,8 @@
 import { useGetFeaturedProducts } from "@/hooks/useGetFeaturedProducts";
 import { Product } from "@/types/product.type";
-import { Link } from "react-router-dom";
 import { ProductCard } from "../ProductCard";
 import { FeaturedProductsSkeleton } from "./FeaturedProductsSkeleton";
+import { Link } from "react-router-dom";
 
 export const FeaturedProductView = () => {
   const { data: topRatedProducts, isLoading, error } = useGetFeaturedProducts();

@@ -1,4 +1,3 @@
-import { ErrorMsg } from "@/components/common/ErrorMsg";
 import { Category } from "@/types/category.type";
 import { CategoryBannerSkeleton } from "./CategoryBannerSkeleton";
 
