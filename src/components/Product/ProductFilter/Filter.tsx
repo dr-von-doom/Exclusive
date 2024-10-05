@@ -4,18 +4,20 @@ import { CategoryFilters } from "@/types/filter.type";
 import React, { useCallback, useState } from "react";
 
 export type ProductFilterProps = {
-  categoryFilters: CategoryFilters;
+  categoryFilters: CategoryFilters | null;
   onFilterChange: (selectedOptions: Record<string, string[]>) => void;
+  isLoading: boolean;
+  error: Error | null;
 };
 
 export const ProductFilter: React.FC<ProductFilterProps> = ({
   categoryFilters,
   onFilterChange,
+  isLoading = false,
+  error = null,
 }: ProductFilterProps) => {
   const [openFilters, setOpenFilters] = useState<Set<string>>(new Set());
-  const [selectedOptions, setSelectedOptions] = useState<
-    Record<string, string[]>
-  >({});
+  const [selectedOptions, setSelectedOptions] = useState<Record<string, string[]>>({});
 
   const toggleFilter = useCallback((filterName: string) => {
     const newOpenFilters = new Set(openFilters);
@@ -25,7 +27,7 @@ export const ProductFilter: React.FC<ProductFilterProps> = ({
       newOpenFilters.add(filterName);
     }
     setOpenFilters(newOpenFilters);
-  }, []);
+  }, [openFilters]);
 
   const handleOptionChange = useCallback(
     (filterName: string, option: string, checked: boolean) => {
@@ -43,8 +45,20 @@ export const ProductFilter: React.FC<ProductFilterProps> = ({
       setSelectedOptions(newSelectedOptions);
       onFilterChange(newSelectedOptions);
     },
-    [onFilterChange],
+    [selectedOptions, onFilterChange],
   );
+
+  if (isLoading) {
+    return <div>Loading filters...</div>;
+  }
+
+  if (error) {
+    return <div>Error loading filters: {error.message}</div>;
+  }
+
+  if (!categoryFilters) {
+    return <div>No filters available</div>;
+  }
 
   return (
     <div className="m-0 font-poppins">

@@ -3,7 +3,9 @@ import { ErrorMsg } from "@/components/common/ErrorMsg";
 import { CategoryBanner } from "@/components/Product/CategoryBanner";
 import { ExploreMoreBanner } from "@/components/Product/ExploreMoreBanner";
 import { PaginatedProductList } from "@/components/Product/PaginatedProductList";
+import { ProductFilter } from "@/components/Product/ProductFilter/Filter";
 import { useGetCategoryByName } from "@/hooks/useGetCategoryByName";
+import { useGetFilters } from "@/hooks/useGetFilters";
 import { useGetProducts } from "@/hooks/useGetProducts";
 import BaseLayout from "@/layouts/BaseLayout";
 import {
@@ -35,6 +37,12 @@ export const ProductListPage = () => {
     isError: isCategoryError,
     data: category,
   } = useGetCategoryByName(categoryName);
+
+  const {
+    isLoading: isFiltersLoading,
+    error: filtersError,
+    data: filters,
+  } = useGetFilters(category?.id.toString() || "");
 
   const {
     data: productData,
@@ -89,12 +97,19 @@ export const ProductListPage = () => {
             <CategoryBanner category={category} isLoading={isCategoryLoading} />
             <div className="my-10 grid w-full gap-4 sm:grid-cols-4">
               <div className="sm:col-span-1">
-                {/* {categoryFilters && (
+                {filters?.filters && (
                   <ProductFilter
-                    onFilterChange={handleFilterChange}
-                    categoryFilters={categoryFilters}
+                    isLoading={isFiltersLoading}
+                    error={filtersError}
+                    categoryFilters={filters}
+                    onFilterChange={(filters) => {
+                      setPaginationOptions((prev) => ({
+                        ...prev,
+                        filters,
+                      }));
+                    }}
                   />
-                )} */}
+                )}
               </div>
               <div className="flex flex-col gap-3 sm:col-span-3">
                 <PaginatedProductList
