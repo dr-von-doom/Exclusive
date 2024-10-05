@@ -1,7 +1,7 @@
-import { PromotionalImageData } from "@/types/promotional.images";
+import { ErrorMsg } from "@/components/common/ErrorMsg";
 import { PromotionalImageSkeleton } from "@/components/Home/PromotionalImage/PromotionalImagesSkeleton";
 import { useGetPromotionalImages } from "@/hooks/useGetPromotionalImages";
-import { ErrorMsg } from "@/components/common/ErrorMsg"; 
+import { PromotionalImageData } from "@/types/promotionalImages.type";
 
 export const PromotionalImage = () => {
   const {
@@ -11,9 +11,7 @@ export const PromotionalImage = () => {
   } = useGetPromotionalImages();
 
   if (isLoading) {
-    return (
-        <PromotionalImageSkeleton />
-    );
+    return <PromotionalImageSkeleton />;
   }
 
   if (error) {
@@ -30,11 +28,7 @@ export const PromotionalImage = () => {
       <div className="flex flex-col">
         {promotionalImages && promotionalImages.length > 0 ? (
           promotionalImages.map((image: PromotionalImageData) => (
-            <a
-              key={image.href}
-              href={image.href}
-              className="block p-3"
-            >
+            <a key={image.href} href={image.href} className="block p-3">
               <img
                 src={image.src}
                 alt={image.alt}
