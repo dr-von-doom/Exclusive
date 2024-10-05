@@ -10,3 +10,4 @@ export const ShoppingCartPage = () => {
 };
 
 export default ShoppingCartPage;
+
