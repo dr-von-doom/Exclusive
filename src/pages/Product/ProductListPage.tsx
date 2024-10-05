@@ -4,6 +4,7 @@ import { CategoryBanner } from "@/components/Product/CategoryBanner";
 import { ExploreMoreBanner } from "@/components/Product/ExploreMoreBanner";
 import { PaginatedProductList } from "@/components/Product/PaginatedProductList";
 import { useGetCategoryByName } from "@/hooks/useGetCategoryByName";
+import { useGetFilters } from "@/hooks/useGetFilters";
 import { useGetProducts } from "@/hooks/useGetProducts";
 import BaseLayout from "@/layouts/BaseLayout";
 import {
@@ -35,6 +36,8 @@ export const ProductListPage = () => {
     error: categoryError,
     data: category,
   } = useGetCategoryByName(categoryName);
+
+  // const {} = useGetFilters();
 
   const {
     data: productData,
