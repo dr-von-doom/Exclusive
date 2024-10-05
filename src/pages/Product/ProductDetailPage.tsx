@@ -1,14 +1,17 @@
 import ProductDisplay from "@/components/ProductDetail/ProductDisplay/ProductDisplay";
 import { Spinner } from "@/components/ProductDetail/Spinner";
 import TechnicalSpecifications from "@/components/ProductDetail/TechnicalSpecifications/TechnicalSpecifications";
+import { Breadcrumb } from "@/components/common/Breadcrumb";
 import { ErrorMsg } from "@/components/common/ErrorMsg";
 import { useGetProducts } from "@/hooks/useGetProducts";
 import BaseLayout from "@/layouts/BaseLayout";
 import { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
+import { useLocation, useParams } from "react-router-dom";
 
 const ProductDetailPage = () => {
-  const { productId, categoryId } = useParams<{ productId: string; categoryId: string }>();
+  const { productId } = useParams<{ productId: string }>();
+  const location = useLocation();
+  const categoryId = location.state?.categoryId;
   const [paginationOptions] = useState({
     _page: 1,
     _per_page: 10,
@@ -68,6 +71,7 @@ const ProductDetailPage = () => {
 
   return (
     <BaseLayout>
+      <Breadcrumb className="p-4 pb-20" />
       <ProductDisplay product={selectedProduct} />
       <TechnicalSpecifications specs={selectedProduct.specs} />
     </BaseLayout>

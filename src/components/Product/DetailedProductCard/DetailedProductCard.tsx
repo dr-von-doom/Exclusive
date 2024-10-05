@@ -22,8 +22,12 @@ export const DetailedProductCard = ({
   const currentPrice = product.price - product.price * (product.discount ?? 0);
 
   const handleProductClick = () => {
-    navigate(`/product/${product.id}/category/${product.categoryId}`);
+    const currentPath = window.location.pathname;
+    const newUrl = `${currentPath}/${product.id}`;
 
+    navigate(newUrl, {
+      state: { categoryId: product.categoryId }
+    });
   };
 
   return (
