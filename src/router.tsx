@@ -4,6 +4,7 @@ import ProductListPage from "@/pages/Product/ProductListPage";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import { WorkInProgress } from "./components/common/WorkInProgress";
 import HomePage from "./pages/HomePage";
+import ShoppingCartPage from "./pages/Shopping-cart/ShoppingCartPage";
 
 const router = createBrowserRouter([
   {
@@ -25,6 +26,10 @@ const router = createBrowserRouter([
   {
     path: "/product/:productId/category/:categoryId",
     element: <ProductDetailPage />,
+  },
+  {
+    path: "/cart",
+    element: <ShoppingCartPage />,
   },
   {
     path: "*",
